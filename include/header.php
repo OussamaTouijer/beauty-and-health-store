@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">Store</a>
+        <a class="navbar-brand" href="index.php">Éclat & Vitalité</a>
         <button
           class="navbar-toggler"
           type="button"

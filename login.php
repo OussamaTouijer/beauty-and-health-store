@@ -18,7 +18,7 @@ $categories=getAllCategories();
       href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
       rel="stylesheet"
     />
-    <title>ous</title>
+    <title>Éclat & Vitalité</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </head>
 

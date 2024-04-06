@@ -21,14 +21,15 @@ if(!empty($_POST)){
       href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
       rel="stylesheet"
     />
-    <title>ous</title>
+    <title>Éclat & Vitalité</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </head>
 
   <body>
     <!-- navigation in header -->
     <?php include 'include/header.php'?>
-
 
     <!-- formulair -->
     <div class="col-12 p-5">
