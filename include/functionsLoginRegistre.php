@@ -1,6 +1,5 @@
 <?php
 
-
 function InsertClients($data) {
     // Informations de connexion à la base de données
     $servername = "localhost";
@@ -17,15 +16,18 @@ function InsertClients($data) {
     try {
         // Préparation de la requête SQL
         $stmt = $conn->prepare($requete);
-        
-     // Vérifier si 'user_type' est défini, sinon attribuer la valeur par défaut 'client'
-    if (!isset($data['user_type'])) {
-        $data['user_type'] = 'client';
-    }
+
+        // Chiffrer le mot de passe avec MD5
+        $hashed_password = md5($data['password']);
+
+        // Vérifier si 'user_type' est défini, sinon attribuer la valeur par défaut 'client'
+        if (!isset($data['user_type'])) {
+            $data['user_type'] = 'client';
+        }
 
         // Liaison des valeurs des paramètres
         $stmt->bindParam(':email', $data['email']);
-        $stmt->bindParam(':password', $data['password']);
+        $stmt->bindParam(':password', $hashed_password); // Utiliser le mot de passe chiffré
         $stmt->bindParam(':user_type', $data['user_type']);
         $stmt->bindParam(':telephone', $data['telephone']);
         $stmt->bindParam(':address', $data['address']);
@@ -38,7 +40,7 @@ function InsertClients($data) {
 
         // Fermeture de la connexion à la base de données
         $conn = null;
-        
+
         // Retourne true pour indiquer que l'insertion a été réussie
         return true;
     } catch(PDOException $e) {
@@ -51,18 +53,19 @@ function InsertClients($data) {
     }
 }
 
+
 function connectUser($data) {
     // Informations de connexion à la base de données
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $DBname = "éclat & vitalité"; // Attention : le nom de la base de données contient des caractères spéciaux, veuillez vérifier si c'est correct
+    $DBname = "éclat & vitalité";
 
     // Connexion à la base de données
     $conn = connectToDatabase($servername, $username, $password, $DBname);
 
     // Préparation de la requête SQL avec des placeholders pour les valeurs à insérer
-    $requete = "SELECT * FROM users WHERE email = :email AND password = :password ";
+    $requete = "SELECT * FROM users WHERE email = :email";
 
     try {
         // Préparation de la requête SQL
@@ -70,24 +73,21 @@ function connectUser($data) {
 
         // Liaison des valeurs des paramètres
         $stmt->bindParam(':email', $data['email']);
-        $stmt->bindParam(':password', $data['password']);
 
         // Exécution de la requête SQL
         $stmt->execute();
 
-        // Vérification du nombre de lignes retournées
-        $count = $stmt->rowCount();
+        // Récupération des données de l'utilisateur
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Si au moins une ligne est retournée, l'utilisateur existe dans la base de données
-        if ($count > 0) {
-            // Récupération des données de l'utilisateur (par exemple, pour les utiliser dans d'autres parties de votre application)
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Vérification si l'utilisateur existe et si le mot de passe correspond
+        if ($user && password_verify($data['password'], $user['password'])) {
             // Fermeture de la connexion à la base de données
             $conn = null;
             // Retourne les données de l'utilisateur
             return $user;
         } else {
-            // Si aucun utilisateur n'est trouvé, retourne false
+            // Si aucun utilisateur n'est trouvé ou le mot de passe ne correspond pas, retourne false
             // Fermeture de la connexion à la base de données
             $conn = null;
             return false;
@@ -101,5 +101,6 @@ function connectUser($data) {
         return false;
     }
 }
+
 
 ?>

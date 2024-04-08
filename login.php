@@ -1,13 +1,28 @@
 <?php
+session_start();
 include 'include/functionsProductCate.php';
 include 'include/functionsLoginRegistre.php';
 
 $categories = getAllCategories();
 
-$user = false; // Initialisation à false pour indiquer que la connexion a échoué par défaut
+$user = true;
 
 if (!empty($_POST)) {
     $user = connectUser($_POST);
+    if (is_array($user)) {
+        if (count($user) > 0) {
+            $_SESSION['email']=$user['email'];
+            $_SESSION['prenom']=$user['prenom'];
+            $_SESSION['nom']=$user['nom'];
+            $_SESSION['user_type']=$user['user_type'];
+            $_SESSION['id']=$user['id'];
+            $_SESSION['address']=$user['address'];
+            $_SESSION['ville']=$user['ville'];
+
+            header('location:profile.php');//rederection
+        }
+    }
+
 }
 
 ?>
