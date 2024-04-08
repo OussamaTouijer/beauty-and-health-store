@@ -1,19 +1,24 @@
-<?php 
- include 'include/functionsProductCate.php';
- include 'include/functionsLoginRegistre.php';
+<?php
+include 'include/functionsProductCate.php';
+include 'include/functionsLoginRegistre.php';
 
 // Récupération des catégories et des produits
 $categories = getAllCategories();
 
+$idCt = null;
+$product = null;
+
 if(isset($_GET['id'])){
-  $product = getProductById($_GET['id']);
-     foreach($categories as $c){
-        if($c['id']==$_GET['id']) $idCt= $c;
+    $product = getProductById($_GET['id']);
+    foreach($categories as $c){
+        if($c['id'] == $product['id_categorie']) {
+            $idCt = $c;
+            break;
+        }
     }
-} 
-
-
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,21 +31,26 @@ if(isset($_GET['id'])){
 </head>
 
 <body>
-    <?php include 'include/header.php'?>
+<?php include 'include/header.php'?>
 
-    <div class="card col-4 offset-4 p-5 mt-5">
-  <img src="images/<?php echo $product['image']; ?>" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><?php echo $product['libelle']?></h5>
-    <p class="card-text"><?php echo $product['description']?></p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><?php echo $idCt['libelle']?></li>
-    <li class="list-group-item"><?php echo $product['prix'].' DH'?></li>
-  </ul>
-
+<div class="card col-4 offset-4 p-5 mt-5">
+    <?php if($product): ?>
+        <img src="images/<?php echo $product['image']; ?>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><?php echo $product['libelle']?></h5>
+            <p class="card-text"><?php echo $product['description']?></p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><?php echo $idCt['libelle']?></li>
+            <li class="list-group-item"><?php echo $product['prix'].' DH'?></li>
+        </ul>
+    <?php else: ?>
+        <div class="alert alert-danger" role="alert">
+            Produit non trouvé.
+        </div>
+    <?php endif; ?>
 </div>
 
-    <?php include 'include/footer.php'?>
+<?php include 'include/footer.php'?>
 </body>
 </html>

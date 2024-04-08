@@ -2,10 +2,14 @@
  include 'include/functionsProductCate.php';
  include 'include/functionsLoginRegistre.php';
 
+
 $categories=getAllCategories();
 
+$ShowRegistrationAlert=0;
 if(!empty($_POST)){
-  InsertClients($_POST);
+    if(InsertClients($_POST)){
+        $ShowRegistrationAlert=1;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -23,8 +27,10 @@ if(!empty($_POST)){
     />
     <title>Éclat & Vitalité</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.7/sweetalert2.all.js"></script>
+
   </head>
 
   <body>
@@ -74,4 +80,22 @@ if(!empty($_POST)){
     <?php include 'include/footer.php'?>
 
   </body>
+
+  <?php
+  // Après avoir ajouté l'utilisateur avec succès dans la base de données
+  // Affichez un message de réussite à l'aide de SweetAlert
+  if($ShowRegistrationAlert==1){
+      echo "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'creation de compte avec succes!',
+        text: 'Vous êtes maintenant inscrit.',
+        showConfirmButton: false,
+        timer: 2000 // Spécifiez la durée pendant laquelle le message sera affiché (en millisecondes)
+    });
+</script>";
+      $ShowRegistrationAlert==0;
+  }
+
+  ?>
 </html>

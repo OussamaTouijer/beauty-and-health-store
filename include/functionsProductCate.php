@@ -20,7 +20,7 @@ function getAllCategories() {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $DBname = "beautyhub_db";
+    $DBname = "éclat & vitalité";
 
     // Connexion à la base de données
     $conn = connectToDatabase($servername, $username, $password, $DBname);
@@ -51,7 +51,7 @@ function getAllProducts() {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $DBname = "beautyhub_db";
+    $DBname = "éclat & vitalité";
 
     // Connexion à la base de données
     $conn = connectToDatabase($servername, $username, $password, $DBname);
@@ -82,7 +82,7 @@ function searchProducts($keywords) {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $DBname = "beautyhub_db";
+    $DBname = "éclat & vitalité";
 
     // Connexion à la base de données
     $conn = connectToDatabase($servername, $username, $password, $DBname);
@@ -117,7 +117,7 @@ function getProductById($id) {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $DBname = "beautyhub_db";
+    $DBname = "éclat & vitalité";
 
     // Connexion à la base de données
     $conn = connectToDatabase($servername, $username, $password, $DBname);

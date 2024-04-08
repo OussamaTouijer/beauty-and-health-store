@@ -1,53 +1,65 @@
-<?php 
+<?php
 include 'include/functionsProductCate.php';
 include 'include/functionsLoginRegistre.php';
 
-$categories=getAllCategories();
+$categories = getAllCategories();
+
+$user = false; // Initialisation à false pour indiquer que la connexion a échoué par défaut
+
+if (!empty($_POST)) {
+    $user = connectUser($_POST);
+}
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
-      rel="stylesheet"
-    />
-    <title>Éclat & Vitalité</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
+    <title>Éclat &amp; Vitalité</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.7/sweetalert2.all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+</head>
+<body>
+<!-- Navigation dans l'en-tête -->
+<?php include 'include/header.php'?>
 
-  <body>
-    <!-- navigation in header -->
-    <?php include 'include/header.php'?>
+<!-- Formulaire -->
+<div class="col-12 p-5">
+    <h1 class="text-center">Connexion</h1>
+    <form action="" method="POST">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Se connecter</button>
+    </form>
+</div>
 
+<!-- Footer -->
+<?php include 'include/footer.php'?>
 
-    <!-- formulair -->
-    <div class="col-12 p-5">
-        <h1 class="text-center ">Connection</h1>
-        <form action="process_registration.php" method="POST">
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Mot de pass</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Sauvgared</button>
-        </form>
-    </div>
-    
-
-    <!-- footer -->
-    <?php include 'include/footer.php'?>
-
-    
-  </body>
+<?php
+// Si la connexion a échoué, afficher un message d'erreur avec SweetAlert
+if(!$user){
+    echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Identifiants non valides!',
+            text: 'Le mot de passe ou lemail nest pas valide.',
+            confirmButtonText: 'ok',
+            timer: 2000 // Durée pendant laquelle le message sera affiché (en millisecondes)
+        });
+        </script>";
+}
+?>
+</body>
 </html>
