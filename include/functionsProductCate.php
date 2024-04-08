@@ -1,6 +1,10 @@
 <?php
 
-function connectToDatabase($servername, $username, $password, $DBname) {
+function connectToDatabase() {
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $DBname = "eclat_vitalite";
     try {
         // Connexion à la base de données en utilisant PDO
         $conn = new PDO("mysql:host=$servername;dbname=$DBname", $username, $password);
@@ -16,14 +20,9 @@ function connectToDatabase($servername, $username, $password, $DBname) {
 }
 
 function getAllCategories() {
-    // Informations de connexion à la base de données
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $DBname = "éclat & vitalité";
 
     // Connexion à la base de données
-    $conn = connectToDatabase($servername, $username, $password, $DBname);
+    $conn = connectToDatabase();
 
     // Création de la requête SQL pour récupérer toutes les catégories
     $requete = "SELECT * FROM categories";
@@ -47,14 +46,9 @@ function getAllCategories() {
 }
 
 function getAllProducts() {
-    // Informations de connexion à la base de données
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $DBname = "éclat & vitalité";
 
     // Connexion à la base de données
-    $conn = connectToDatabase($servername, $username, $password, $DBname);
+    $conn = connectToDatabase();
 
     // Création de la requête SQL pour récupérer tous les produits
     $requete = "SELECT * FROM products";
@@ -78,14 +72,9 @@ function getAllProducts() {
 }
 
 function searchProducts($keywords) {
-    // Informations de connexion à la base de données
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $DBname = "éclat & vitalité";
 
     // Connexion à la base de données
-    $conn = connectToDatabase($servername, $username, $password, $DBname);
+    $conn = connectToDatabase();
 
     // Préparation de la requête SQL avec un paramètre de placeholder
     $requete = "SELECT * FROM products WHERE libelle LIKE :keywords";
@@ -113,14 +102,9 @@ function searchProducts($keywords) {
 }
 
 function getProductById($id) {
-    // Informations de connexion à la base de données
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $DBname = "éclat & vitalité";
 
     // Connexion à la base de données
-    $conn = connectToDatabase($servername, $username, $password, $DBname);
+    $conn = connectToDatabase();
 
     // Préparation de la requête SQL avec un paramètre de placeholder
     $requete = "SELECT * FROM products WHERE id = :id";
