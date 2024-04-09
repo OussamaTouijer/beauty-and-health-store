@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Vérification de l'authentification
+if (isset($_SESSION['email'])){
+    header('location: profile.php');
+    exit(); // Assurez-vous de sortir après avoir redirigé
+}
+
 include 'include/functionsProductCate.php';
 include 'include/functionsLoginRegistre.php';
 

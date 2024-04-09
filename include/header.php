@@ -42,7 +42,13 @@
 
               </ul>
             </li>
-            <li class="nav-item">
+              <?php if(isset($_SESSION['email'])){
+                  print '<li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="profile.php">Profile</a >
+            </li>
+            ';
+              }else{
+                  print '            <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="login.php"
                 >Connection</a
               >
@@ -51,7 +57,8 @@
               <a class="nav-link active" aria-current="page" href="registre.php"
                 >Register</a
               >
-            </li>
+            </li>';
+              }?>
           </ul>
           <!-- serche -->
           <form class="d-flex" role="search" action="index.php" method="POST">
@@ -65,7 +72,13 @@
             <button class="btn btn-outline-success" type="submit">
               Search
             </button>
+
           </form>
+            <?php if(isset($_SESSION['email'])){
+                print '<a class="nav-link active btn btn-primary" aria-current="page" 
+                 href="deconnexion.php">Deconnexion</a > ';
+            }
+                ?>
         </div>
       </div>
     </nav>

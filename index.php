@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 include 'include/functionsProductCate.php';
 
 // Récupération des catégories et des produits
