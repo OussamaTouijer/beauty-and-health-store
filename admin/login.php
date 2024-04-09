@@ -3,14 +3,14 @@ session_start();
 
 // Vérification de l'authentification
 if (isset($_SESSION['email'])){
-    header('location: profile.php');
-    exit(); // Assurez-vous de sortir après avoir redirigé
+   // header('location: profile.php');
+    //exit(); // Assurez-vous de sortir après avoir redirigé
 }
 
-include 'include/functionsProductCate.php';
-include 'include/functionsLoginRegistre.php';
+include '../include/functionsProductCate.php';
+include '../include/functionsLoginRegistre.php';
 
-$categories = getAllCategories();
+//$categories = getAllCategories();
 
 $user = true;
 
@@ -47,12 +47,11 @@ if (!empty($_POST)) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </head>
 <body>
-<!-- Navigation dans l'en-tête -->
-<?php include 'include/header.php'?>
+
 
 <!-- Formulaire -->
 <div class="col-12 p-5">
-    <h1 class="text-center">Connexion</h1>
+    <h1 class="text-center">Espace Admin : Connexion</h1>
     <form action="" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
@@ -67,7 +66,7 @@ if (!empty($_POST)) {
 </div>
 
 <!-- Footer -->
-<?php include 'include/footer.php'?>
+<?php include '../include/footer.php'?>
 
 <?php
 // Si la connexion a échoué, afficher un message d'erreur avec SweetAlert
