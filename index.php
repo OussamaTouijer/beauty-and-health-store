@@ -26,22 +26,25 @@ if(!empty($_POST['search'])) {
 <body>
     <?php include 'include/header.php'; ?>
 
-<div class="container mt-3">
-    <div class="row">
-        <?php foreach($products as $product): ?>
-            <div class="col-3">
-                <div class="card mb-3">
-                    <img src="images/<?php echo $product['image']; ?>" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $product['libelle']; ?></h5>
-                        <p class="card-text"><?php echo $product['description']; ?></p>
-                        <a href="produit.php?id=<?php echo $product['id']; ?>" class="btn btn-primary">Afficher</a>
+    <div class="container mt-3">
+        <div class="row">
+            <?php foreach($products as $product): ?>
+                <div class="col-md-3 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <img src="images/<?php echo $product['image']; ?>" class="card-img-top" alt="..." />
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h5 class="card-title text-center"><?php echo $product['libelle']; ?></h5>
+                            <p class="card-text text-center"><?php echo $product['description']; ?></p>
+                            <div class="text-center mt-auto">
+                                <a href="produit.php?id=<?php echo $product['id']; ?>" class="btn btn-primary btn-lg">Afficher</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
     </div>
-</div>
+
 
 
     <?php include 'include/footer.php'; ?>

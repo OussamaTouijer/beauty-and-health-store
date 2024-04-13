@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary " style=" position: fixed; top: 0;width: 100%;
+z-index: 1000;">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.php">Éclat & Vitalité</a>
         <button
@@ -82,3 +83,8 @@
         </div>
       </div>
     </nav>
+<div class="container mt-3" style="     width: 1px;
+    height: 52px;
+    background-color: #ffffff;">
+
+</div>
