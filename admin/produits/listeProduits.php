@@ -216,13 +216,40 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
             <div class="modal-body">
                 <form action="ajout.php" method="post">
                     <div class="form-group">
-                        <input type="text" name="libelle" class="form-control" placeholder="Nom de produit ..." required>
-                        <br>
+                        <label for="libelle">Nom Produit :</label>
+                        <input type="text" name="libelle" id="libelle" class="form-control" placeholder="Nom de produit ..." required>
                     </div>
 
                     <div class="form-group">
-                        <textarea  name="description" class="form-control" placeholder="Description de produit ..." required></textarea>
+                        <label for="prix">Prix :</label>
+                        <input type="number" name="prix" id="prix" class="form-control" placeholder="Prix du produit ..." required>
                     </div>
+
+                    <div class="form-group">
+                        <label for="id_categorie">ID Catégorie :</label>
+                        <input type="number" name="id_categorie" id="id_categorie" class="form-control" placeholder="ID de la catégorie ..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantite">Quantite :</label>
+                        <input type="number" name="quantite" id="quantite" class="form-control" placeholder="Quantité ..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description :</label>
+                        <textarea name="description" id="description" class="form-control" placeholder="Description de produit ..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">Image :</label>
+                        <input type="text" name="image" id="image" class="form-control" placeholder="URL de l'image ..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="couleur">Couleur :</label>
+                        <input type="text" name="color" id="couleur" class="form-control" placeholder="Couleur du produit ..." required>
+                    </div>
+
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Ajouter</button>
@@ -231,6 +258,8 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
         </div>
     </div>
 </div>
+
+
 <!-- chaque Produit admet un modal -->
 <?php
 foreach ($productsToShow as $item => $product) { ?>
@@ -245,13 +274,36 @@ foreach ($productsToShow as $item => $product) { ?>
                 <div class="modal-body">
                     <form action="modifier.php?id=<?php echo "{$product['id']}"; ?>" method="post">
                         <div class="form-group">
+                            <label for="libelle">Libellé :</label>
                             <input type="text" name="libelle" class="form-control" value="<?php echo "{$product['libelle']}"; ?>" placeholder="Nom de produit ..." required>
-                            <br>
                         </div>
 
                         <div class="form-group">
+                            <label for="prix">Prix :</label>
+                            <input type="number" name="prix" class="form-control" value="<?php echo "{$product['prix']}"; ?>" placeholder="Prix du produit ..." required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="id_categorie">ID Catégorie :</label>
+                            <input type="text" name="id_categorie" class="form-control" value="<?php echo "{$product['id_categorie']}"; ?>" placeholder="ID de la catégorie ..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description :</label>
                             <textarea name="description" class="form-control" placeholder="Description de produit ..." required><?php echo "{$product['description']}"; ?></textarea>
                         </div>
+
+                        <div class="form-group">
+                            <label for="image">Image :</label>
+                            <input type="text" name="image" class="form-control" value="<?php echo "{$product['image']}"; ?>" placeholder="URL de l'image ..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="couleur">Couleur :</label>
+                            <input type="text" name="couleur" class="form-control" value="<?php echo "{$product['color']}"; ?>" placeholder="Couleur du produit ..." required>
+                        </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Modifier</button>
@@ -262,6 +314,7 @@ foreach ($productsToShow as $item => $product) { ?>
     </div>
 
 <?php } ?>
+
 
 
 
