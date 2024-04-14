@@ -42,7 +42,7 @@ if (!isset($_SESSION['email'])){
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="produits/listeProduits.php">
                         <i class="fas fa-box"></i> Products
                     </a>
                 </li>

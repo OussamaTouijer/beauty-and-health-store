@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 if ($row['count'] > 0) {
                     // Redirection vers la page index
-                    header('location:listeCategorise.php?ajout=Nok');
+                    header('location:listeProduits.php?ajout=Nok');
                     exit; // Arrête l'exécution du script
                 } else {
                     // 5- Traitement des données récupérées
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Exécution de la requête
                     if ($stmt_insert->execute()) {
                         // Redirection vers la page index
-                        header('location:listeCategorise.php?ajout=ok');
+                        header('location:listeProduits.php?ajout=ok');
                         exit; // Arrête l'exécution du script
                     } else {
                         echo "Erreur lors de l'ajout de la catégorie: " . $stmt_insert->errorInfo()[2];

@@ -48,12 +48,12 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="listeCategorise.php">
+                    <a class="nav-link " href="../categorise/listeCategorise.php">
                         <i class="fas fa-th-list"></i> Categories
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../produits/listeProduits.php">
+                    <a class="nav-link active" href="listeProduits.php">
                         <i class="fas fa-box"></i> Products
                     </a>
                 </li>
