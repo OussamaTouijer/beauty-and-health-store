@@ -126,18 +126,39 @@ p {
 
 
 /* pour table*/
-table {
-    border-collapse: collapse;
+
+/* Styles pour le titre de la section */
+.title {
+    display: flex;
+    justify-content: center;
+    color: #141cc9;
+    font-size: 45pt;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+/* Styles pour le tableau */
+.tablee {
     width: 100%;
+    border-collapse: collapse;
 }
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+
+.tablee th, .tablee td {
+    border: 1px solid #365486; /* Couleur de la bordure du tableau */
+    padding: 10px;
+    text-align: center;
 }
-th {
-    background-color: #f2f2f2;
+
+/* Styles pour les lignes impaires du tableau */
+.tablee tbody tr:nth-child(odd) {
+    background-color: #DCF2F1;
 }
+
+/* Styles pour les lignes paires du tableau */
+.tablee tbody tr:nth-child(even) {
+    background-color: #7FC7D9;
+}
+
 .action-buttons button {
     margin-right: 5px;
     border: none;
@@ -169,5 +190,13 @@ th {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.image-style {
+    width: 100px; /* Largeur de l'image */
+    height: 100px; /* Hauteur automatique pour maintenir le ratio */
+    border: 1px solid #ccc; /* Bordure de l'image */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre légère */
 }

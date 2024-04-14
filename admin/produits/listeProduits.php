@@ -114,7 +114,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                 // Vérifiez l'existence des données de session avant de les afficher
                 if(isset($_SESSION['email'])) {
                 echo "<div class='title-and-button'>";
-                echo "<h1>Liste des Produits</h1>";
+                echo "<h2 class='title' >Liste des Produits</h1>";
                 echo '<a href="ajout.php" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ajoutModal"> Ajouter Produit + </a>';
                 echo "</div>";?>
             </div>
@@ -142,13 +142,13 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
 
 
-                echo ' <div class="container"> <table>
+                echo ' <div class="container"> <table class="tablee">
                     <thead>
                 <tr>
                     <th>ID</th>
                     <th>Libellé</th>
                     <th>Prix</th>
-                    <th>Réduction</th>
+                    <th>Quantite</th>
                     <th>ID Catégorie</th>
                     <th>Date de création</th>
                     <th>Description</th>
@@ -168,7 +168,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                                       <td>{$product['id_categorie']}</td>
                                       <td>{$product['date_creation']}</td>
                                       <td>{$product['description']}</td>
-                                      <td>{$product['image']}</td>
+                                       <td><img class='image-style'src='../../images/{$product['image']}' class='card-img-top' alt='...' /></td>
                                       <td>{$product['color']}</td>
                                        <td>{$product['date_modification']}</td>
             <td class='action-buttons'>
