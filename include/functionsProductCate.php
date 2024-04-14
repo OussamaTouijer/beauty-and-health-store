@@ -45,6 +45,36 @@ function getAllCategories() {
     }
 }
 
+function searchCategories($keywords) {
+
+    // Connexion à la base de données
+    $conn = connectToDatabase();
+
+    // Préparation de la requête SQL avec un paramètre de placeholder
+    $requete = "SELECT * FROM categories WHERE libelle LIKE :keywords";
+
+    try {
+        // Préparation de la requête SQL
+        $stmt = $conn->prepare($requete);
+        // Liaison de la valeur du paramètre à la variable $keywords
+        $stmt->bindValue(':keywords', '%' . $keywords . '%', PDO::PARAM_STR);
+        // Exécution de la requête SQL
+        $stmt->execute();
+        // Récupération des résultats de la requête
+        $products = $stmt->fetchAll();
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+        return $products;
+    } catch(PDOException $e) {
+        // En cas d'erreur lors de l'exécution de la requête, affichez un message d'erreur
+        echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+        // Terminez le script en cas d'erreur lors de l'exécution de la requête
+        exit();
+    }
+}
+
 function getAllProducts() {
 
     // Connexion à la base de données

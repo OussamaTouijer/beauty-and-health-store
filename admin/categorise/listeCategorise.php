@@ -9,8 +9,12 @@ if (!isset($_SESSION['email'])){
 
 include '../../include/functionsProductCate.php';
 
+if(!empty($_POST['sCat'])) {
+    $categories = searchCategories($_POST['sCat']);
+} else {
+    $categories = getAllCategories();
+}
 
-$categories = getAllCategories();
 
 // Pagination
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -77,10 +81,12 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
             <div class="logo-wrapper">
                 <h1 style="margin: 0; font-size: 24px; color: #333;">Éclat & Vitalité (Admin)</h1>
             </div>
-            <div class="search-wrapper">
-                <input type="text" placeholder="Search..." style="padding: 5px; border-radius: 5px; border: 1px solid #ced4da;">
-                <button type="button" style="background-color: transparent; border: none; cursor: pointer; margin-left: 5px;"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path fill="currentColor" d="M507.601 484.398L374.1 350.9c35.4-43.9 57-99.7 57-160.9C431.1 76.5 354.6 0 256 0S80.9 76.5 80.9 174.9c0 98.5 76.5 174.9 174.9 174.9 61.2 0 117-21.6 160.9-57l133.5 133.5c3.1 3.1 7.2 4.7 11.3 4.7s8.2-1.6 11.3-4.7c6.3-6.2 6.3-16.2 0-22.4zM92.8 174.9C92.8 99 149 42.8 224.9 42.8S357 99 357 174.9s-56.2 132.1-132.1 132.1S92.8 250.8 92.8 174.9z"/></svg></button>
-            </div>
+            <form method="post" action="">
+                <div class="search-wrapper">
+                    <input type="text" name="sCat" placeholder="Search..." style="padding: 5px; border-radius: 5px; border: 1px solid #ced4da;">
+                    <button type="button" style="background-color: transparent; border: none; cursor: pointer; margin-left: 5px;"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path fill="currentColor" d="M507.601 484.398L374.1 350.9c35.4-43.9 57-99.7 57-160.9C431.1 76.5 354.6 0 256 0S80.9 76.5 80.9 174.9c0 98.5 76.5 174.9 174.9 174.9 61.2 0 117-21.6 160.9-57l133.5 133.5c3.1 3.1 7.2 4.7 11.3 4.7s8.2-1.6 11.3-4.7c6.3-6.2 6.3-16.2 0-22.4zM92.8 174.9C92.8 99 149 42.8 224.9 42.8S357 99 357 174.9s-56.2 132.1-132.1 132.1S92.8 250.8 92.8 174.9z"/></svg></button>
+                </div>
+            </form>
             <div class="user-wrapper">
                 <img src="user.jpg" alt="user" width="40" height="40" style="border-radius: 50%;">
                 <span class="username" style="margin-left: 10px;">John Doe</span>
