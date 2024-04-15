@@ -103,7 +103,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
 
     <div style=" width: 1px;
-             height: 48px;
+             height: 68px;
              background-color: #ffffff;">
     </div>
 
@@ -186,9 +186,11 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                                       <td>{$product['color']}</td>
                                       <td>{$product['date_modification']}</td>
                                       <td class='action-buttons'>
-                                           <a class='btn btn-success edit-button' href='modifier.php?id={$product['id']}' data-bs-toggle='modal' data-bs-target='#modifierModal{$product['id']}' >Modifier</a>
-                                           <a class='btn btn-danger delete-button' href='supprimer.php?id={$product['id']}'>Supprimer</a>
+                                           <a href='modifier.php?id={$product['id']}' data-bs-toggle='modal' data-bs-target='#modifierModal{$product['id']}' ><button class='edit-button'>Modifier</button></a>
+                                           <a href='supprimer.php?id={$product['id']}'><button class='delete-button'>Supprimer</button></a>
+                                           
                                       </td>
+                                      
                          </tr>";
                         }
 
