@@ -101,26 +101,48 @@ main {
 }
 
 
-/* pour table*/
 
 /* Styles pour le titre de la section */
 .title {
     display: flex;
     justify-content: center;
     color: #141cc9;
-    font-size: 45pt;
-    font-weight: 800;
-    margin-bottom: 30px;
+    font-size: 2.5rem; /* Taille de la police */
+    font-weight: bold; /* Gras */
+    margin-bottom: 10px; /* Espacement en dessous */
 }
 
-
-
-
-/*botton ajouter Produit*/
-.title-and-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+.main-content {
+    margin: 20px auto; /* Centrer le contenu */
+    max-width: 800px; /* Limiter la largeur du contenu */
+    font-family: Arial, sans-serif; /* Police de caractères */
 }
 
+/* Styles pour le type d'utilisateur */
+.user-type {
+    text-align: center; /* Centrer le texte */
+    color: #666; /* Couleur du texte */
+    font-size: 1rem; /* Taille de la police */
+    margin-bottom: 20px; /* Espacement en dessous */
+}
+
+/* Styles pour les détails de l'utilisateur */
+.user-details {
+    background-color: #f9f9f9; /* Couleur de fond */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 20px; /* Espacement intérieur */
+    margin-top: 20px; /* Espacement en haut */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+.user-details p {
+    margin-bottom: 10px; /* Espacement entre les éléments */
+}
+
+/* Styles pour les erreurs de session */
+.session-error {
+    color: red; /* Couleur du texte en cas d'erreur */
+    font-weight: bold; /* Gras */
+    text-align: center; /* Centrer le texte */
+    margin-top: 20px; /* Espacement en haut */
+}

@@ -84,58 +84,39 @@ if (!isset($_SESSION['email'])){
 
 
 <div style=" width: 1px;
-             height: 68px;
+             height: 120px;
              background-color: #ffffff;">
 </div>
 
 <!-- main contenu-->
 <div class="main-content">
-
     <main>
         <div class="container">
-
             <?php
-            // Vérifiez l'existence des données de session avant de les afficher
             if(isset($_SESSION['email'])) {
-
-            echo "<div class='title-and-button'>";
-            echo "<h2 class='title' >Bienvenue"." Administrateur </h2>";
-            echo "<p>Type d'utilisateur: " . htmlspecialchars($_SESSION['user_type']) . "</p>";
-
-            echo "</div>";
+                echo "<div class='title-and-button'>";
+                echo "<h2 class='title'>Bienvenue  Administrateur</h2>";
+                echo "<p class='user-type'>Type d'utilisateur: " . htmlspecialchars($_SESSION['user_type']) . "</p>";
+                echo "</div>";
             } else {
-                echo "<p>Session data not found.</p>";
+                echo "<p class='session-error'>Données de session introuvables.</p>";
             }
-
             ?>
         </div>
 
-
-        <div class="container">
-
-                <?php
-
-                echo "<p>Email: " . htmlspecialchars($_SESSION['email']) . "</p>";
-                echo "<p>Prénom: " . htmlspecialchars($_SESSION['prenom']) . "</p>";
-                echo "<p>Nom: " . htmlspecialchars($_SESSION['nom']) . "</p>";
-                echo "<p>ID: " . htmlspecialchars($_SESSION['id']) . "</p>";
-                echo "<p>Adresse: " . htmlspecialchars($_SESSION['address']) . "</p>";
-                echo "<p>Ville: " . htmlspecialchars($_SESSION['ville']) . "</p>";
-
-                ?>
-
-                <div style=" width: 1px;
-                       height: 14px;
-                       background-color: #ffffff;">
-                </div>
-
-
-
+        <div class="container user-details">
+            <?php
+            echo "<p><i class='fas fa-envelope'></i> Email: " . htmlspecialchars($_SESSION['email']) . "</p>";
+            echo "<p><i class='fas fa-user'></i> Prénom: " . htmlspecialchars($_SESSION['prenom']) . "</p>";
+            echo "<p><i class='fas fa-user'></i> Nom: " . htmlspecialchars($_SESSION['nom']) . "</p>";
+            echo "<p><i class='fas fa-id-card'></i> ID: " . htmlspecialchars($_SESSION['id']) . "</p>";
+            echo "<p><i class='fas fa-map-marker-alt'></i> Adresse: " . htmlspecialchars($_SESSION['address']) . "</p>";
+            echo "<p><i class='fas fa-city'></i> Ville: " . htmlspecialchars($_SESSION['ville']) . "</p>";
+            ?>
         </div>
-
     </main>
-
 </div>
+
 
 
 </body>
