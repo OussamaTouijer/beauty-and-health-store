@@ -6,12 +6,12 @@
 }
 
 nav {
-    display: flex;
+    display: inline;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     margin-top: 10px;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
 }
 
 /* Styles pour les boutons */
@@ -126,12 +126,11 @@ header {
 }
 
 .btnAjout{
-    padding: 8px 16px;
+    padding: 16px 26px;
     margin: 8px;
-    font-size: 15px;
+    font-size: 23px;
     border: 2px solid #141cc9;
     border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.3s, color 0.2s;
     background-color: #365486;
     color: #ffffff;

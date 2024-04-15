@@ -3,7 +3,7 @@ session_start();
 
 // Vérification de l'authentification
 if (!isset($_SESSION['email'])){
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit(); // Assurez-vous de sortir après avoir redirigé
 }
 
@@ -14,6 +14,7 @@ if(!empty($_POST['sPro'])) {
 } else {
     $products = getAllProducts();
 }
+
 
 
 // Pagination
@@ -41,41 +42,47 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
 
 <!-- header-->
-    <header style="position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 10px 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;">
+    <header style="position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 3px 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;">
         <div class="container d-flex justify-content-between align-items-center">
-            <div class="logo-wrapper">
-                <h1 style="margin: 0; font-size: 24px; color: #333;">Éclat & Vitalité (Admin)</h1>
-            </div>
 
-            <nav class="p-3">
+            <div class="" style="margin-right: 1px; ">
+            <div class="logo-wrapper">
+                <h6 style=" font-size: 22px; color: #333;">Éclat & Vitalité (Admin)</h6>
+            </div></div>
+
+            <div class="container">
+
+            <nav class="p-1">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-success ms-1" href="#">
-                            <i class="fas fa-home"></i> Home
+                             Home
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-success ms-1" href="../profile.php">
-                            <i class="fas fa-user"></i> Profile
+                            Profile
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-success ms-1" href="../categorise/listeCategorise.php">
-                            <i class="fas fa-th-list"></i> Categories
+                            Categories
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active custom-btn" href="listeProduits.php">
-                            <i class="fas fa-box"></i> Products
+                             Products
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-success ms-1" href="#">
-                            <i class="fas fa-users"></i> Customers
+                            Customers
                         </a>
                     </li>
                 </ul>
             </nav>
+
+            </div>
 
             <div class="user-wrapper">
                 <a href="../profile.php">
@@ -95,7 +102,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
 
     <div style=" width: 1px;
-             height: 95px;
+             height: 48px;
              background-color: #ffffff;">
     </div>
 
@@ -171,7 +178,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                                       <td>{$product['libelle']}</td>
                                       <td>{$product['prix']} DH</td>
                                       <td>{$product['discount']}</td>
-                                      <td>{$product['id_categorie']}</td>
+                                      <td>" . getCategoriById($product['id_categorie']) . "</td>
                                       <td>{$product['date_creation']}</td>
                                       <td>{$product['description']}</td>
                                       <td><img class='image-style'src='../../images/{$product['image']}' class='card-img-top' alt='...' /></td>

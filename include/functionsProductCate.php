@@ -75,6 +75,36 @@ function searchCategories($keywords) {
     }
 }
 
+function getCategoriById($id) {
+
+    // Connexion à la base de données
+    $conn = connectToDatabase();
+
+    // Préparation de la requête SQL avec un paramètre de placeholder
+    $requete = "SELECT * FROM categories WHERE id = :id";
+
+    try {
+        // Préparation de la requête SQL
+        $stmt = $conn->prepare($requete);
+        // Liaison de la valeur du paramètre à la variable $id
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        // Exécution de la requête SQL
+        $stmt->execute();
+        // Récupération du résultat de la requête (un seul produit puisqu'on filtre par ID)
+        $product = $stmt->fetch();
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+        return $product['libelle']; // Retourne le produit trouvé (ou null si aucun produit trouvé)
+    } catch(PDOException $e) {
+        // En cas d'erreur lors de l'exécution de la requête, affichez un message d'erreur
+        echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+        // Terminez le script en cas d'erreur lors de l'exécution de la requête
+        exit();
+    }
+}
+
 function getAllProducts() {
 
     // Connexion à la base de données
