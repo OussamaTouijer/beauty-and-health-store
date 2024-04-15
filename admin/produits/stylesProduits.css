@@ -122,25 +122,31 @@ header {
 }
 
 .logout-btn:hover {
-    background-color: #0056b3;
+    background-color: #fd0707;
 }
 
+.btnAjout{
+    padding: 8px 16px;
+    margin: 8px;
+    font-size: 15px;
+    border: 2px solid #141cc9;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.2s;
+    background-color: #365486;
+    color: #ffffff;
+}
 
+.btnAjout:hover{
+    background-color: #07af0a;
+
+}
 /* Sample styling for main content */
 main {
     background-color: #f4f4f4;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 1rem;
 }
 
 
@@ -198,7 +204,7 @@ p {
     color: #fff;
 }
 
-/*botton ajouter Categories*/
+/*botton ajouter Produit*/
 .title-and-button {
     display: flex;
     justify-content: space-between;

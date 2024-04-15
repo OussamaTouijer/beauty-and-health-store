@@ -122,7 +122,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
             </div>
 
             <!-- button pour remplire modale-->
-            <?php echo '<div class="container"><a href="ajout.php" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ajoutModal"> Ajouter Produit + </a></div><br>';?>
+            <?php echo '<div class="container"><a href="ajout.php" class="btnAjout" data-bs-toggle="modal" data-bs-target="#ajoutModal"> Ajouter Produit + </a></div><br>';?>
 
             <div class="container">
                 <?php
