@@ -57,7 +57,7 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom" href="../profile.php">
+                        <a class="nav-link custom" href="../profile/profile.php">
                             Profile
                         </a>
                     </li>

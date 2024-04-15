@@ -3,14 +3,13 @@ session_start();
 
 // Vérification de l'authentification
 if (isset($_SESSION['email'])){
-   // header('location: profile.php');
-    //exit(); // Assurez-vous de sortir après avoir redirigé
+   header('location: profile/profile.php');
+    exit(); // Assurez-vous de sortir après avoir redirigé
 }
 
 include '../include/functionsProductCate.php';
 include '../include/functionsLoginRegistre.php';
 
-//$categories = getAllCategories();
 
 $user = true;
 
@@ -26,7 +25,7 @@ if (!empty($_POST)) {
             $_SESSION['address']=$user['address'];
             $_SESSION['ville']=$user['ville'];
 
-            header('location:profile.php');//rederection
+            header('location:profile/profile.php');//rederection
         }
     }
 

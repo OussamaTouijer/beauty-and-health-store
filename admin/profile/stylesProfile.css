@@ -1,0 +1,126 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    display: inline;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Styles pour les boutons */
+.custom {
+    background-color: #365486;
+    color: #ffffff;
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 16px;
+    border: 1px solid #141cc9;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.2s;
+}
+
+.custom:hover {
+    background-color: #a7b7ff;
+    color: #ffffff;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+ul li {
+    margin-right: 20px;
+}
+
+ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+/* Main content styling */
+.main-content {
+    flex: none;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+
+.user-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.user-image {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+.username {
+    margin-left: 10px;
+}
+
+.logout-btn {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+}
+
+.logout-btn:hover {
+    background-color: #fd0707;
+}
+
+
+/* Sample styling for main content */
+main {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* pour table*/
+
+/* Styles pour le titre de la section */
+.title {
+    display: flex;
+    justify-content: center;
+    color: #141cc9;
+    font-size: 45pt;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+
+
+
+/*botton ajouter Produit*/
+.title-and-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
