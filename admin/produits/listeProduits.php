@@ -8,6 +8,7 @@ if (!isset($_SESSION['email'])){
 }
 
 include '../../include/functionsProductCate.php';
+$categories = getAllCategories();
 
 if(!empty($_POST['sPro'])) {
     $products = searchProducts($_POST['sPro']);
@@ -42,7 +43,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
 
 <!-- header-->
-    <header style="position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 3px 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;">
+    <header style="position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;">
         <div class="container d-flex justify-content-between align-items-center">
 
             <div class="" style="margin-right: 1px; ">
@@ -243,8 +244,12 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                     </div>
 
                     <div class="form-group">
-                        <label for="id_categorie">ID Catégorie :</label>
-                        <input type="number" name="id_categorie" id="id_categorie" class="form-control" placeholder="ID de la catégorie ..." required>
+                        <label for="id_categorie"> Catégorie :</label>
+                        <select id="categories" name="id_categorie" class="form-control">
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?php echo $category['id']; ?>"><?php echo $category['libelle']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -302,8 +307,12 @@ foreach ($productsToShow as $item => $product) { ?>
 
 
                         <div class="form-group">
-                            <label for="id_categorie">ID Catégorie :</label>
-                            <input type="text" name="id_categorie" class="form-control" value="<?php echo "{$product['id_categorie']}"; ?>" placeholder="ID de la catégorie ..." required>
+                            <label for="id_categorie"> Catégorie est: <?php echo "**{$product['libelle']}**"; ?> :</label>
+                            <select id="categories" name="id_categorie" class="form-control">
+                                <?php foreach ($categories as $category): ?>
+                                    <option value="<?php echo $category['id']; ?>"><?php echo $category['libelle']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
 
                         <div class="form-group">

@@ -5,70 +5,85 @@
     box-sizing: border-box;
 }
 
-/* Basic styling for the app container */
-.app-container {
-    display: flex;
-    height: 100vh;
-}
-
-/* Sidebar styling */
-.sidebar {
-    width: 250px;
-    background-color: #333;
-    color: #fff;
-    position: fixed;
-    left: 0;
-    top: 10%;
-    bottom: 0;
-    z-index: 1000;
-    overflow-y: auto; /* Ajout pour permettre le défilement si le contenu est trop long */
-}
-
-.sidebar-header {
-    display: flex;
+nav {
+    display: inline;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center; /* Centrage horizontal */
-    padding: 20px;
-    border-bottom: 1px solid #444;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.app-icon {
-    margin-right: 10px;
+/* Styles pour les boutons */
+.custom-btn,
+.btn-outline-success {
+    padding: 8px 16px;
+    margin: 0 8px;
+    font-size: 16px;
+    border: 1px solid #141cc9;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.2s;
 }
 
-.app-name {
-    font-size: 1.2rem;
+.custom-btn {
+    background-color: #365486;
+    color: #ffffff;
 }
 
-.sidebar-nav {
-    padding: 20px;
+.custom-btn:hover {
+    background-color: #79d07b;
+    color: #ffffff;
 }
 
-.sidebar-nav ul {
-    list-style-type: none;
-    padding: 0;
+ul {
+    list-style: none;
+    display: flex;
 }
 
-.sidebar-nav ul li a {
-    display: block;
-    padding: 10px 0;
-    color: #ccc;
+ul li {
+    margin-right: 20px;
+}
+
+ul li a {
+    color: #fff;
     text-decoration: none;
 }
 
-.sidebar-nav ul li a:hover {
-    color: #fff;
+/*la recherche un produits*/
+.buR{
+    padding: 8px 16px;
+    margin: 8px;
+    font-size: 15px;
+    border: 2px solid #141cc9;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.2s;
+    background-color: #365486;
+    color: #ffffff;
+
+}
+.buR:hover {
+    background-color: #ffffff;
+    color: #365486;
 }
 
-.sidebar-nav ul li a.active {
-    color: #fff;
-    font-weight: bold;
-}
+.iptR{
+    padding: 8px 16px;
+    margin: 8px;
+    font-size: 15px;
+    border: 2px solid #141cc9;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.2s;
+    background-color: #365486;
+    color: #ffffff;
 
+}
 
 /* Main content styling */
 .main-content {
-    flex: 1;
+    flex: none;
     padding: 20px;
 }
 
@@ -79,34 +94,52 @@ header {
     margin-bottom: 20px;
 }
 
-.search-wrapper {
-    position: relative;
-}
 
-.search-wrapper input[type="text"] {
-    padding: 10px;
-    width: 250px;
-}
-
-.search-wrapper button {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-}
 
 .user-wrapper {
     display: flex;
     align-items: center;
 }
 
+.user-image {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
 .username {
     margin-left: 10px;
 }
 
+.logout-btn {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+}
+
+.logout-btn:hover {
+    background-color: #fd0707;
+}
+
+.btnAjout{
+    padding: 7px 14px;
+    margin: 8px;
+    font-size: 23px;
+    border: 2px solid #141cc9;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.2s;
+    background-color: #365486;
+    color: #ffffff;
+}
+
+.btnAjout:hover{
+    background-color: #07af0a;
+
+}
 /* Sample styling for main content */
 main {
     background-color: #f4f4f4;
@@ -115,29 +148,41 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 1rem;
-}
-
 
 /* pour table*/
-table {
-    border-collapse: collapse;
+
+/* Styles pour le titre de la section */
+.title {
+    display: flex;
+    justify-content: center;
+    color: #141cc9;
+    font-size: 45pt;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+/* Styles pour le tableau */
+.tablee {
     width: 100%;
+    border-collapse: collapse;
 }
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+
+.tablee th, .tablee td {
+    border: 1px solid #365486; /* Couleur de la bordure du tableau */
+    padding: 10px;
+    text-align: center;
 }
-th {
-    background-color: #f2f2f2;
+
+/* Styles pour les lignes impaires du tableau */
+.tablee tbody tr:nth-child(odd) {
+    background-color: #DCF2F1;
 }
+
+/* Styles pour les lignes paires du tableau */
+.tablee tbody tr:nth-child(even) {
+    background-color: #7FC7D9;
+}
+
 .action-buttons button {
     margin-right: 5px;
     border: none;
@@ -158,7 +203,7 @@ th {
     color: #fff;
 }
 
-/*botton ajouter Categories*/
+/*botton ajouter Produit*/
 .title-and-button {
     display: flex;
     justify-content: space-between;
@@ -169,5 +214,13 @@ th {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.image-style {
+    width: 170px; /* Largeur de l'image */
+    height: 190px; /* Hauteur automatique pour maintenir le ratio */
+    border: 1px solid #ccc; /* Bordure de l'image */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre légère */
 }
