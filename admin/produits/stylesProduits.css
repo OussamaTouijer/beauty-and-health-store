@@ -15,10 +15,11 @@ nav {
 }
 
 /* Styles pour les boutons */
-.custom-btn,
-.btn-outline-success {
+.custom {
+    background-color: #365486;
+    color: #ffffff;
     padding: 8px 16px;
-    margin: 0 8px;
+    font-weight: bold;
     font-size: 16px;
     border: 1px solid #141cc9;
     border-radius: 5px;
@@ -26,13 +27,8 @@ nav {
     transition: background-color 0.3s, color 0.2s;
 }
 
-.custom-btn {
-    background-color: #365486;
-    color: #ffffff;
-}
-
-.custom-btn:hover {
-    background-color: #79d07b;
+.custom:hover {
+    background-color: #a7b7ff;
     color: #ffffff;
 }
 
@@ -167,10 +163,16 @@ main {
     border-collapse: collapse;
 }
 
-.tablee th, .tablee td {
+.tablee th {
     border: 1px solid #365486; /* Couleur de la bordure du tableau */
     padding: 10px;
     text-align: center;
+}
+
+.tablee td {
+    border: 1px solid #365486; /* Couleur de la bordure du tableau */
+    padding: 10px;
+    text-align: match-parent;
 }
 
 /* Styles pour les lignes impaires du tableau */

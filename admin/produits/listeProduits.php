@@ -56,27 +56,27 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
             <nav class="p-1">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-success ms-1" href="#">
+                        <a class="nav-link custom" href="#">
                              Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-success ms-1" href="../profile.php">
+                        <a class="nav-link custom" href="../profile.php">
                             Profile
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-success ms-1" href="../categorise/listeCategorise.php">
+                        <a class="nav-link custom" href="../categorise/listeCategorise.php">
                             Categories
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active custom-btn" href="listeProduits.php">
+                        <a class="nav-link active custom" href="listeProduits.php">
                              Products
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-success ms-1" href="#">
+                        <a class="nav-link custom" href="#">
                             Customers
                         </a>
                     </li>
@@ -87,7 +87,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
             <div class="user-wrapper">
                 <a href="../profile.php">
-                <img src="user.jpg" alt="user" class="user-image">
+                <img src="../userImages/user.jpg" alt="user" class="user-image">
                 </a>
                 <span class="username"><?php echo htmlspecialchars($_SESSION['prenom'].' ' .$_SESSION['nom']); ?></span>
                 <?php
