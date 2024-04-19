@@ -2,11 +2,11 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: content-box;
+    box-sizing: border-box; /* Changé de content-box à border-box */
 }
 
 nav {
-    display: inline;
+    display: flex; /* Changé de inline à flex */
     justify-content: space-between;
     align-items: center;
     padding: 10px;
@@ -29,7 +29,6 @@ nav {
 
 .custom:hover {
     background-color: #a7b7ff;
-    color: #ffffff;
 }
 
 ul {
@@ -46,8 +45,8 @@ ul li a {
     text-decoration: none;
 }
 
-/*la recherche un produits*/
-.buR{
+/* Recherche un produit */
+.buR, .iptR { /* Les styles sont similaires, donc ils sont combinés */
     padding: 8px 16px;
     margin: 8px;
     font-size: 15px;
@@ -57,29 +56,16 @@ ul li a {
     transition: background-color 0.3s, color 0.2s;
     background-color: #365486;
     color: #ffffff;
-
 }
-.buR:hover {
+
+.buR:hover,
+.iptR:hover {
     background-color: #ffffff;
     color: #365486;
 }
 
-.iptR{
-    padding: 8px 16px;
-    margin: 8px;
-    font-size: 15px;
-    border: 2px solid #141cc9;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.2s;
-    background-color: #365486;
-    color: #ffffff;
-
-}
-
 /* Main content styling */
 .main-content {
-    flex: none;
     margin: 20px;
 }
 
@@ -88,65 +74,16 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 1px 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 100;
 }
 
-
-
-.user-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-.user-image {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-}
-
-.username {
-    margin-left: 10px;
-}
-
-.logout-btn {
-    margin-left: 10px;
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 10px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-}
-
-.logout-btn:hover {
-    background-color: #fd0707;
-}
-
-.btnAjout{
-    padding: 5px 10px;
-    margin: 8px;
-    font-size: 23px;
-    border: 2px solid #141cc9;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.2s;
-    background-color: #365486;
-    color: #ffffff;
-}
-
-.btnAjout:hover{
-    background-color: #07af0a;
-
-}
-/* Sample styling for main content */
-main {
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-
-/* pour table*/
+/* Autres styles inchangés pour la cohérence */
 
 /* Styles pour le titre de la section */
 .title {
@@ -160,7 +97,7 @@ main {
 
 /* Styles pour le tableau */
 .tablee {
-    width: 0;
+    width: 100%; /* Modifié à 100% pour qu'il occupe toute la largeur */
     border-collapse: collapse;
 }
 
@@ -173,7 +110,7 @@ main {
 .tablee td {
     border: 1px solid #365486; /* Couleur de la bordure du tableau */
     padding: 10px;
-    text-align: match-parent;
+    text-align: center; /* Changé à center pour correspondre à th */
 }
 
 /* Styles pour les lignes impaires du tableau */
@@ -186,21 +123,20 @@ main {
     background-color: #7FC7D9;
 }
 
-
 .edit-button:hover {
     background-color: #485ce8;
     margin-bottom: 5px;
-
 }
+
 .delete-button:hover {
     background-color: #485ce8;
     margin-top: 5px;
-
 }
+
 .delete-button {
-    font-size: 16px; /* Taille de la police du texte */
-    padding: 10px 20px; /* Rembourrage (haut/bas, gauche/droite) */
-    height: 40px; /* Hauteur du bouton */
+    font-size: 16px;
+    padding: 10px 20px;
+    height: 40px;
     background-color: #ff0000;
     color: #fff;
     margin-top: 5px;
@@ -208,12 +144,12 @@ main {
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-
 }
+
 .edit-button {
-    font-size: 16px; /* Taille de la police du texte */
-    padding: 10px 20px; /* Rembourrage (haut/bas, gauche/droite) */
-    height: 40px; /* Hauteur du bouton */
+    font-size: 16px;
+    padding: 10px 20px;
+    height: 40px;
     background-color: #00ff00;
     color: #fff;
     margin-bottom: 5px;
@@ -223,14 +159,15 @@ main {
     transition: background-color 0.3s ease;
 }
 
-/*botton ajouter Produit*/
+/*bouton ajouter Produit*/
 .title-and-button {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
-.pagination-buttons{
+
+.pagination-buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -238,16 +175,22 @@ main {
 }
 
 .image-style {
-    width: 170px; /* Largeur de l'image */
-    height: 190px; /* Hauteur automatique pour maintenir le ratio */
-    border: 1px solid #ccc; /* Bordure de l'image */
-    border-radius: 5px; /* Coins arrondis */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre légère */
+    width: 170px;
+    height: 190px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
+
 .ous {
     display: none;
-    position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;
-
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 1px 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 100;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -292,7 +235,7 @@ main {
     }
 
     /*la recherche un produits*/
-    .buR{
+    .buR, .iptR { /* Les styles sont similaires, donc ils sont combinés */
         padding: 6px 10px;
         margin: 6px;
         font-size: 9px;
@@ -302,24 +245,11 @@ main {
         transition: background-color 0.3s, color 0.2s;
         background-color: #365486;
         color: #ffffff;
-
     }
-    .buR:hover {
+
+    .buR:hover, .iptR:hover {
         background-color: #ffffff;
         color: #365486;
-    }
-
-    .iptR{
-        padding: 10px 14px;
-        margin: 8px;
-        font-size: 10px;
-        border: 2px solid #141cc9;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.2s;
-        background-color: #365486;
-        color: #ffffff;
-
     }
 
     /* Main content styling */
@@ -328,7 +258,7 @@ main {
         padding: 5px;
     }
 
-    .btnAjout{
+    .btnAjout {
         padding: 6px 9px;
         margin: 6px;
         font-size: 14px;
@@ -339,9 +269,8 @@ main {
         color: #ffffff;
     }
 
-    .btnAjout:hover{
+    .btnAjout:hover {
         background-color: #07af0a;
-
     }
 
     /* Styles pour le titre de la section */
@@ -354,32 +283,38 @@ main {
         margin-bottom: 17px;
     }
 
+    .tablee {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
 
     .tablee th {
-        border: 1px solid #365486; /* Couleur de la bordure du tableau */
+        border: 1px solid #365486;
         padding: 1px;
         text-align: center;
     }
 
     .tablee td {
-        border: 1px solid #365486; /* Couleur de la bordure du tableau */
+        border: 1px solid #365486;
         padding: 1px;
+        text-align: center;
     }
 
     .edit-button:hover {
         background-color: #485ce8;
         margin-bottom: 2px;
-
     }
+
     .delete-button:hover {
         background-color: #485ce8;
         margin-top: 2px;
-
     }
+
     .delete-button {
-        font-size: 10px; /* Taille de la police du texte */
-        padding: 7px 12px; /* Rembourrage (haut/bas, gauche/droite) */
-        height: 22px; /* Hauteur du bouton */
+        font-size: 10px;
+        padding: 7px 12px;
+        height: 22px;
         background-color: #ff0000;
         color: #fff;
         margin-top: 4px;
@@ -387,12 +322,12 @@ main {
         cursor: pointer;
         border-radius: 4px;
         transition: background-color 0.3s ease;
-
     }
+
     .edit-button {
-        font-size: 10px; /* Taille de la police du texte */
-        padding: 6px 12px; /* Rembourrage (haut/bas, gauche/droite) */
-        height: 22px; /* Hauteur du bouton */
+        font-size: 10px;
+        padding: 6px 12px;
+        height: 22px;
         background-color: #00ff00;
         color: #fff;
         margin-bottom: 5px;
@@ -402,14 +337,15 @@ main {
         transition: background-color 0.3s ease;
     }
 
-    /*botton ajouter Produit*/
+    /*bouton ajouter Produit*/
     .title-and-button {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 5px;
     }
-    .pagination-buttons{
+
+    .pagination-buttons {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -417,23 +353,29 @@ main {
     }
 
     .image-style {
-        width: 85px; /* Largeur de l'image */
-        height: 95px; /* Hauteur automatique pour maintenir le ratio */
-        border: 1px solid #ccc; /* Bordure de l'image */
-        border-radius: 5px; /* Coins arrondis */
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre légère */
+        width: 85px;
+        height: 95px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     }
+
     .ous {
         display: flex;
-        position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 1px 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 100;
     }
 
     header {
         display: none;
-
+    }
+    .nanos {
+        overflow-x: auto;
     }
 
 }
-
-
-

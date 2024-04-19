@@ -30,7 +30,7 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Éclat & Vitalité (Admin)</title>
-    <link rel="stylesheet" href="stylesCategorise.css">
+    <link rel="stylesheet" href="../produits/stylesProduits.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -120,7 +120,7 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
                         <a class="nav-link active custom" href="listeCategorise.php">Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  custom" href="../profile/listeProduits.php">Products</a>
+                        <a class="nav-link  custom" href="../produits/listeProduits.php">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link custom" href="#">Customers</a>
@@ -201,9 +201,16 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
                        if(isset($_GET['update'])&& $_GET['update']=="Nok")
                              echo "<div class='alert alert-danger'>Échec de la mise à jour de la catégorie. Veuillez réessayer !!!</div>";?>
 
+                    <style>
+                        @media only screen and (max-width: 1024px) {
+                            .siw {
+                                overflow-x: auto;
+                            }
+                        }
+                    </style>
                      <?php
 
-                echo ' <div class="nanos" style="overflow-x: auto;"> <table class="tablee">
+                echo ' <div class="siw" > <table class="tablee" style="margin-left: auto; margin-right: auto;">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -232,13 +239,13 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
                      echo '</tbody>';
                      echo '</table>';?>
 
-                     <div style=" width: 1px;
-                       height: 14px;
+
+               </div>
+                <div style=" width: 1px;
+                       height: 16px;
                        background-color: #ffffff;">
-                     </div>
-
-
-                    <?php
+                </div>
+                <?php
                             // Boutons de pagination
                             echo '<div class="pagination-buttons">';
                             if ($page > 1) {
@@ -253,9 +260,6 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
                         echo "<p>Session data not found.</p>";
                     }
                     ?>
-
-               </div>
-
 
             </main>
 

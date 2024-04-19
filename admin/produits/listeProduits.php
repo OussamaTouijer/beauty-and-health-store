@@ -205,11 +205,17 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                     echo "<div class='alert alert-success'>Produit mis à jour avec succès !!!</div>";
                 if(isset($_GET['update'])&& $_GET['update']=="Nok")
                     echo "<div class='alert alert-danger'>Échec de la mise à jour du produit. Veuillez réessayer !!!</div>";?>
-
+<style>
+    @media only screen and (max-width: 1024px) {
+        .siw {
+            overflow-x: auto;
+        }
+    }
+</style>
 
 
                 <?php
-                echo ' <div class="nanos" style="overflow-x: auto;"> <table class="tablee">
+                echo ' <div class="siw"> <table class="tablee" style="margin-left: auto; margin-right: auto;">
                     <thead>
                 <tr>
                     <th>ID</th>
@@ -250,14 +256,18 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                     echo '</tbody>';
                     echo '</table>';?>
 
-                    <div style=" width: 1px;
-                       height: 14px;
-                       background-color: #ffffff;">
-                    </div>
 
-                <?php
+
+
+            </div>
+            <div style=" width: 1px;
+                       height: 17px;
+                       background-color: #ffffff;">
+            </div>
+
+        <?php
                     // Boutons de pagination
-                    echo '<div class="container pagination-buttons">';
+                    echo '<div class="container pagination-buttons" style="margin-left: auto; margin-right: auto;">';
                     if ($page > 1) {
                         echo '<a href="?page='.($page-1).'" class="btn btn-primary"><=Précédent</a>';
                     }
@@ -270,9 +280,6 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                     echo "<p>Session data not found.</p>";
                 }
                ?>
-
-            </div>
-
         </main>
 
     </div>
