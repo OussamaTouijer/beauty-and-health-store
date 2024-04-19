@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table avec défilement vertical</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            overflow-y: scroll;
+            max-height: 200px; /* Réglez la hauteur maximale ici selon vos besoins */
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div style="overflow-x:auto;">
+    <table>
+        <thead>
+        <tr>
+            <th>En-tête 1</th>
+            <th>En-tête 2</th>
+            <!-- Ajoutez autant d'en-têtes que nécessaire -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Donnée 1</td>
+            <td>Donnée 2</td>
+            <!-- Ajoutez autant de cellules de données que nécessaire -->
+        </tr>
+        <!-- Ajoutez autant de lignes que nécessaire -->
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

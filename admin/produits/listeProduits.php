@@ -43,7 +43,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
 
 <!-- header-->
-    <header style="position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;">
+    <header >
         <div class="container d-flex justify-content-between align-items-center">
 
             <div class="" style="margin-right: 1px; ">
@@ -101,6 +101,59 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
         </div>
     </header>
 
+<!-- --------------------------------------------------------------------- -->
+
+<!-- Barre de navigation -->
+<header class="ous" >
+    <div class="container d-flex justify-content-between align-items-center">
+        <!-- Bouton d'ouverture du tiroir -->
+        <span style="font-size:30px;cursor:pointer" onclick="openDrawer()">&#9776;</span>
+
+        <!-- Tiroir (drawer) -->
+        <div class="drawer" id="drawer">
+            <a href="javascript:void(0)" class="close-btn" onclick="closeDrawer()">&times;</a>
+            <nav>
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="../profile/profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="../categorise/listeCategorise.php">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active custom" href="listeProduits.php">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="#">Customers</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Autres éléments de la barre de navigation -->
+        <div class="logo-wrapper">
+            <h6 style=" font-size: 22px; color: #333;">Éclat & Vitalité (Admin)</h6>
+        </div>
+
+        <div class="user-wrapper">
+            <a href="../profile.php">
+                <img src="../userImages/user.jpg" alt="user" class="user-image">
+            </a>
+            <span class="username"><?php echo htmlspecialchars($_SESSION['prenom'].' ' .$_SESSION['nom']); ?></span>
+            <?php
+            // Vérifiez l'existence des données de session avant de les afficher
+            if(isset($_SESSION['email'])) {
+                echo '<a class="logout-btn" href="../deconnexion.php">Déconnexion</a>';
+            }
+            ?>
+        </div>
+    </div>
+</header>
+
+
 
     <div style=" width: 1px;
              height: 68px;
@@ -110,7 +163,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 <!-- main contenu-->
     <div class="main-content">
 
-        <main>
+        <main >
             <div class="container">
 
                 <?php
@@ -156,14 +209,14 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
 
                 <?php
-                echo ' <div class="container"> <table class="tablee">
+                echo ' <div class="nanos" style="overflow-x: auto;"> <table class="tablee">
                     <thead>
                 <tr>
                     <th>ID</th>
                     <th>Libellé</th>
                     <th>Prix</th>
                     <th>Quantite</th>
-                    <th>ID Catégorie</th>
+                    <th>Catégorie</th>
                     <th>Date de création</th>
                     <th>Description</th>
                     <th>Image</th>
@@ -347,4 +400,15 @@ foreach ($productsToShow as $item => $product) { ?>
 
 
 </body>
+
+<script>
+    function openDrawer() {
+        document.getElementById("drawer").style.width = "250px";
+    }
+
+    function closeDrawer() {
+        document.getElementById("drawer").style.width = "0";
+    }
+</script>
+
 </html>

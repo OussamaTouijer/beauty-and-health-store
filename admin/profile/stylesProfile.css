@@ -58,6 +58,7 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;
 }
 
 
@@ -121,10 +122,11 @@ main {
 /* Styles pour le type d'utilisateur */
 .user-type {
     text-align: center; /* Centrer le texte */
-    color: #666; /* Couleur du texte */
+    color: #850505; /* Couleur du texte */
     font-size: 1rem; /* Taille de la police */
     margin-bottom: 20px; /* Espacement en dessous */
 }
+
 
 /* Styles pour les détails de l'utilisateur */
 .user-details {
@@ -145,4 +147,94 @@ main {
     font-weight: bold; /* Gras */
     text-align: center; /* Centrer le texte */
     margin-top: 20px; /* Espacement en haut */
+}
+.ous {
+    display: none;
+    position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;
+}
+
+@media only screen and (max-width: 1024px) {
+    .drawer {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        background-color: #f8f9fa;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    .drawer a {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #365486;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .drawer a:hover {
+        background-color: #a7b7ff;
+        color: #fff;
+    }
+
+    .drawer .close-btn {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        font-size: 36px;
+        margin-left: 50px;
+        cursor: pointer;
+    }
+
+    .drawer .close-btn:hover {
+        color: #fd0707;
+    }
+
+
+
+    /* Main content styling */
+    .main-content {
+        flex: none;
+        padding: 5px;
+    }
+
+    header {
+        display: none;
+
+    }
+
+    /* Sample styling for main content */
+    main {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+
+    /* pour table*/
+
+    /* Styles pour le titre de la section */
+    .title {
+        display: flex;
+        justify-content: center;
+        color: #141cc9;
+        font-size: 30pt;
+        font-weight: 900;
+        margin-bottom: 15px;
+    }
+
+
+    .ous {
+        display: flex;
+        position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;
+    }
+
+    header {
+        display: none;
+    }
 }
