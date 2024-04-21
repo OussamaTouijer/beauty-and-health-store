@@ -2,11 +2,11 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Changé de content-box à border-box */
+    box-sizing: border-box;
 }
 
 nav {
-    display: flex; /* Changé de inline à flex */
+    display: inline;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
@@ -29,6 +29,7 @@ nav {
 
 .custom:hover {
     background-color: #a7b7ff;
+    color: #ffffff;
 }
 
 ul {
@@ -45,8 +46,8 @@ ul li a {
     text-decoration: none;
 }
 
-/* Recherche un produit */
-.buR, .iptR { /* Les styles sont similaires, donc ils sont combinés */
+/*la recherche un produits*/
+.buR{
     padding: 8px 16px;
     margin: 8px;
     font-size: 15px;
@@ -56,17 +57,30 @@ ul li a {
     transition: background-color 0.3s, color 0.2s;
     background-color: #365486;
     color: #ffffff;
-}
 
-.buR:hover,
-.iptR:hover {
+}
+.buR:hover {
     background-color: #ffffff;
     color: #365486;
 }
 
+.iptR{
+    padding: 8px 16px;
+    margin: 8px;
+    font-size: 15px;
+    border: 2px solid #141cc9;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.2s;
+    background-color: #365486;
+    color: #ffffff;
+
+}
+
 /* Main content styling */
 .main-content {
-    margin: 20px;
+    flex: none;
+    padding: 20px;
 }
 
 header {
@@ -74,16 +88,65 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #f8f9fa;
-    padding: 1px 2px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 100;
+    position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;
 }
 
-/* Autres styles inchangés pour la cohérence */
+
+
+.user-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.user-image {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+.username {
+    margin-left: 10px;
+}
+
+.logout-btn {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+}
+
+.logout-btn:hover {
+    background-color: #fd0707;
+}
+
+.btnAjout{
+    padding: 5px 10px;
+    margin: 8px;
+    font-size: 23px;
+    border: 2px solid #141cc9;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.2s;
+    background-color: #365486;
+    color: #ffffff;
+}
+
+.btnAjout:hover{
+    background-color: #07af0a;
+
+}
+/* Sample styling for main content */
+main {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* pour table*/
 
 /* Styles pour le titre de la section */
 .title {
@@ -97,7 +160,7 @@ header {
 
 /* Styles pour le tableau */
 .tablee {
-    width: 100%; /* Modifié à 100% pour qu'il occupe toute la largeur */
+    width: 100%;
     border-collapse: collapse;
 }
 
@@ -110,7 +173,7 @@ header {
 .tablee td {
     border: 1px solid #365486; /* Couleur de la bordure du tableau */
     padding: 10px;
-    text-align: center; /* Changé à center pour correspondre à th */
+    text-align: match-parent;
 }
 
 /* Styles pour les lignes impaires du tableau */
@@ -123,51 +186,47 @@ header {
     background-color: #7FC7D9;
 }
 
+
 .edit-button:hover {
     background-color: #485ce8;
-    margin-bottom: 5px;
 }
-
 .delete-button:hover {
     background-color: #485ce8;
-    margin-top: 5px;
 }
-
 .delete-button {
-    font-size: 16px;
-    padding: 10px 20px;
-    height: 40px;
+    font-size: 16px; /* Taille de la police du texte */
+    padding: 10px 20px; /* Rembourrage (haut/bas, gauche/droite) */
+    height: 40px; /* Hauteur du bouton */
     background-color: #ff0000;
     color: #fff;
-    margin-top: 5px;
+    margin-right: 5px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-}
 
+}
 .edit-button {
-    font-size: 16px;
-    padding: 10px 20px;
-    height: 40px;
+    font-size: 16px; /* Taille de la police du texte */
+    padding: 10px 20px; /* Rembourrage (haut/bas, gauche/droite) */
+    height: 40px; /* Hauteur du bouton */
     background-color: #00ff00;
     color: #fff;
-    margin-bottom: 5px;
+    margin-right: 5px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
 
-/*bouton ajouter Produit*/
+/*botton ajouter Produit*/
 .title-and-button {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
-
-.pagination-buttons {
+.pagination-buttons{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -175,25 +234,19 @@ header {
 }
 
 .image-style {
-    width: 170px;
-    height: 190px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    width: 170px; /* Largeur de l'image */
+    height: 190px; /* Hauteur automatique pour maintenir le ratio */
+    border: 1px solid #ccc; /* Bordure de l'image */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre légère */
 }
 
 .ous {
     display: none;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #f8f9fa;
-    padding: 1px 2px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 100;
+    position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1200px) {
     .drawer {
         height: 100%;
         width: 0;
@@ -222,7 +275,7 @@ header {
     }
 
     .drawer .close-btn {
-        position: fixed;
+        position: absolute;
         top: 0;
         right: 10px;
         font-size: 36px;
@@ -234,8 +287,9 @@ header {
         color: #fd0707;
     }
 
+
     /*la recherche un produits*/
-    .buR, .iptR { /* Les styles sont similaires, donc ils sont combinés */
+    .buR{
         padding: 6px 10px;
         margin: 6px;
         font-size: 9px;
@@ -245,11 +299,24 @@ header {
         transition: background-color 0.3s, color 0.2s;
         background-color: #365486;
         color: #ffffff;
-    }
 
-    .buR:hover, .iptR:hover {
+    }
+    .buR:hover {
         background-color: #ffffff;
         color: #365486;
+    }
+
+    .iptR{
+        padding: 10px 14px;
+        margin: 8px;
+        font-size: 10px;
+        border: 2px solid #141cc9;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.2s;
+        background-color: #365486;
+        color: #ffffff;
+
     }
 
     /* Main content styling */
@@ -258,7 +325,7 @@ header {
         padding: 5px;
     }
 
-    .btnAjout {
+    .btnAjout{
         padding: 6px 9px;
         margin: 6px;
         font-size: 14px;
@@ -269,8 +336,9 @@ header {
         color: #ffffff;
     }
 
-    .btnAjout:hover {
+    .btnAjout:hover{
         background-color: #07af0a;
+
     }
 
     /* Styles pour le titre de la section */
@@ -283,38 +351,32 @@ header {
         margin-bottom: 17px;
     }
 
-    .tablee {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
 
     .tablee th {
-        border: 1px solid #365486;
+        border: 1px solid #365486; /* Couleur de la bordure du tableau */
         padding: 1px;
         text-align: center;
     }
 
     .tablee td {
-        border: 1px solid #365486;
+        border: 1px solid #365486; /* Couleur de la bordure du tableau */
         padding: 1px;
-        text-align: center;
     }
 
     .edit-button:hover {
         background-color: #485ce8;
         margin-bottom: 2px;
-    }
 
+    }
     .delete-button:hover {
         background-color: #485ce8;
         margin-top: 2px;
-    }
 
+    }
     .delete-button {
-        font-size: 10px;
-        padding: 7px 12px;
-        height: 22px;
+        font-size: 10px; /* Taille de la police du texte */
+        padding: 7px 12px; /* Rembourrage (haut/bas, gauche/droite) */
+        height: 22px; /* Hauteur du bouton */
         background-color: #ff0000;
         color: #fff;
         margin-top: 4px;
@@ -322,12 +384,12 @@ header {
         cursor: pointer;
         border-radius: 4px;
         transition: background-color 0.3s ease;
-    }
 
+    }
     .edit-button {
-        font-size: 10px;
-        padding: 6px 12px;
-        height: 22px;
+        font-size: 10px; /* Taille de la police du texte */
+        padding: 6px 12px; /* Rembourrage (haut/bas, gauche/droite) */
+        height: 22px; /* Hauteur du bouton */
         background-color: #00ff00;
         color: #fff;
         margin-bottom: 5px;
@@ -337,15 +399,14 @@ header {
         transition: background-color 0.3s ease;
     }
 
-    /*bouton ajouter Produit*/
+    /*botton ajouter Produit*/
     .title-and-button {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 5px;
     }
-
-    .pagination-buttons {
+    .pagination-buttons{
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -353,29 +414,23 @@ header {
     }
 
     .image-style {
-        width: 85px;
-        height: 95px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        width: 85px; /* Largeur de l'image */
+        height: 95px; /* Hauteur automatique pour maintenir le ratio */
+        border: 1px solid #ccc; /* Bordure de l'image */
+        border-radius: 5px; /* Coins arrondis */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre légère */
     }
-
     .ous {
         display: flex;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background-color: #f8f9fa;
-        padding: 1px 2px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        z-index: 100;
+        position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;
     }
 
     header {
         display: none;
-    }
-    .nanos {
-        overflow-x: auto;
+
     }
 
 }
+
+
+
