@@ -326,7 +326,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
                     <div class="form-group">
                         <label for="image">Image :</label>
-                        <input type="file" name="image" id="image" class="form-control" placeholder="URL de l'image ..." required>
+                        <input type="file" name="image" id="image" class="form-control" placeholder="URL de l'image ..." accept="image/jpeg, image/png" required>
                     </div>
 
                     <div class="form-group">
@@ -356,7 +356,7 @@ foreach ($productsToShow as $item => $product) { ?>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="modifier.php?id=<?php echo "{$product['id']}"; ?>" method="post">
+                    <form action="modifier.php?id=<?php echo "{$product['id']}"; ?>" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="libelle">Libellé :</label>
                             <input type="text" name="libelle" class="form-control" value="<?php echo "{$product['libelle']}"; ?>" placeholder="Nom de produit ..." required>
@@ -383,9 +383,15 @@ foreach ($productsToShow as $item => $product) { ?>
                         </div>
 
                         <div class="form-group">
-                            <label for="image">Image :</label>
-                            <input type="text" name="image" class="form-control" value="<?php echo "{$product['image']}"; ?>" placeholder="URL de l'image ..." required>
+                            <label for="prix">Quantite :</label>
+                            <input type="number" name="quantite" class="form-control" value="<?php echo "{$product['discount']}"; ?>" placeholder="Prix du produit ..." required>
                         </div>
+
+                        <div class="form-group">
+                            <label for="image">Image : <?php echo "{$product['image']}"; ?></label>
+                            <input type="file" name="image" class="form-control" placeholder="URL de l'image ..." required>
+                        </div>
+
 
                         <div class="form-group">
                             <label for="couleur">Couleur :</label>
