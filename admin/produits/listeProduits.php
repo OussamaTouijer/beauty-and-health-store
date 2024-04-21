@@ -294,7 +294,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="ajout.php" method="post">
+                <form action="ajout.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="libelle">Nom Produit :</label>
                         <input type="text" name="libelle" id="libelle" class="form-control" placeholder="Nom de produit ..." required>
@@ -326,7 +326,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
                     <div class="form-group">
                         <label for="image">Image :</label>
-                        <input type="text" name="image" id="image" class="form-control" placeholder="URL de l'image ..." required>
+                        <input type="file" name="image" id="image" class="form-control" placeholder="URL de l'image ..." required>
                     </div>
 
                     <div class="form-group">

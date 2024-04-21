@@ -1,13 +1,22 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!empty($_POST["libelle"]) && !empty($_POST["prix"]) && !empty($_POST["id_categorie"]) && !empty($_POST["quantite"]) && !empty($_POST["description"]) && !empty($_POST["image"]) && !empty($_POST["color"])) {
+    if (!empty($_POST["libelle"]) && !empty($_POST["prix"]) && !empty($_POST["id_categorie"]) && !empty($_POST["quantite"]) && !empty($_POST["description"]) && !empty($_FILES["image"]["name"]) && !empty($_POST["color"])) {
         $libelle = htmlspecialchars($_POST["libelle"]);
         $prix = htmlspecialchars($_POST["prix"]);
         $id_categorie = htmlspecialchars($_POST["id_categorie"]);
         $quantite = htmlspecialchars($_POST["quantite"]);
         $description = htmlspecialchars($_POST["description"]);
-        $image = htmlspecialchars($_POST["image"]);
         $couleur = htmlspecialchars($_POST["color"]);
+
+        // Télécharger l'image
+        $target_dir = "D:/wamp64/www/beauty-and-health-store/images/";
+        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+            $image = basename($_FILES["image"]["name"]); // Nom du fichier pour stocker dans la base de données
+        } else {
+            echo "Désolé, une erreur s'est produite lors du téléchargement de votre fichier.";
+        }
 
         require_once '../../include/functionsProductCate.php';
         $conn = connectToDatabase();
