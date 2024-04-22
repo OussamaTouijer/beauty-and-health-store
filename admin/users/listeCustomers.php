@@ -32,7 +32,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Éclat & Vitalité (Admin)</title>
-    <link rel="stylesheet" href="stylesProducts.css">
+    <link rel="stylesheet" href="stylesCustomers.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -71,12 +71,12 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active custom" href="../produits/listeProduits.php">
+                        <a class="nav-link  custom" href="../produits/listeProduits.php">
                             Produits
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom" href="listeCustomers.php">
+                        <a class="nav-link active custom" href="listeCustomers.php">
                             Clientes
                         </a>
                     </li>
