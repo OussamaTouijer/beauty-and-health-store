@@ -1,31 +1,30 @@
 <?php
 session_start();
 
-// Vérification de l'authentification
-if (!isset($_SESSION['email'])){
+if (!isset($_SESSION['email'])) {
     header('Location: ../login.php');
-    exit(); // Assurez-vous de sortir après avoir redirigé
+    exit();
 }
 
-include '../../include/functionsProductCate.php';
-$categories = getAllCategories();
+include '../../include/functionsCustomers.php';
 
-if(!empty($_POST['sPro'])) {
-    $products = searchProducts($_POST['sPro']);
+
+if(!empty($_POST['sCus'])) {
+    $users = searchCustomers($_POST['sCus']);
 } else {
-    $products = getAllProducts();
+    $users = getAllCustomers();
 }
 
-
-
-// Pagination
+// Pagination et traitement des utilisateurs à afficher
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$categoriesPerPage = 4;
-$totalProducts = count($products);
-$totalPages = ceil($totalProducts / $categoriesPerPage);
-$startIndex = ($page - 1) * $categoriesPerPage;
-$productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
+$usersPerPage = 4;
+$totalUsers = count($users);
+$totalPages = ceil($totalUsers / $usersPerPage);
+$startIndex = ($page - 1) * $usersPerPage;
+$usersToShow = array_slice($users, $startIndex, $usersPerPage);
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -124,10 +123,10 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                         <a class="nav-link custom" href="../categorise/listeCategorise.php">Catégories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active custom" href="../produits/listeProduits.php">Produits</a>
+                        <a class="nav-link  custom" href="../produits/listeProduits.php">Produits</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom" href="listeCustomers.php">Clientes</a>
+                        <a class="nav-link active custom" href="listeCustomers.php">Clientes</a>
                     </li>
                 </ul>
             </nav>
@@ -171,10 +170,10 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                 if(isset($_SESSION['email'])) {
 
                 echo "<div class='title-and-button'>";
-                echo "<h2 class='title' >Liste des Produits</h1>";
-                //formulair pour la recherch de produit
+                echo "<h2 class='title' >Liste des Clientes</h1>";
+                //formulair pour la recherch de Clientes
                 print'<form method="post" action="" >
-                    <input type="text" for="b1" name="sPro" placeholder="Recherche..." class="iptR">
+                    <input type="number" for="b1" name="sCus" placeholder="Recherche..." class="iptR">
                     <button type="submit" id="b1" class="buR" >
                         Recherche
                     </button>
@@ -182,29 +181,26 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                 echo "</div>";?>
             </div>
 
-            <!-- button pour remplire modale-->
-            <?php echo '<div class="container"><a href="ajout.php" class="btnAjout" data-bs-toggle="modal" data-bs-target="#ajoutModal"> Ajouter Produit + </a></div><br>';?>
-
             <div class="container">
                 <?php
 
-                if (empty($productsToShow)) {
-                    echo "<p>Aucun produit trouvé.</p>";
+                if (empty($usersToShow)) {
+                    echo "<p>Aucun Clientes trouvé.</p>";
                 } else {
                 if(isset($_GET['ajout'])&& $_GET['ajout']=="ok")
-                    echo "<div class='alert alert-success'>Nouveau produit ajouté avec succès !!!</div>";
+                    echo "<div class='alert alert-success'>Nouveau Clientes ajouté avec succès !!!</div>";
                 if(isset($_GET['ajout'])&& $_GET['ajout']=="Nok")
                     echo "<div class='alert alert-danger'>Le libellé existe déjà. Veuillez en choisir un autre !!!</div>";
 
                 if(isset($_GET['delete'])&& $_GET['delete']=="ok")
-                    echo "<div class='alert alert-success'>Produit supprimé avec succès !!!</div>";
+                    echo "<div class='alert alert-success'>Clientes supprimé avec succès !!!</div>";
                 if(isset($_GET['delete'])&& $_GET['delete']=="Nok")
-                    echo "<div class='alert alert-danger'>Échec de la suppression du produit !!!</div>";
+                    echo "<div class='alert alert-danger'>Échec de la suppression du Clientes !!!</div>";
 
                 if(isset($_GET['update'])&& $_GET['update']=="ok")
-                    echo "<div class='alert alert-success'>Produit mis à jour avec succès !!!</div>";
+                    echo "<div class='alert alert-success'>Clientes mis à jour avec succès !!!</div>";
                 if(isset($_GET['update'])&& $_GET['update']=="Nok")
-                    echo "<div class='alert alert-danger'>Échec de la mise à jour du produit. Veuillez réessayer !!!</div>";?>
+                    echo "<div class='alert alert-danger'>Échec de la mise à jour du Clientes. Veuillez réessayer !!!</div>";?>
 <style>
     @media only screen and (max-width: 1024px) {
         .siw {
@@ -219,34 +215,32 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                     <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Libellé</th>
-                    <th>Prix</th>
-                    <th>Quantite</th>
-                    <th>Catégorie</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Ville</th>
+                    <th>Telephone</th>
+                    <th>user_type</th>
                     <th>Date de création</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Couleur</th>
-                    <th>Date de modification</th>
                     <th>Actions</th>
                 </tr>
                     </thead>
                     <tbody>';
-                foreach ($productsToShow as $product) {
+                foreach ($usersToShow as $users) {
                     echo "<tr>
-                                      <td>{$product['id']}</td>
-                                      <td>{$product['libelle']}</td>
-                                      <td>{$product['prix']} DH</td>
-                                      <td>{$product['discount']}</td>
-                                      <td>" . getCategoriById($product['id_categorie']) . "</td>
-                                      <td>{$product['date_creation']}</td>
-                                      <td>{$product['description']}</td>
-                                      <td><img class='image-style'src='../../images/{$product['image']}' class='card-img-top' alt='...' /></td>
-                                      <td>{$product['color']}</td>
-                                      <td>{$product['date_modification']}</td>
-                                      <td class='action-buttons'>
-                                           <a href='modifier.php?id={$product['id']}' data-bs-toggle='modal' data-bs-target='#modifierModal{$product['id']}' ><button class='edit-button'>Modifier</button></a>
-                                           <a href='supprimer.php?id={$product['id']}'><button class='delete-button'>Supprimer</button></a>
+                                      <td>{$users['id']}</td>
+                                      <td>{$users['nom']}</td>
+                                      <td>{$users['prenom']} DH</td>
+                                      <td>{$users['email']}</td>
+                                      <td>{$users['address']}</td>
+                                      <td>{$users['ville']}</td>
+                                      <td>{$users['telephone']}</td>
+                                      <td>{$users['user_type']}</td>
+                                      <td>{$users['date_creation']}</td>
+                                      <td>
+                                           <a href='modifier.php?id={$users['id']}' data-bs-toggle='modal' data-bs-target='#modifierModal{$users['id']}' ><button class='edit-button'>Modifier</button></a>
+                                           <a href='supprimer.php?id={$users['id']}'><button class='delete-button'>Supprimer</button></a>
                                            
                                       </td>
                                       
@@ -284,133 +278,37 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
     </div>
 
-
-<!-- Modal ajouter Produit -->
-<div class="modal fade" id="ajoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter Produit</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="ajout.php" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="libelle">Nom Produit :</label>
-                        <input type="text" name="libelle" id="libelle" class="form-control" placeholder="Nom de produit ..." required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="prix">Prix :</label>
-                        <input type="number" name="prix" id="prix" class="form-control" placeholder="Prix du produit ..." required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_categorie"> Catégorie :</label>
-                        <select id="categories" name="id_categorie" class="form-control">
-                            <?php foreach ($categories as $category): ?>
-                                <option value="<?php echo $category['id']; ?>"><?php echo $category['libelle']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="quantite">Quantite :</label>
-                        <input type="number" name="quantite" id="quantite" class="form-control" placeholder="Quantité ..." required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="description">Description :</label>
-                        <textarea name="description" id="description" class="form-control" placeholder="Description de produit ..." required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="image">Image :</label>
-                        <input type="file" name="image" id="image" class="form-control" placeholder="URL de l'image ..." accept="image/jpeg, image/png" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="couleur">Couleur :</label>
-                        <input type="text" name="color" id="couleur" class="form-control" placeholder="Couleur du produit ..." required>
-                    </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Ajouter</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<!-- chaque Produit admet un modal -->
-<?php
-foreach ($productsToShow as $item => $product) { ?>
-    <!-- Modal Modifier Produit -->
-    <div class="modal fade" id="modifierModal<?php echo "{$product['id']}"; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<?php foreach ($usersToShow as $item => $user) { ?>
+    <div class="modal fade" id="modifierModal<?php echo $user['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier Produit</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier Type d'utilisateur</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="modifier.php?id=<?php echo "{$product['id']}"; ?>" method="post" enctype="multipart/form-data">
+                    <form action='modiferType.php' method='post'>
                         <div class="form-group">
-                            <label for="libelle">Libellé :</label>
-                            <input type="text" name="libelle" class="form-control" value="<?php echo "{$product['libelle']}"; ?>" placeholder="Nom de produit ..." required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="prix">Prix :</label>
-                            <input type="number" name="prix" class="form-control" value="<?php echo "{$product['prix']}"; ?>" placeholder="Prix du produit ..." required>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="id_categorie"> Catégorie est: <?php echo "**{$product['libelle']}**"; ?> :</label>
-                            <select id="categories" name="id_categorie" class="form-control">
-                                <?php foreach ($categories as $category): ?>
-                                    <option value="<?php echo $category['id']; ?>"><?php echo $category['libelle']; ?></option>
-                                <?php endforeach; ?>
+                            <label for="userType">Type d'utilisateur : <?php echo $user['user_type']; ?></label>
+                            <select name='userType' class="form-control">
+                                <option value='admin' <?php if($user['user_type'] == 'admin') echo 'selected'; ?>>Admin</option>
+                                <option value='client' <?php if($user['user_type'] == 'client') echo 'selected'; ?>>Client</option>
                             </select>
                         </div>
-
-                        <div class="form-group">
-                            <label for="description">Description :</label>
-                            <textarea name="description" class="form-control" placeholder="Description de produit ..." required><?php echo "{$product['description']}"; ?></textarea>
+                        <div style=" width: 1px;
+                       height: 14px;
+                       background-color: #ffffff;">
                         </div>
-
+                        <!-- Vous pouvez ajouter d'autres champs ici si nécessaire -->
                         <div class="form-group">
-                            <label for="prix">Quantite :</label>
-                            <input type="number" name="quantite" class="form-control" value="<?php echo "{$product['discount']}"; ?>" placeholder="Prix du produit ..." required>
+                        <button type="submit" class="btn btn-primary">Modifier</button>
                         </div>
-
-                        <div class="form-group">
-                            <label for="image">Image : <?php echo "{$product['image']}"; ?></label>
-                            <input type="file" name="image" class="form-control" placeholder="URL de l'image ..." required>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="couleur">Couleur :</label>
-                            <input type="text" name="couleur" class="form-control" value="<?php echo "{$product['color']}"; ?>" placeholder="Couleur du produit ..." required>
-                        </div>
-
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Modifier</button>
-                </div>
-                </form>
             </div>
         </div>
     </div>
-
 <?php } ?>
-
-
-
 
 </body>
 

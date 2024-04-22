@@ -246,6 +246,9 @@ main {
     position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;
 }
 
+
+
+
 @media only screen and (max-width: 1200px) {
     .drawer {
         height: 100%;
@@ -256,17 +259,19 @@ main {
         left: 0;
         background-color: #f8f9fa;
         overflow-x: hidden;
-        transition: 0.5s;
+        transition: width 0.5s ease-in-out;
         padding-top: 60px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        display: flex; /* Ajout de la propriété display: flex; */
+        flex-direction: column; /* Pour empiler les éléments verticalement */
     }
 
     .drawer a {
-        padding: 10px 15px;
+        padding: 15px 20px;
         text-decoration: none;
-        font-size: 20px;
+        font-size: 18px;
         color: #365486;
-        display: block;
-        transition: 0.3s;
+        transition: background-color 0.3s, color 0.3s;
     }
 
     .drawer a:hover {
@@ -275,11 +280,10 @@ main {
     }
 
     .drawer .close-btn {
-        position: absolute;
-        top: 0;
+        position: fixed;
+        top: 10px;
         right: 10px;
-        font-size: 36px;
-        margin-left: 50px;
+        font-size: 24px;
         cursor: pointer;
     }
 
@@ -287,7 +291,13 @@ main {
         color: #fd0707;
     }
 
+    drawer[aria-hidden="true"] {
+        display: none;
+    }
 
+    .drawer[aria-hidden="false"] {
+        display: flex; /* Afficher le menu latéral lorsqu'il est visible */
+    }
     /*la recherche un produits*/
     .buR{
         padding: 6px 10px;
