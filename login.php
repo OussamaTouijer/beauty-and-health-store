@@ -2,8 +2,13 @@
 session_start();
 
 // Vérification de l'authentification
-if (isset($_SESSION['email'])){
+if (isset($_SESSION['email']) && $_SESSION['user_type']=="client"){
     header('location: profile.php');
+    exit(); // Assurez-vous de sortir après avoir redirigé
+}
+
+if (isset($_SESSION['email']) && $_SESSION['user_type']=="admin"){
+    header('location:admin/profile/profile.php');//rederection
     exit(); // Assurez-vous de sortir après avoir redirigé
 }
 
@@ -17,7 +22,7 @@ $user = true;
 if (!empty($_POST)) {
     $user = connectUser($_POST);
     if (is_array($user)) {
-        if (count($user) > 0) {
+        if (count($user) > 0 && $user['user_type']=="client") {
             $_SESSION['email']=$user['email'];
             $_SESSION['prenom']=$user['prenom'];
             $_SESSION['nom']=$user['nom'];
@@ -28,6 +33,19 @@ if (!empty($_POST)) {
 
             header('location:profile.php');//rederection
         }
+
+        if (count($user) > 0 && $user['user_type']=="admin") {
+            $_SESSION['email']=$user['email'];
+            $_SESSION['prenom']=$user['prenom'];
+            $_SESSION['nom']=$user['nom'];
+            $_SESSION['user_type']=$user['user_type'];
+            $_SESSION['id']=$user['id'];
+            $_SESSION['address']=$user['address'];
+            $_SESSION['ville']=$user['ville'];
+
+            header('location:admin/profile/profile.php');//rederection
+        }
+
     }
 
 }
