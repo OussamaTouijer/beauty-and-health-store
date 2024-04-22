@@ -199,7 +199,20 @@ main {
     height: 40px; /* Hauteur du bouton */
     background-color: #ff0000;
     color: #fff;
-    margin-right: 5px;
+    margin-top: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+
+}
+.val-button {
+    font-size: 16px; /* Taille de la police du texte */
+    padding: 10px 20px; /* Rembourrage (haut/bas, gauche/droite) */
+    height: 40px; /* Hauteur du bouton */
+    background-color: #af8605;
+    color: #fff;
+    margin-top: 5px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
@@ -259,19 +272,17 @@ main {
         left: 0;
         background-color: #f8f9fa;
         overflow-x: hidden;
-        transition: width 0.5s ease-in-out;
+        transition: 0.5s;
         padding-top: 60px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        display: flex; /* Ajout de la propriété display: flex; */
-        flex-direction: column; /* Pour empiler les éléments verticalement */
     }
 
     .drawer a {
-        padding: 15px 20px;
+        padding: 10px 15px;
         text-decoration: none;
-        font-size: 18px;
+        font-size: 20px;
         color: #365486;
-        transition: background-color 0.3s, color 0.3s;
+        display: block;
+        transition: 0.3s;
     }
 
     .drawer a:hover {
@@ -280,10 +291,11 @@ main {
     }
 
     .drawer .close-btn {
-        position: fixed;
-        top: 10px;
+        position: absolute;
+        top: 0;
         right: 10px;
-        font-size: 24px;
+        font-size: 36px;
+        margin-left: 50px;
         cursor: pointer;
     }
 
@@ -291,13 +303,6 @@ main {
         color: #fd0707;
     }
 
-    drawer[aria-hidden="true"] {
-        display: none;
-    }
-
-    .drawer[aria-hidden="false"] {
-        display: flex; /* Afficher le menu latéral lorsqu'il est visible */
-    }
     /*la recherche un produits*/
     .buR{
         padding: 6px 10px;
@@ -381,6 +386,20 @@ main {
     .delete-button:hover {
         background-color: #485ce8;
         margin-top: 2px;
+
+    }
+
+    .val-button {
+        font-size: 10px; /* Taille de la police du texte */
+        padding: 7px 12px; /* Rembourrage (haut/bas, gauche/droite) */
+        height: 22px; /* Hauteur du bouton */
+        background-color: #af8605;
+        color: #fff;
+        margin-top: 4px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
 
     }
     .delete-button {

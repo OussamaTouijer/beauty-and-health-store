@@ -292,8 +292,7 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
     </div>
 </div>
 <!-- chaque Catégorie admet un modal -->
-<?php
-foreach ($categoriesToShow as $item => $category) { ?>
+<?php foreach ($categoriesToShow as $item => $category) { ?>
     <!-- Modal Modifier Catégorie -->
     <div class="modal fade" id="modifierModal<?php echo "{$category['id']}"; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
