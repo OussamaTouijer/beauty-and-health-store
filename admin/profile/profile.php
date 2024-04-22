@@ -36,16 +36,16 @@ if (!isset($_SESSION['email'])){
                         <a class="nav-link custom" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active custom" href="profile.php">Profile</a>
+                        <a class="nav-link active custom" href="profile.php">Profil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom" href="../categorise/listeCategorise.php">Categories</a>
+                        <a class="nav-link custom" href="../categorise/listeCategorise.php">Catégories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  custom" href="../produits/listeProduits.php">Products</a>
+                        <a class="nav-link  custom" href="../produits/listeProduits.php">Produits</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom" href="#">Customers</a>
+                        <a class="nav-link custom" href="../users/listeCustomers.php">Clientes</a>
                     </li>
                 </ul>
             </nav>
@@ -83,16 +83,16 @@ if (!isset($_SESSION['email'])){
                         <a class="nav-link custom" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active custom" href="profile.php">Profile</a>
+                        <a class="nav-link active custom" href="profile.php">Profil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom" href="../categorise/listeCategorise.php">Categories</a>
+                        <a class="nav-link custom" href="../categorise/listeCategorise.php">Catégories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  custom" href="../produits/listeProduits.php">Products</a>
+                        <a class="nav-link  custom" href="../produits/listeProduits.php">Produits</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom" href="#">Customers</a>
+                        <a class="nav-link custom" href="../users/listeCustomers.php">Clientes</a>
                     </li>
                 </ul>
             </nav>
