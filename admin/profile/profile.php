@@ -33,7 +33,7 @@ if (!isset($_SESSION['email'])){
             <nav class="p-1">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link custom" href="#">Home</a>
+                        <a class="nav-link custom" href="../home/Home.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active custom" href="profile.php">Profil</a>
@@ -80,7 +80,7 @@ if (!isset($_SESSION['email'])){
             <nav>
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link custom" href="#">Home</a>
+                        <a class="nav-link custom" href="../home/Home.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active custom" href="profile.php">Profil</a>

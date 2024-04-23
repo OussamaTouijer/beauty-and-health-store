@@ -55,7 +55,7 @@ $usersToShow = array_slice($users, $startIndex, $usersPerPage);
             <nav class="p-1">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link custom" href="#">
+                        <a class="nav-link custom" href="../home/Home.php">
                              Home
                         </a>
                     </li>
@@ -114,7 +114,7 @@ $usersToShow = array_slice($users, $startIndex, $usersPerPage);
             <nav>
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link custom" href="#">Home</a>
+                        <a class="nav-link custom" href="../home/Home.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link custom" href="../profile/profile.php">Profil</a>
