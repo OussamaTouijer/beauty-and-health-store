@@ -1,9 +1,10 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['email'])) {
-    header('Location: ../login.php');
-    exit();
+// Vérification de l'authentification
+if (!isset($_SESSION['email']) && $_SESSION['user_type']=="admin"){
+    header('Location: ../../login.php');
+    exit(); // Assurez-vous de sortir après avoir redirigé
 }
 
 include '../../include/functionsCustomers.php';

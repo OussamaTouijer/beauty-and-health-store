@@ -2,11 +2,17 @@
 session_start();
 
 // Vérification de l'authentification
-if (!isset($_SESSION['email'])){
-    header('Location: ../login.php');
+if (!isset($_SESSION['email']) && $_SESSION['user_type']=="admin"){
+    header('Location: ../../login.php');
     exit(); // Assurez-vous de sortir après avoir redirigé
 }
+
+include '../../include/functionHome.php';
+$nbrAcheteurs=countUsers();
+$nbrProduits=countProduits();
+$nbrVentes=countCommands();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +48,7 @@ if (!isset($_SESSION['email'])){
                         <a class="nav-link custom" href="../categorise/listeCategorise.php">Catégories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  custom" href="listeProduits.php">Produits</a>
+                        <a class="nav-link  custom" href="../produits/listeProduits.php">Produits</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link custom" href="../users/listeCustomers.php">Clientes</a>
@@ -84,7 +90,7 @@ if (!isset($_SESSION['email'])){
                         <a class="nav-link custom" href="../categorise/listeCategorise.php">Catégories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active custom" href="listeProduits.php">Produits</a>
+                        <a class="nav-link  custom" href="../produits/listeProduits.php">Produits</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link custom" href="../users/listeCustomers.php">Clientes</a>
@@ -148,7 +154,7 @@ if (!isset($_SESSION['email'])){
                             <div class="info">
                                 <h3>Produits</h3>
                                 <p>Le nombre Total des Produits</p>
-                                <button class="nub" >{{nbrProduits}}</button>
+                                <button class="nub" ><a href="../produits/listeProduits.php"><?php echo $nbrProduits;?></a></button>
                             </div>
                         </div>
 
@@ -160,7 +166,7 @@ if (!isset($_SESSION['email'])){
                             <div class="info">
                                 <h3>Acheteurs</h3>
                                 <p>Le nombre total des Acheteurs</p>
-                                <button class="nub" >{{nbrAcheteurs}}</button>
+                                <button class="nub" ><a href="../users/listeCustomers.php"><?php echo $nbrAcheteurs;?></a></button>
                             </div>
                         </div>
 
@@ -172,7 +178,7 @@ if (!isset($_SESSION['email'])){
                             <div class="info">
                                 <h3>Ventes</h3>
                                 <p>Le nombre total des Ventes</p>
-                                <button class="nub" >{{nbrVentes}}</button>
+                                <button class="nub" ><a href="../vente/listeVentes.php"><?php echo $nbrVentes;?></a></button>
                             </div>
                         </div>
 
