@@ -246,6 +246,90 @@ main {
     position: fixed; top: 0; width: 100%; background-color: #f8f9fa; padding: 1px 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 100;
 }
 
+
+.zina {
+    background-color: #7FC7D9; /* Choisissez votre couleur de fond ici */
+}
+
+/* Styles pour le titre de la section */
+.title {
+    display: flex;
+    justify-content: center;
+    color: #141cc9;
+    font-size: 53pt;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+/* Styles pour le conteneur des cartes */
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+/* Styles pour chaque carte */
+.carde {
+    background-color: #365486;
+    width: 340px;
+    box-shadow: 1px 5px 25px #d3dedc;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 15px;
+}
+
+.carde:hover {
+    transform: scale(1.2);
+}
+
+/* Styles pour l'icône de chaque carte */
+.icon {
+    color: #7FC7D9;
+    font-size: 128px;
+    text-align: center;
+}
+
+/* Styles pour les informations de chaque carte */
+.info {
+    color: #7FC7D9;
+    text-align: center;
+}
+
+.info h3 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 10px;
+}
+
+/* Styles pour la carte principale (Home Component) */
+.cardz {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cardz-body {
+    padding: 20px;
+}
+
+.cardz h3 {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.nub{
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(127, 199, 217, 0.8);
+    color: #365486;
+}
+
+
 @media only screen and (max-width: 1200px) {
     .drawer {
         height: 100%;
