@@ -110,7 +110,7 @@ if (!isset($_SESSION['email'])){
         </div>
     </div>
 </header>
-<div style="width: 1px; height: 68px; background-color: #ffffff;"></div>
+<div style="width: 1px; height: 78px; background-color: #ffffff;"></div>
 <!-- main contenu -->
 <div class="main-content">
     <main>
@@ -136,9 +136,6 @@ if (!isset($_SESSION['email'])){
             ?>
             <div class="zina">
                 <section class="cards" id="services">
-
-                    <!-- Titre de la section -->
-                    <h2 class="title">Regardez les chiffres </h2>
 
                     <!-- Contenu des cartes -->
                     <div class="content">

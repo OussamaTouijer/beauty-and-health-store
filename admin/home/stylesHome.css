@@ -248,7 +248,7 @@ main {
 
 
 .zina {
-    background-color: #7FC7D9; /* Choisissez votre couleur de fond ici */
+    background-color: #f4f4f4; /* Choisissez votre couleur de fond ici */
 }
 
 /* Styles pour le titre de la section */
@@ -256,7 +256,7 @@ main {
     display: flex;
     justify-content: center;
     color: #141cc9;
-    font-size: 53pt;
+    font-size: 50pt;
     font-weight: 800;
     margin-bottom: 30px;
 }
@@ -272,11 +272,11 @@ main {
 /* Styles pour chaque carte */
 .carde {
     background-color: #365486;
-    width: 340px;
+    width: 300px;
     box-shadow: 1px 5px 25px #d3dedc;
     border-radius: 10px;
     padding: 25px;
-    margin: 15px;
+    margin: 19px;
 }
 
 .carde:hover {
@@ -286,7 +286,7 @@ main {
 /* Styles pour l'icône de chaque carte */
 .icon {
     color: #7FC7D9;
-    font-size: 128px;
+    font-size: 120px;
     text-align: center;
 }
 
@@ -298,9 +298,9 @@ main {
 
 .info h3 {
     color: #ffffff;
-    font-size: 18px;
-    font-weight: 700;
-    margin: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 9px;
 }
 
 /* Styles pour la carte principale (Home Component) */
