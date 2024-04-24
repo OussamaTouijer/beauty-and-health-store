@@ -194,12 +194,12 @@ main {
     background-color: #485ce8;
 }
 .delete-button {
-    font-size: 16px; /* Taille de la police du texte */
-    padding: 10px 20px; /* Rembourrage (haut/bas, gauche/droite) */
-    height: 40px; /* Hauteur du bouton */
-    background-color: #ff0000;
+    font-size: 10px; /* Taille de la police du texte */
+    padding: 7px 12px; /* Rembourrage (haut/bas, gauche/droite) */
+    height: 22px; /* Hauteur du bouton */
+    background-color: #910a0a;
     color: #fff;
-    margin-right: 5px;
+    margin-top: 4px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
@@ -207,12 +207,12 @@ main {
 
 }
 .edit-button {
-    font-size: 16px; /* Taille de la police du texte */
-    padding: 10px 20px; /* Rembourrage (haut/bas, gauche/droite) */
-    height: 40px; /* Hauteur du bouton */
-    background-color: #00ff00;
+    font-size: 10px; /* Taille de la police du texte */
+    padding: 6px 12px; /* Rembourrage (haut/bas, gauche/droite) */
+    height: 22px; /* Hauteur du bouton */
+    background-color: #088608;
     color: #fff;
-    margin-right: 5px;
+    margin-bottom: 5px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
