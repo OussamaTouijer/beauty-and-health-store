@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             try {
                 // 4- Traitement des données récupérées
                 // Préparation de la requête SQL avec des paramètres nommés
-                $sql_delete = "DELETE FROM categories WHERE id = :id";
+                $sql_delete = "DELETE FROM products WHERE id = :id";
                 $stmt_delete = $conn->prepare($sql_delete);
                 $stmt_delete->bindParam(':id', $id);
 
