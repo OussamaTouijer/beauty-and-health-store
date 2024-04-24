@@ -2,7 +2,7 @@
 session_start();
 
 // Vérification de l'authentification
-if (!isset($_SESSION['email']) && $_SESSION['user_type']=="admin"){
+if (!isset($_SESSION['email']) && !$_SESSION['user_type']=="admin"){
     header('Location: ../../login.php');
     exit(); // Assurez-vous de sortir après avoir redirigé
 }
@@ -34,6 +34,8 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
 <body>
@@ -322,7 +324,8 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
 
 <?php } ?>
 
-
+<!-- Footer -->
+<?php include '../../include/footer.php'?>
 
 </body>
 <script>
