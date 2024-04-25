@@ -1,13 +1,14 @@
 <?php
 // 1- Vérification si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!empty($_POST["libelle"]) && !empty($_POST["prix"]) && !empty($_POST["id_categorie"]) && !empty($_POST["quantite"]) && !empty($_POST["description"]) && !empty($_FILES["image"]["name"]) && !empty($_POST["couleur"])) {
+    if (!empty($_POST["libelle"]) && !empty($_POST["prix"]) && !empty($_POST["id_categorie"]) && !empty($_POST["quantite"]) && !empty($_POST["description"]) && !empty($_FILES["image"]["name"]) && !empty($_POST["couleur"])&& !empty($_POST["marque"])) {
         $libelle = htmlspecialchars($_POST["libelle"]);
         $prix = htmlspecialchars($_POST["prix"]);
         $id_categorie = htmlspecialchars($_POST["id_categorie"]);
         $quantite = htmlspecialchars($_POST["quantite"]);
         $description = htmlspecialchars($_POST["description"]);
         $couleur = htmlspecialchars($_POST["couleur"]);
+        $marque = htmlspecialchars($_POST["marque"]);
         $id = htmlspecialchars($_GET["id"]);
 
 
@@ -29,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($conn) {
             try {
                 // Mise à jour de la catégorie
-                $sql_update = "UPDATE products SET description = :description, libelle = :libelle, prix = :prix, id_categorie = :id_categorie, image = :image, discount = :quantite, color = :couleur WHERE id = :id"; // Correction: Ajout d'espaces et correction de la position des paramètres
+                $sql_update = "UPDATE products SET description = :description, libelle = :libelle, prix = :prix, id_categorie = :id_categorie, image = :image, discount = :quantite, color = :couleur, marque = :marque WHERE id = :id"; // Correction: Ajout d'espaces et correction de la position des paramètres
                 $stmt_update = $conn->prepare($sql_update);
 
                 // Correction: Liaison des paramètres
@@ -40,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt_update->bindParam(':image', $image);
                 $stmt_update->bindParam(':quantite', $quantite);
                 $stmt_update->bindParam(':couleur', $couleur);
+                $stmt_update->bindParam(':marque', $marque);
                 $stmt_update->bindParam(':id', $id);
 
                 if ($stmt_update->execute()) {

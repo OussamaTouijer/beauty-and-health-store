@@ -1,12 +1,13 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!empty($_POST["libelle"]) && !empty($_POST["prix"]) && !empty($_POST["id_categorie"]) && !empty($_POST["quantite"]) && !empty($_POST["description"]) && !empty($_FILES["image"]["name"]) && !empty($_POST["color"])) {
+    if (!empty($_POST["libelle"]) && !empty($_POST["prix"]) && !empty($_POST["id_categorie"]) && !empty($_POST["quantite"]) && !empty($_POST["description"]) && !empty($_FILES["image"]["name"]) && !empty($_POST["color"])&& !empty($_POST["marque"])) {
         $libelle = htmlspecialchars($_POST["libelle"]);
         $prix = htmlspecialchars($_POST["prix"]);
         $id_categorie = htmlspecialchars($_POST["id_categorie"]);
         $quantite = htmlspecialchars($_POST["quantite"]);
         $description = htmlspecialchars($_POST["description"]);
         $couleur = htmlspecialchars($_POST["color"]);
+        $marque = htmlspecialchars($_POST["marque"]);
 
         // Télécharger l'image
         $target_dir = "D:/wamp64/www/beauty-and-health-store/images/";
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($conn) {
             try {
-                $sql_insert = "INSERT INTO products (libelle, prix, id_categorie, discount, description, image, color) VALUES (:libelle, :prix, :id_categorie, :quantite, :description, :image, :couleur)";
+                $sql_insert = "INSERT INTO products (libelle, prix, id_categorie, discount, description, image, color, marque) VALUES (:libelle, :prix, :id_categorie, :quantite, :description, :image, :couleur, :marque)";
                 $stmt_insert = $conn->prepare($sql_insert);
                 $stmt_insert->bindParam(':libelle', $libelle);
                 $stmt_insert->bindParam(':prix', $prix);
@@ -32,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt_insert->bindParam(':description', $description);
                 $stmt_insert->bindParam(':image', $image);
                 $stmt_insert->bindParam(':couleur', $couleur);
+                $stmt_insert->bindParam(':marque', $marque);
 
                 if ($stmt_insert->execute()) {
                     header('location:listeProduits.php?ajout=ok');

@@ -221,6 +221,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                 <tr>
                     <th>ID</th>
                     <th>Libellé</th>
+                    <th>Marque</th>
                     <th>Prix</th>
                     <th>Quantite</th>
                     <th>Catégorie</th>
@@ -237,6 +238,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                     echo "<tr>
                                       <td>{$product['id']}</td>
                                       <td>{$product['libelle']}</td>
+                                      <td>{$product['marque']}</td>
                                       <td>{$product['prix']} DH</td>
                                       <td>{$product['discount']}</td>
                                       <td>" . getCategoriById($product['id_categorie']) . "</td>
@@ -300,7 +302,10 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                         <label for="libelle">Nom Produit :</label>
                         <input type="text" name="libelle" id="libelle" class="form-control" placeholder="Nom de produit ..." required>
                     </div>
-
+                    <div class="form-group">
+                        <label for="marque">Marque Produit :</label>
+                        <input type="text" name="marque" id="marque" class="form-control" placeholder="Marque de produit ..." required>
+                    </div>
                     <div class="form-group">
                         <label for="prix">Prix :</label>
                         <input type="number" name="prix" id="prix" class="form-control" placeholder="Prix du produit ..." required>
@@ -361,6 +366,11 @@ foreach ($productsToShow as $item => $product) { ?>
                         <div class="form-group">
                             <label for="libelle">Libellé :</label>
                             <input type="text" name="libelle" class="form-control" value="<?php echo "{$product['libelle']}"; ?>" placeholder="Nom de produit ..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="libelle">Marque :</label>
+                            <input type="text" name="marque" class="form-control" value="<?php echo "{$product['marque']}"; ?>" placeholder="Marque de produit ..." required>
                         </div>
 
                         <div class="form-group">
