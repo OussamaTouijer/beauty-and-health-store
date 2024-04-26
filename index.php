@@ -5,10 +5,32 @@ include 'include/functionsProductCate.php';
 // Récupération des catégories et des produits
 $categories = getAllCategories();
 
+// Initialisation du tableau de produits
+$products = [];
+
+// Récupération des catégories et des produits
+$categories = getAllCategories();
+
+// Initialisation du tableau de produits
+$products = [];
+
+// Vérifier si une recherche est effectuée
 if (!empty($_POST['search'])) {
     $products = searchProducts($_POST['search']);
 } else {
+    // Aucune recherche, récupérer tous les produits
     $products = getAllProducts();
+}
+
+// Vérifier si un tri par popularité est demandé
+if (isset($_POST['sort']) && $_POST['sort'] == 'popularite') {
+    // Si oui, trier les produits par popularité
+    $products = sortByPopularity($products);
+} else {
+    // Sinon, aucun tri spécifié, utiliser un tri par défaut
+    // Pour l'instant, aucune logique de tri par défaut n'a été spécifiée dans cet exemple
+    // Vous pouvez remplacer cette ligne par une fonction de tri par défaut si nécessaire
+    // Par exemple, $products = sortDefault($products);
 }
 
 
@@ -68,17 +90,20 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
                     <!-- Tri -->
                     <div class="col-xl-3">
-                        <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-                            <label for="produits">Tri par défaut :</label>
-                            <select id="produits" name="produitslist" class="border-0 form-select-sm bg-light me-3" form="produitform">
-                                <option value="volvo">Rien</option>
-                                <option value="saab">Popularité</option>
-                                <option value="opel">Biologique</option>
-                                <option value="audi">Fantastique</option>
-                            </select>
-                        </div>
+                        <form method="POST" action="">
+                            <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
+                                <label for="produits">Tri par défaut :</label>
+                                <select id="produits" name="sort" class="border-0 form-select-sm bg-light me-3" form="produitform">
+                                    <option value="rien">Rien</option>
+                                    <option value="popularite">Popularité</option>
+                                    <option value="biologique">Biologique</option>
+                                    <option value="fantastique">Fantastique</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary">Appliquer</button>
+                            </div>
+                        </form>
                     </div>
-                </div>
+
                 <div class="row g-4">
                     <div class="col-lg-3">
                         <div class="row g-4">
@@ -117,35 +142,68 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                                 <div class="mb-3">
                                     <h4 class="mb-2">Prix</h4>
                                     <input type="range" class="form-range w-100" id="rangeInput" name="rangeInput" min="0" max="500" value="0" oninput="amount.value=rangeInput.value">
-                                    <output id="amount" name="amount" min-velue="0" max-value="500" for="rangeInput">0</output>
+                                    <output id="amount" name="amount" min-velue="0" max-value="500" for="rangeInput">0</output><span> DH</span>
                                 </div>
                             </div>
 
                             <div class="col-lg-12">
                                 <div class="mb-3">
-                                    <h4>Supplémentaire</h4>
+                                    <h4>Couleur</h4>
                                     <div class="mb-2">
-                                        <input type="radio" class="me-2" id="Categories-1" name="Categories-1" value="Boissons">
-                                        <label for="Categories-1"> Biologique</label>
+                                        <input type="radio" class="me-2" id="Categories-1" name="Categories-1" value="Jaune">
+                                        <label for="Categories-1">Jaune</label>
                                     </div>
                                     <div class="mb-2">
-                                        <input type="radio" class="me-2" id="Categories-2" name="Categories-1" value="Boissons">
-                                        <label for="Categories-2"> Frais</label>
+                                        <input type="radio" class="me-2" id="Categories-2" name="Categories-1" value="Bleu">
+                                        <label for="Categories-2">Bleu</label>
                                     </div>
                                     <div class="mb-2">
-                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Boissons">
-                                        <label for="Categories-3"> Promotions</label>
+                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                        <label for="Categories-3">Rouge</label>
                                     </div>
                                     <div class="mb-2">
-                                        <input type="radio" class="me-2" id="Categories-4" name="Categories-1" value="Boissons">
-                                        <label for="Categories-4"> Réduction</label>
+                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                        <label for="Categories-3">Marron</label>
                                     </div>
                                     <div class="mb-2">
-                                        <input type="radio" class="me-2" id="Categories-5" name="Categories-1" value="Boissons">
-                                        <label for="Categories-5"> Périmé</label>
+                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                        <label for="Categories-3">Violet</label>
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                        <label for="Categories-3">Vert</label>
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                        <label for="Categories-3">Blanc</label>
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                        <label for="Categories-3">Rose</label>
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                        <label for="Categories-3">Beige</label>
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                        <label for="Categories-3">Noir</label>
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                        <label for="Categories-3">Green</label>
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                        <label for="Categories-3">Noir</label>
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                        <label for="Categories-3">Noir</label>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="col-lg-9">
