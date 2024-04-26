@@ -154,7 +154,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                                 <div class="col-md-6 col-lg-6 col-xl-4">
                                     <div class="rounded position-relative fruite-item">
                                         <div class="fruite-img">
-                                            <img src="images/<?php echo $product['image']; ?>" class="img-fluid rounded-top" width="500" height="500" alt="">
+                                            <img src="images/<?php echo $product['image']; ?>" class="img-fluid rounded-top image-style" width="500" height="500" alt="">
                                         </div>
                                         <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
                                             <?php foreach($categories as $cat): ?>
@@ -164,7 +164,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                                             <?php endforeach; ?>
                                         </div>
                                         <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                            <h4><?php echo $product['libelle']; ?></h4>
+                                            <h4><?php echo $product['marque']; ?></h4>
 
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0"><?php echo $product['prix']." DH"; ?></p>
@@ -179,11 +179,11 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
                             <div class="col-12">
                                 <div class="pagination d-flex justify-content-center mt-5">
-                                    <a href="<?php echo ($page > 1) ? 'index.php?page='.($page-1) : ''; ?>" class="rounded">&laquo;</a>
+                                    <a href="<?php echo ($page > 1) ? 'index.php?page='.($page-1) : ''; ?>" class="rounded"><button class="btn btn-light m-1">&laquo </button></a>
                                     <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                                         <a href="index.php?page=<?php echo $i; ?>" class="<?php echo ($i === $page) ? 'active ' : ''; ?>rounded"><button class="btn btn-primary m-1"><?php echo $i; ?></button></a>
                                     <?php endfor; ?>
-                                    <a href="<?php echo ($page < $totalPages) ? 'index.php?page='.($page+1) : ''; ?>" class="rounded"> &raquo  </a>
+                                    <a href="<?php echo ($page < $totalPages) ? 'index.php?page='.($page+1) : ''; ?>" class="rounded"><button class="btn btn-light m-1">&raquo </button> </a>
                                 </div>
                             </div>
                         </div>
