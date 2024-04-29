@@ -148,8 +148,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
                     <?php if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client"): ?>
                         <li class="nav-item">
-                            <a class="nav-link  custom" href="../profile/profile.php">Profil</a>
-                        </li>
+                            <a class="nav-link custom" href="../profile/profile.php?id=<?php $id=$_SESSION['id']; echo $id;?>">Profil</a>                        </li>
                     <?php else: ?>
                         <li class="nav-item">
                             <a class="nav-link  custom" href="../../login.php">Connexion</a>
@@ -340,7 +339,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0"><?php echo $product['prix']." DH"; ?></p>
-                                                <a href="produit.php?id=<?php echo $product['id']; ?>" class="btn border border-secondary rounded-pill px-3 text-primary">
+                                                <a href="../produit/produit.php?id=<?php echo $product['id']; ?>" class="btn border border-secondary rounded-pill px-3 text-primary">
                                                     <i class="fa fa-shopping-bag me-2 text-primary"></i> Afficher Produit en détail
                                                 </a>
                                             </div>
