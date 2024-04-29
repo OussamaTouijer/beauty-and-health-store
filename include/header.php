@@ -19,7 +19,7 @@ z-index: 1000;">
             style="--bs-scroll-height: 100px"
           >
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="client/home/home.php">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a
