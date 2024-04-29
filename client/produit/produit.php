@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../../include/functionsProductCate.php';
 
 // Récupération des catégories et des produits
@@ -194,4 +195,13 @@ if(isset($_GET['id'])){
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<script>
+    function openDrawer() {
+        document.getElementById("drawer").style.width = "250px";
+    }
+
+    function closeDrawer() {
+        document.getElementById("drawer").style.width = "0";
+    }
+</script>
 </html>
