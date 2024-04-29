@@ -82,7 +82,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
             <nav class="p-1">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link active custom" href="home.php">Home</a>
+                        <a class="nav-link active custom" href="client/home/home.php">Home</a>
                     </li>
 
                     <?php if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client"): ?>
@@ -103,12 +103,14 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
             </nav>
 
         </div>
-        <!-- <div class="container">
+
+        <div class="container">
              <form class="d-flex" role="search" action="index.php" method="POST">
                  <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Rechercher" name="search"/>
                  <button class="btn btn-outline-success" type="submit">Rechercher</button>
              </form>
-         </div> -->
+         </div>
+
         <?php
         if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client") {
             // Suppose que vous avez un moyen de récupérer le nombre d'articles dans le panier (par exemple depuis une base de données)
@@ -160,6 +162,15 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                             <a class="nav-link custom" href="registre.php">S'inscrire</a>
                         </li>
                     <?php endif; ?>
+                    <div>
+
+                    </div>
+                    <li class="nav-item">
+                        <form class="d-flex" role="search" action="index.php" method="POST">
+                            <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Rechercher" name="search" />
+                            <button class="btn btn-outline-success" type="submit">Rechercher</button>
+                        </form>
+                    </li>
 
                 </ul>
             </nav>
@@ -167,8 +178,10 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
         <!-- Autres éléments de la barre de navigation -->
         <div class="logo-wrapper">
-            <a href="index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
+            <a href="index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px; margin-top: 40px;"><h4 style=" margin-top: 10px;">Éclat & Vitalité</h4></a>
         </div>
+
+
 
 
         <?php
@@ -210,15 +223,6 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                 <div class="row g-4">
 
                     <div class="row g-4">
-
-                        <div class="crr" style="display: ">
-                            <div class="container">
-                                <form class="d-flex" role="search" action="index.php" method="POST">
-                                    <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Rechercher" name="search"/>
-                                    <button class="btn btn-outline-success" type="submit">Rechercher</button>
-                                </form>
-                            </div>
-                        </div>
                         <div class="col-lg-3">
                             <div class="row g-4">
 
