@@ -7,6 +7,10 @@ if (!isset($_SESSION['email'])){
     exit(); // Assurez-vous de sortir après avoir redirigé
 }
 
+include '../../include/functionsLoginRegistre.php';
+if(isset($_GET['id'])){
+$user = userById($_GET['id']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +49,7 @@ if (!isset($_SESSION['email'])){
 
                     <?php if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client"): ?>
                         <li class="nav-item">
-                            <a class="nav-link active custom" href="profile.php">Profil</a>
+                            <a class="nav-link active custom" href="profile.php?id=<?php $id=$_SESSION['id']; echo $id;?>">Profil</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
@@ -109,7 +113,7 @@ if (!isset($_SESSION['email'])){
 
                     <?php if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client"): ?>
                         <li class="nav-item">
-                            <a class="nav-link active custom" href="profile.php">Profil</a>
+                            <a class="nav-link active custom" href="profile.php?id=<?php $id=$_SESSION['id']; echo $id;?>">Profil</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
@@ -159,6 +163,10 @@ if (!isset($_SESSION['email'])){
     <main>
         <div class="container">
             <?php
+            if(isset($_GET['update'])&& $_GET['update']=="ok")
+            echo "<div class='alert alert-success'> mis à jour avec succès !!!</div>";
+
+
             if(isset($_SESSION['email'])) {
                 echo "<div class='title-and-button'>";
                 echo "<h2 class='title'>Bienvenue  Administrateur</h2>";
@@ -171,19 +179,137 @@ if (!isset($_SESSION['email'])){
         </div>
         <div class="container user-details">
             <?php
-            if(isset($_SESSION['email'])) {
+            if (count($user) > 0 ) {
                 print
-                    "<p><i class='fas fa-id-card' > ID : </i> " .' ' . htmlspecialchars($_SESSION['id']) . "</p>" .
-                    "<p><i class='fas fa-user'> Prenom & Nom : </i>  " .' ' . htmlspecialchars($_SESSION['prenom']) .' '.htmlspecialchars($_SESSION['nom']) . "</p>" .
-                    "<p><i class='fas fa-envelope'> Email : </i>  " .' ' . htmlspecialchars($_SESSION['email']) . "</p>" .
-                    "<p><i class='fas fa-map-marker-alt'> Adresse : </i>".' ' . htmlspecialchars($_SESSION['address']) . "</p>" .
-                    "<p><i class='fas fa-city'> Ville : </i>" .' ' . htmlspecialchars($_SESSION['ville']) . "</p>";
+                    "<p><i class='fas fa-id-card' > ID : </i> " .' ' . htmlspecialchars($user['id']). "</p>" .
+                    "<p><i class='fas fa-user'> Prenom & Nom : </i>  " .' ' .$user['prenom'] .' '.$user['nom'] . "</p>" .
+                    "<p><i class='fas fa-envelope'> Email : </i>  " .' ' . htmlspecialchars($user['email']) . "</p>" .
+                    "<p><i class='fas fa-map-marker-alt'> Adresse : </i>".' ' . htmlspecialchars($user['address']) . "</p>" .
+                    "<p><i class='fas fa-phone'></i> Telephone : " . htmlspecialchars($user['telephone']) . "</p>".
+                    "<p><i class='fas fa-city'> Ville : </i>" .' ' . htmlspecialchars($user['ville']) . "</p>";
             }
             ?>
 
         </div>
+
+        <a href='modifer.php' data-bs-toggle='modal' data-bs-target='#modifierModal' ><button class='btn btn-success mt-2'>Modifier</button></a>
     </main>
 </div>
+
+
+<!-- chaque Client admet un modal -->
+    <!-- Modal Modifier Clients -->
+    <div class="modal fade" id="modifierModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les Information</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="modifier.php?id=<?php echo "{$user['id']}"; ?>" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="nom">Nom :</label>
+                            <input type="text" name="nom" class="form-control" value="<?php echo "{$user['nom']}"; ?>" placeholder="Nom de Client ..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom">Prenom :</label>
+                            <input type="text" name="prenom" class="form-control" value="<?php echo "{$user['prenom']}"; ?>" placeholder="Prenom de Client ..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email :</label>
+                            <input type="email" name="email" class="form-control" value="<?php echo "{$user['email']}"; ?>" placeholder="Email de Client ..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telephone">Téléphone :</label>
+                            <input type="tel" name="telephone" class="form-control" value="<?php echo "{$user['telephone']}"; ?>" placeholder="Téléphone de Client ..." pattern="(05|06)[0-9]{8}" title="Veuillez saisir un numéro de téléphone valide au Maroc (format : 06XXXXXXXX pour les mobiles ou 05XXXXXXXX pour les fixes)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address :</label>
+                            <input type="text" name="address" class="form-control" value="<?php echo "{$user['address']}"; ?>" placeholder="Address de Client ..." required>
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="password">Dernier mot de passe :</label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Saisir le mot de passe du client..." required>
+                        </div>
+
+                        <button id="modifyPasswordBtn" class="btn btn-primary">Modifier mot de passe</button>
+
+                        <div id="newPasswordFields" style="display: none;">
+                            <div class="form-group">
+                                <label for="newPassword">Nouveau mot de passe :</label>
+                                <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="Saisir le nouveau mot de passe du client..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmNewPassword">Répéter le nouveau mot de passe :</label>
+                                <input type="password" id="confirmNewPassword" name="confirmNewPassword" class="form-control" placeholder="Répéter le nouveau mot de passe du client..." required>
+                            </div>
+                        </div>
+
+                        <script>
+                            document.getElementById("modifyPasswordBtn").addEventListener("click", function() {
+                                document.getElementById("newPasswordFields").style.display = "block";
+                            });
+                        </script> -->
+
+
+
+
+                        <div class="form-group">
+                            <label for="ville">Ville :</label>
+                            <select name='ville' class="form-control">
+                                <option value="Agadir" <?php if($user['ville'] == 'Agadir') echo 'selected'; ?>>Agadir</option>
+                                <option value="Al Hoceima" <?php if($user['ville'] == 'Al Hoceima') echo 'selected'; ?>>Al Hoceima</option>
+                                <option value="Asilah" <?php if($user['ville'] == 'Asilah') echo 'selected'; ?>>Asilah</option>
+                                <option value="Azemmour" <?php if($user['ville'] == 'Azemmour') echo 'selected'; ?>>Azemmour</option>
+                                <option value="Azrou" <?php if($user['ville'] == 'Azrou') echo 'selected'; ?>>Azrou</option>
+                                <option value="Beni Mellal" <?php if($user['ville'] == 'Beni Mellal') echo 'selected'; ?>>Beni Mellal</option>
+                                <option value="Berkane" <?php if($user['ville'] == 'Berkane') echo 'selected'; ?>>Berkane</option>
+                                <option value="Berrechid" <?php if($user['ville'] == 'Berrechid') echo 'selected'; ?>>Berrechid</option>
+                                <option value="Casablanca" <?php if($user['ville'] == 'Casablanca') echo 'selected'; ?>>Casablanca</option>
+                                <option value="Chefchaouen" <?php if($user['ville'] == 'Chefchaouen') echo 'selected'; ?>>Chefchaouen</option>
+                                <option value="Dakhla" <?php if($user['ville'] == 'Dakhla') echo 'selected'; ?>>Dakhla</option>
+                                <option value="El Jadida" <?php if($user['ville'] == 'El Jadida') echo 'selected'; ?>>El Jadida</option>
+                                <option value="Errachidia" <?php if($user['ville'] == 'Errachidia') echo 'selected'; ?>>Errachidia</option>
+                                <option value="Essaouira" <?php if($user['ville'] == 'Essaouira') echo 'selected'; ?>>Essaouira</option>
+                                <option value="Fès" <?php if($user['ville'] == 'Fès') echo 'selected'; ?>>Fès</option>
+                                <option value="Guelmim" <?php if($user['ville'] == 'Guelmim') echo 'selected'; ?>>Guelmim</option>
+                                <option value="Ifrane" <?php if($user['ville'] == 'Ifrane') echo 'selected'; ?>>Ifrane</option>
+                                <option value="Kenitra" <?php if($user['ville'] == 'Kenitra') echo 'selected'; ?>>Kenitra</option>
+                                <option value="Khemisset" <?php if($user['ville'] == 'Khemisset') echo 'selected'; ?>>Khemisset</option>
+                                <option value="Khenifra" <?php if($user['ville'] == 'Khenifra') echo 'selected'; ?>>Khenifra</option>
+                                <option value="Khouribga" <?php if($user['ville'] == 'Khouribga') echo 'selected'; ?>>Khouribga</option>
+                                <option value="Laâyoune" <?php if($user['ville'] == 'Laâyoune') echo 'selected'; ?>>Laâyoune</option>
+                                <option value="Larache" <?php if($user['ville'] == 'Larache') echo 'selected'; ?>>Larache</option>
+                                <option value="Marrakech" <?php if($user['ville'] == 'Marrakech') echo 'selected'; ?>>Marrakech</option>
+                                <option value="Meknès" <?php if($user['ville'] == 'Meknès') echo 'selected'; ?>>Meknès</option>
+                                <option value="Mohammedia" <?php if($user['ville'] == 'Mohammedia') echo 'selected'; ?>>Mohammedia</option>
+                                <option value="Nador" <?php if($user['ville'] == 'Nador') echo 'selected'; ?>>Nador</option>
+                                <option value="Ouarzazate" <?php if($user['ville'] == 'Ouarzazate') echo 'selected'; ?>>Ouarzazate</option>
+                                <option value="Oujda" <?php if($user['ville'] == 'Oujda') echo 'selected'; ?>>Oujda</option>
+                                <option value="Rabat" <?php if($user['ville'] == 'Rabat') echo 'selected'; ?>>Rabat</option>
+                                <option value="Safi" <?php if($user['ville'] == 'Safi') echo 'selected'; ?>>Safi</option>
+                                <option value="Salé" <?php if($user['ville'] == 'Salé') echo 'selected'; ?>>Salé</option>
+                                <option value="Tanger" <?php if($user['ville'] == 'Tanger') echo 'selected'; ?>>Tanger</option>
+                                <option value="Taza" <?php if($user['ville'] == 'Taza') echo 'selected'; ?>>Taza</option>
+                                <option value="Tétouan" <?php if($user['ville'] == 'Tétouan') echo 'selected'; ?>>Tétouan</option>
+                                <option value="Tiznit" <?php if($user['ville'] == 'Tiznit') echo 'selected'; ?>>Tiznit</option>
+                            </select>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 <?php include '../../include/footer.php'?>

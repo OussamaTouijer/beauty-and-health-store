@@ -3,7 +3,7 @@ session_start();
 
 // Vérification de l'authentification
 if (isset($_SESSION['email']) && $_SESSION['user_type']=="client"){
-    header('location: profile.php');
+    header('location: client/profile/profile.php');
     exit(); // Assurez-vous de sortir après avoir redirigé
 }
 
@@ -12,10 +12,8 @@ if (isset($_SESSION['email']) && $_SESSION['user_type']=="admin"){
     exit(); // Assurez-vous de sortir après avoir redirigé
 }
 
-include 'include/functionsProductCate.php';
 include 'include/functionsLoginRegistre.php';
 
-$categories = getAllCategories();
 
 $user = true;
 
@@ -31,7 +29,7 @@ if (!empty($_POST)) {
             $_SESSION['address']=$user['address'];
             $_SESSION['ville']=$user['ville'];
 
-            header('location:profile.php');//rederection
+            header("Location: client/profile/profile.php?id={$user['id']}");
         }
 
         if (count($user) > 0 && $user['user_type']=="admin") {
@@ -43,7 +41,7 @@ if (!empty($_POST)) {
             $_SESSION['address']=$user['address'];
             $_SESSION['ville']=$user['ville'];
 
-            header('location:admin/profile/profile.php');//rederection
+            header('location:admin/profile/profile.php?id=$user["id"]');//rederection
         }
 
     }

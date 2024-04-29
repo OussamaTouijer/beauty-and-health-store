@@ -1,5 +1,23 @@
 <?php
 
+function connectToDatabase() {
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $DBname = "eclat_vitalite";
+    try {
+        // Connexion à la base de données en utilisant PDO
+        $conn = new PDO("mysql:host=$servername;dbname=$DBname", $username, $password);
+        // Configuration de PDO pour générer des exceptions en cas d'erreur
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn;
+    } catch(PDOException $e) {
+        // En cas d'échec de la connexion, affichez un message d'erreur
+        echo "Échec de la connexion : " . $e->getMessage();
+        // Terminez le script en cas d'échec de la connexion
+        exit();
+    }
+}
 function InsertClients($data) {
     // Connexion à la base de données
     $conn = connectToDatabase();
@@ -84,6 +102,48 @@ function connectUser($data) {
                 $conn = null;
                 return null;
             }
+        } else {
+            // Si aucun utilisateur n'est trouvé, retourne null
+            $conn = null;
+            return null;
+        }
+    } catch(PDOException $e) {
+        // En cas d'erreur lors de l'exécution de la requête, journaliser l'erreur
+        error_log("Erreur lors de l'exécution de la requête : " . $e->getMessage());
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+        // Retourne null pour indiquer qu'une erreur s'est produite
+        return null;
+    }
+}
+function userById($id) {
+    // Connexion à la base de données
+    $conn = connectToDatabase();
+
+    // Préparation de la requête SQL avec des placeholders pour les valeurs à insérer
+    $requete = "SELECT * FROM users WHERE id = :id";
+
+    try {
+        // Préparation de la requête SQL
+        $stmt = $conn->prepare($requete);
+
+        // Liaison des valeurs des paramètres
+        $stmt->bindParam(':id', $id);
+
+        // Exécution de la requête SQL
+        $stmt->execute();
+
+        // Vérification du nombre de lignes retournées
+        $count = $stmt->rowCount();
+
+        // Si au moins une ligne est retournée, l'utilisateur existe dans la base de données
+        if ($count > 0) {
+            // Récupération des données de l'utilisateur
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            // Fermeture de la connexion à la base de données
+            $conn = null;
+            // Retourne l'utilisateur trouvé
+            return $user;
         } else {
             // Si aucun utilisateur n'est trouvé, retourne null
             $conn = null;
