@@ -362,7 +362,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
         </div>
     </div>
 </div>
-<!-- Fin Boutique de Fruits-->
+<!-- Fin Boutique de Produits-->
 
 <?php include '../../include/footer.php'; ?>
 </body>

@@ -114,7 +114,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
         <?php
         if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client") {
             // Suppose que vous avez un moyen de récupérer le nombre d'articles dans le panier (par exemple depuis une base de données)
-            $nombre_articles_panier =0 ;/* code pour récupérer le nombre d'articles dans le panier */
+            $nombre_articles_panier = isset($_SESSION['Nbt']) ? intval($_SESSION['Nbt']) : 0;            ?>
             ?>
 
             <div class="user-wrapper">
@@ -187,7 +187,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
         <?php
         if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client") {
             // Suppose que vous avez un moyen de récupérer le nombre d'articles dans le panier (par exemple depuis une base de données)
-            $nombre_articles_panier =0 ;/* code pour récupérer le nombre d'articles dans le panier */
+            $nombre_articles_panier = isset($_SESSION['Nbt']) ? intval($_SESSION['Nbt']) : 0;            ?>
             ?>
 
             <div class="user-wrapper">
