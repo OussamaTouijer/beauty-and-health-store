@@ -193,7 +193,7 @@ if(isset($_GET['id'])){
                                 <h5 class="fw-bold mb-3">Prix : <i><?php echo $product['prix'].' DH'; ?></i></h5>
 
                                 <p class="mb-4"><i><?php echo $product['description']; ?></i></p>
-                                <a href="../panier/panier.php" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Ajouter au panier</a>
+                                <a href="../panier/panier.php?id=<?php echo $product['id'];?>&prix=<?php echo $product['prix'];?>" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Ajouter au panier</a>
                             </div>
                             <?php else: ?>
                                 <div class="alert alert-danger" role="alert">
