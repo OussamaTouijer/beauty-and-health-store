@@ -30,7 +30,7 @@ if(isset($_GET['id'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
 </head>
-<body>
+<body style="background-color: #f4f4f4">
 
 <!-- header-->
 
@@ -163,33 +163,54 @@ if(isset($_GET['id'])){
 
 
 <div class="container mt-3" style="     width: 1px;
-    height: 20px;
-    background-color: #ffffff;">
+    height: 96px;
+    background-color: #f4f4f4;">
 
 </div>
 
+<mainb style="background-color: #f4f4f4">
+    <div class="container d-flex justify-content-center align-items-center" style="background-color: #f4f4f4">
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="card col-md-6 p-5">
-            <?php if($product): ?>
-                <img src="../../images/<?php echo $product['image']; ?>" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $product['libelle']; ?></h5>
-                    <p class="card-text"><?php echo $product['description']; ?></p>
+        <!-- Single Product Start -->
+        <div class="container-fluid py-1 mt-1" style="background-color: #eeeeee;border-radius:25px; ">
+            <div class="container py-5">
+                <div class="row g-4 mb-5 d-flex justify-content-center align-items-center">
+                    <div class="col-lg-8 col-xl-9 ">
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="border rounded">
+                                    <a href="#">
+                                        <?php if($product): ?>
+                                        <img src="../../images/<?php echo $product['image']; ?>" class=" rounded" alt="Image">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h4 class="fw-bold mb-3">Marque : <i><?php echo $product['marque']; ?></i></h4>
+                                <h4 class="fw-bold mb-3">Nom :<i> <?php echo $product['libelle']; ?></i></h4>
+                                <h4 class="fw-bold mb-3">Catégorie : <i><?php echo $idCt['libelle']; ?></i></h4>
+
+                                <h5 class="fw-bold mb-3">Prix : <i><?php echo $product['prix'].' DH'; ?></i></h5>
+
+                                <p class="mb-4"><i><?php echo $product['description']; ?></i></p>
+                                <a href="../panier/panier.php" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Ajouter au panier</a>
+                            </div>
+                            <?php else: ?>
+                                <div class="alert alert-danger" role="alert">
+                                    Produit non trouvé.
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><?php echo $idCt['libelle']; ?></li>
-                    <li class="list-group-item"><?php echo $product['prix'].' DH'; ?></li>
-                </ul>
-            <?php else: ?>
-                <div class="alert alert-danger" role="alert">
-                    Produit non trouvé.
-                </div>
-            <?php endif; ?>
+
+            </div>
         </div>
+
     </div>
-</div>
+</mainb>
+
+
 
 <?php include '../../include/footer.php'; ?>
 

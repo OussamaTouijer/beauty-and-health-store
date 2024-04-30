@@ -204,6 +204,8 @@ main {
     border-radius: 5px; /* Coins arrondis */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre légère */
 }
+/* produit*/
+
 
 @media only screen and (max-width: 1200px) {
     .drawer {
