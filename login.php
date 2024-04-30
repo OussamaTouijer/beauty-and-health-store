@@ -28,7 +28,7 @@ if (!empty($_POST)) {
             $_SESSION['prenom']=$user['prenom'];
             $_SESSION['nom']=$user['nom'];
             $_SESSION['user_type']=$user['user_type'];
-            $_SESSION['id']=$user['id'];
+            $_SESSION['id']=md5($user['id']);
             $_SESSION['address']=$user['address'];
             $_SESSION['ville']=$user['ville'];
 
