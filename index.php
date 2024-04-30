@@ -70,12 +70,11 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
     <div class="container d-flex justify-content-between align-items-center">
 
         <div style="margin-right: 15px;">
-            <!-- Autres éléments de la barre de navigation -->
             <div class="logo-wrapper">
-                <a href="index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
+                <a href="index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px; margin-top: 40px;"><h4 style=" margin-top: 10px;">Éclat & Vitalité</h4></a>
             </div>
-
         </div>
+
 
         <div class="container">
 
@@ -115,14 +114,14 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
         if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client") {
             // Suppose que vous avez un moyen de récupérer le nombre d'articles dans le panier (par exemple depuis une base de données)
             $nombre_articles_panier = isset($_SESSION['Nbt']) ? intval($_SESSION['Nbt']) : 0;            ?>
-            ?>
+
 
             <div class="user-wrapper">
                 <a href="../panier/panier.php">
                     <i class="fas fa-shopping-cart">Panier</i>
                 </a>
                 <!-- Affiche le nombre d'articles dans le panier -->
-                <span>(<?php echo $nombre_articles_panier; ?>)</span>
+                <span style="color: red">(<?php echo $nombre_articles_panier; ?>)</span>
 
                 <a class="logout-btn" href="deconnexion.php">Déconnexion</a>
             </div>
@@ -188,14 +187,14 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
         if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client") {
             // Suppose que vous avez un moyen de récupérer le nombre d'articles dans le panier (par exemple depuis une base de données)
             $nombre_articles_panier = isset($_SESSION['Nbt']) ? intval($_SESSION['Nbt']) : 0;            ?>
-            ?>
+
 
             <div class="user-wrapper">
                 <a href="../panier/panier.php">
                     <i class="fas fa-shopping-cart">Panier</i>
                 </a>
                 <!-- Affiche le nombre d'articles dans le panier -->
-                <span>(<?php echo $nombre_articles_panier; ?>)</span>
+                <span style="color: red">(<?php echo $nombre_articles_panier; ?>)</span>
 
                 <a class="logout-btn" href="deconnexion.php">Déconnexion</a>
             </div>

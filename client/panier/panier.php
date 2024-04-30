@@ -2,12 +2,10 @@
 session_start();
 
 // Vérification de l'authentification
-if (!isset($_SESSION['email']) && $_SESSION['user_type'] != "client") {
+if (!isset($_SESSION['email']) || $_SESSION['user_type'] != "client") {
     header("Location: ../../login.php");
     exit(); // Assurez-vous de sortir après avoir redirigé
 }
-
-
 
 // Inclure vos fonctions de manipulation de la base de données ici
 include '../../include/functionsProductCate.php';
@@ -16,12 +14,12 @@ include '../../include/functionsProductCate.php';
 $categories = getAllCategories();
 
 $idCt = null;
-$product = null;
+$producte = null;
 
 if(isset($_GET['id'])){
-    $product = getProductById($_GET['id']);
+    $producte = getProductById($_GET['id']);
     foreach($categories as $c){
-        if($c['id'] == $product['id_categorie']) {
+        if($c['id'] == $producte['id_categorie']) {
             $idCt = $c;
             break;
         }
@@ -106,7 +104,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'consulter') {
     // Stockez les informations du panier dans un cookie
     setcookie('panier', serialize($_SESSION['panier']), time() + (86400 * 30), "/"); // 86400 = 1 jour
 }
-
 ?>
 
 
@@ -172,14 +169,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'consulter') {
         if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client") {
             // Suppose que vous avez un moyen de récupérer le nombre d'articles dans le panier (par exemple depuis une base de données)
             $nombre_articles_panier = isset($_SESSION['Nbt']) ? intval($_SESSION['Nbt']) : 0;            ?>
-            ?>
+
 
             <div class="user-wrapper">
                 <a href="../panier/panier.php">
                     <i class="fas fa-shopping-cart">Panier</i>
                 </a>
                 <!-- Affiche le nombre d'articles dans le panier -->
-                <span>(<?php echo $nombre_articles_panier; ?>)</span>
+                <span style="color: red">(<?php echo $nombre_articles_panier; ?>)</span>
 
                 <a class="logout-btn" href="../../deconnexion.php">Déconnexion</a>
             </div>
@@ -281,8 +278,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'consulter') {
                 <tbody>
                 <?php foreach ($_SESSION['panier'] as $product): ?>
                     <tr>
-
-                        <td>Produit <?php echo $product['id']; ?></td>
+                        <td><?php echo $product['id']; ?></td>
                         <td><?php echo $product['prix']; ?> MAD</td>
                         <td>
                             <form method="post" action="panier.php">
