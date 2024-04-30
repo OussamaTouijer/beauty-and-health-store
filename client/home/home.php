@@ -348,11 +348,11 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
                             <div class="col-12">
                                 <div class="pagination d-flex justify-content-center mt-5">
-                                    <a href="<?php echo ($page > 1) ? 'index.php?page='.($page-1) : ''; ?>" class="rounded"><button class="btn btn-light m-1">&laquo </button></a>
+                                    <a href="<?php echo ($page > 1) ? 'home.php?page='.($page-1) : ''; ?>" class="rounded"><button class="btn btn-light m-1">&laquo </button></a>
                                     <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                                        <a href="index.php?page=<?php echo $i; ?>" class="<?php echo ($i === $page) ? 'active ' : ''; ?>rounded"><button class="btn btn-primary m-1"><?php echo $i; ?></button></a>
+                                        <a href="home.php?page=<?php echo $i; ?>" class="<?php echo ($i === $page) ? 'active ' : ''; ?>rounded"><button class="btn btn-primary m-1"><?php echo $i; ?></button></a>
                                     <?php endfor; ?>
-                                    <a href="<?php echo ($page < $totalPages) ? 'index.php?page='.($page+1) : ''; ?>" class="rounded"><button class="btn btn-light m-1">&raquo </button> </a>
+                                    <a href="<?php echo ($page < $totalPages) ? 'home.php?page='.($page+1) : ''; ?>" class="rounded"><button class="btn btn-light m-1">&raquo </button> </a>
                                 </div>
                             </div>
                         </div>
