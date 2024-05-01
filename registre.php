@@ -51,9 +51,10 @@ if (!empty($_POST)) {
 
         <div style="margin-right: 15px;">
             <div class="logo-wrapper">
-                <h3 style="font-size: 22px; color: #333;">Éclat & Vitalité</h3>
+                <a href="index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px; margin-top: 40px;"><h4 style=" margin-top: 10px;">Éclat & Vitalité</h4></a>
             </div>
         </div>
+
 
         <div class="container">
 
