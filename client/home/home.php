@@ -278,10 +278,10 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                                 <div class="mb-3">
                                     <h4 class="mb-2">Prix</h4>
                                     <form action="home.php" method="POST">
-                                        <input type="range" class="form-range w-100" id="priceRange" name="price_range" min="0" max="500" value="<?php echo isset($_POST['price_range']) ? $_POST['price_range'] : '16'; ?>" oninput="amount.value=priceRange.value">
-                                        <output id="amount" name="amount" min-value="0" max-value="500" for="priceRange"><?php echo isset($_POST['price_range']) ? $_POST['price_range'] : '0'; ?></output><span> DH</span>
-                                        <!--   <button type="submit" class="btn btn-primary mt-2">Appliquer</button>
-                                     </form>-->
+                                        <input type="range" class="form-range w-100" id="priceRange" name="price_range" min="0" max="500" value="<?php echo isset($_POST['price_range']) ? $_POST['price_range'] : '6'; ?>" oninput="amount.value=priceRange.value">
+                                        <output id="amount" name="amount" min-value="6" max-value="500" for="priceRange"><?php echo isset($_POST['price_range']) ? $_POST['price_range'] : '6'; ?></output><span> DH</span>
+                                        <!-- <button type="submit" class="btn btn-primary mt-2">Appliquer</button>
+                                         </form>-->
                                 </div>
                             </div>
                             <!-- Couleur -->
