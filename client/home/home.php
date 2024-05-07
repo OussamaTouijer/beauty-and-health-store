@@ -26,28 +26,33 @@ if (!empty($priceRange)) {
     $filteredProducts = [];
     foreach ($products as $product) {
         // Assurez-vous que $product['prix'] est numérique avant de comparer
-        if (is_numeric($product['prix']) && $product['prix'] <= $priceRange) {
+        if (isset($product['prix']) && is_numeric($product['prix']) && $product['prix'] <= $priceRange) {
             $filteredProducts[] = $product;
         }
     }
-    // Remplacer les produits par les produits filtrés
-    $products = $filteredProducts;
+} else {
+    // Aucun filtre de prix spécifié, donc tous les produits sont éligibles
+    $filteredProducts = $products;
 }
 
 // Filtrage par couleur
 if (!empty($color)) {
     // Appliquer la logique de filtrage par couleur
     // Par exemple, sélectionner les produits ayant la couleur spécifiée
-    $filteredProducts = [];
-    foreach ($products as $product) {
+    $filteredProductsByColor = [];
+    foreach ($filteredProducts as $product) {
         // Assurez-vous que $product['couleur'] est bien défini avant de comparer
-        if (!empty($product['color']) && $product['color'] == $color) {
-            $filteredProducts[] = $product;
+        if (isset($product['color']) && $product['color'] == $color) {
+            $filteredProductsByColor[] = $product;
         }
     }
-    // Remplacer les produits par les produits filtrés
+    // Remplacer les produits par les produits filtrés par couleur
+    $products = $filteredProductsByColor;
+} else {
+    // Aucun filtre de couleur spécifié, donc tous les produits filtrés par prix sont éligibles
     $products = $filteredProducts;
 }
+
 
 // Pagination
 $categoriesPerPage = 12;
@@ -275,8 +280,8 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                                     <form action="home.php" method="POST">
                                         <input type="range" class="form-range w-100" id="priceRange" name="price_range" min="0" max="500" value="<?php echo isset($_POST['price_range']) ? $_POST['price_range'] : '16'; ?>" oninput="amount.value=priceRange.value">
                                         <output id="amount" name="amount" min-value="0" max-value="500" for="priceRange"><?php echo isset($_POST['price_range']) ? $_POST['price_range'] : '0'; ?></output><span> DH</span>
-                                        <button type="submit" class="btn btn-primary mt-2">Appliquer</button>
-                                    </form>
+                                        <!--   <button type="submit" class="btn btn-primary mt-2">Appliquer</button>
+                                     </form>-->
                                 </div>
                             </div>
                             <!-- Couleur -->
@@ -284,8 +289,8 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                                 <div class="mb-3">
                                     <h4>Couleur</h4>
                                     <!-- Insérez ici vos boutons radio pour les couleurs -->
-                                    <!-- Assurez-vous que chaque bouton a un attribut 'name' -->
-                                    <form action="home.php" method="POST">
+                                    <!-- Assurez-vous que chaque bouton a un attribut 'name'
+                                    <form action="home.php" method="POST">-->
                                         <!-- Insérez vos boutons radio ici -->
                                         <div class="mb-2">
                                             <input type="radio" class="me-2" id="Categories-1" name="Categories-1" value="Jaune">
@@ -300,43 +305,35 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                                             <label for="Categories-3">Rouge</label>
                                         </div>
                                         <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Marron">
                                             <label for="Categories-3">Marron</label>
                                         </div>
                                         <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Violet">
                                             <label for="Categories-3">Violet</label>
                                         </div>
                                         <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
-                                            <label for="Categories-3">Vert</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Blanc">
                                             <label for="Categories-3">Blanc</label>
                                         </div>
                                         <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rose">
                                             <label for="Categories-3">Rose</label>
                                         </div>
                                         <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Beige">
                                             <label for="Categories-3">Beige</label>
                                         </div>
                                         <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
-                                            <label for="Categories-3">Noir</label>
+                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Vert">
+                                            <label for="Categories-3">Vert</label>
                                         </div>
                                         <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Green">
                                             <label for="Categories-3">Green</label>
                                         </div>
                                         <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
-                                            <label for="Categories-3">Noir</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Rouge">
+                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Noir">
                                             <label for="Categories-3">Noir</label>
                                         </div>
                                         <button type="submit" class="btn btn-primary mt-2">Appliquer</button>
