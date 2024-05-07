@@ -190,29 +190,34 @@ function getProductById($id) {
         exit();
     }
 }
+function getProductByIdC($id) {
 
-function sortByPopularity($products) {
-    // Créer un tableau temporaire pour stocker les clés et les valeurs de popularité
-    $popularity = array();
+    // Connexion à la base de données
+    $conn = connectToDatabase();
 
-    // Parcourir tous les produits et calculer la popularité de chaque produit
-    foreach ($products as $key => $product) {
-        // Pour cet exemple, supposons que chaque produit a un nombre de ventes aléatoire entre 0 et 100
-        $sales = rand(0, 100); // Générez un nombre aléatoire de ventes
-        $popularity[$key] = $sales;
+    // Préparation de la requête SQL avec un paramètre de placeholder
+    $requete = "SELECT * FROM products WHERE id_categorie  = :id";
+
+    try {
+        // Préparation de la requête SQL
+        $stmt = $conn->prepare($requete);
+        // Liaison de la valeur du paramètre à la variable $id
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        // Exécution de la requête SQL
+        $stmt->execute();
+        // Récupération du résultat de la requête (tous les produits de la même catégorie)
+        $products = $stmt->fetchAll();
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+        return $products; // Retourne les produits trouvés (ou un tableau vide si aucun produit trouvé)
+    } catch(PDOException $e) {
+        // En cas d'erreur lors de l'exécution de la requête, affichez un message d'erreur
+        echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+        // Terminez le script en cas d'erreur lors de l'exécution de la requête
+        exit();
     }
-
-    // Trier les produits en fonction de leur popularité (nombre de ventes)
-    // Utiliser la fonction arsort pour trier le tableau dans l'ordre décroissant tout en conservant les associations clé-valeur
-    arsort($popularity);
-
-    // Créer un tableau de produits triés en fonction de la popularité
-    $sortedProducts = array();
-    foreach ($popularity as $key => $value) {
-        $sortedProducts[$key] = $products[$key];
-    }
-
-    return $sortedProducts;
 }
 
 

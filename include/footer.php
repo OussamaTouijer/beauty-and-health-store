@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative mx-auto">
-                        <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="number" placeholder="Votre Email">
+                        <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="text" placeholder="Votre Email">
                         <button type="submit" class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white" style="top: 0; right: 0;">S'abonner</button>
                     </div>
                 </div>

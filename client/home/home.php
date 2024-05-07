@@ -235,9 +235,9 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                                                     }
                                                 }
                                                 echo '<div class="d-flex justify-content-between fruite-name">
-                                                      <a href="#"><i class="fas  me-2" ></i><i style="color: dimgrey">'.$Cat['libelle'].'</i></a>
-                                                      <span>('.$count.')</span>
-                                                      </div>';
+          <a href="../categories/categories.php?idCa=' . $Cat['id'] . '"><i class="fas me-2"></i><i style="color: dimgrey">' . $Cat['libelle'] . '</i></a>
+          <span>(' . $count . ')</span>
+          </div>';
                                             }
                                             ?>
 
