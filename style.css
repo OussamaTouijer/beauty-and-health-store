@@ -95,9 +95,8 @@ header {
 
 /* Sample styling for main content */
 main {
-    background-color: #f4f4f4;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -108,7 +107,7 @@ main {
     display: flex;
     justify-content: center;
     color: #141cc9;
-    font-size: 2.5rem; /* Taille de la police */
+    font-size: 3.9rem; /* Taille de la police */
     font-weight: bold; /* Gras */
     margin-bottom: 10px; /* Espacement en dessous */
 }

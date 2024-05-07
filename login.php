@@ -69,7 +69,7 @@ if (!empty($_POST)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body>
+<body style="background-color: #f4f4f4">
 
 
 <!-- header-->
@@ -201,26 +201,38 @@ if (!empty($_POST)) {
 
 
 <div class="container mt-3" style="     width: 1px;
-    height: 44px;
-    background-color: #ffffff;">
+    height: 86px;
+    background-color: #f4f4f4;">
 
 </div>
 
-<!-- Formulaire -->
-<div class="col-12 p-5">
-    <h1 class="text-center">Connexion</h1>
-    <form action="" method="POST">
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+<main style="background-color: #f4f4f4">
+    <div class="container d-flex justify-content-center align-items-center" style="background-color: #f4f4f4">
+        <div class="container-fluid py-1 mt-1">
+            <div class="col-12 p-5" style="background-color: #eeeeee; border-radius: 25px;">
+                <span class="title">Connexion</span>
+                <form action="" method="POST" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+                        <div class="invalid-feedback">
+                            Veuillez entrer une adresse email valide.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Mot de passe</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <div class="invalid-feedback">
+                            Veuillez entrer votre mot de passe.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+                </form>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Mot de passe</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Se connecter</button>
-    </form>
-</div>
+    </div>
+</main>
+
 
 <!-- Footer -->
 <?php include 'include/footer.php'?>

@@ -42,7 +42,7 @@ if (!empty($_POST)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body>
+<body style="background-color: #f4f4f4">
 
 
 <!-- header-->
@@ -174,15 +174,16 @@ if (!empty($_POST)) {
 
 
 <div class="container mt-3" style="     width: 1px;
-    height: 20px;
-    background-color: #ffffff;">
+    height: 86px;
+    background-color: #f4f4f4;">
 
 </div>
 
-
-<!-- formulaire -->
-<div class="col-12 p-5">
-    <h1 class="text-center">Inscription</h1>
+<main style="background-color: #f4f4f4">
+    <div class="container d-flex justify-content-center align-items-center" style="background-color: #f4f4f4">
+        <div class="container-fluid py-1 mt-1">
+            <div class="col-12 p-5" style="background-color: #eeeeee; border-radius: 25px;">
+    <h1 class="title">Inscription</h1>
     <form action="registre.php" method="POST">
         <div class="mb-3">
             <label for="nom" class="form-label">Nom</label>
@@ -216,6 +217,8 @@ if (!empty($_POST)) {
         <button type="submit" class="btn btn-primary">S'inscrire</button>
     </form>
 </div>
+    </div>
+</main>
 
 <!-- footer -->
 <?php include 'include/footer.php'?>
