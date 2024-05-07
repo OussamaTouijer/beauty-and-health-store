@@ -65,7 +65,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
             <nav class="p-1">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link active custom" href="home.php">Home</a>
+                        <a class="nav-link  custom" href="../home/home.php">Home</a>
                     </li>
                     <?php if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client"): ?>
                         <li class="nav-item">
@@ -114,7 +114,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
             <nav class="p-1">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link active custom" href="home.php">Home</a>
+                        <a class="nav-link  custom" href="../home/home.php">Home</a>
                     </li>
                     <?php if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client"): ?>
                         <li class="nav-item">
@@ -154,7 +154,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 <!-- Début Boutique de Fruits-->
 <div class="container-fluid fruite py-5">
     <div class="container py-5">
-        <h1 class="mb-4">Boutique Éclat & Vitalité</h1>
+        <h1 class="mb-4">Éclat & Vitalité : <i><?php echo getCategoriById($_GET['idCa']);?></i></h1>
         <div class="row g-4">
             <div class="col-lg-12">
                 <div class="row g-4 justify-content-center">
