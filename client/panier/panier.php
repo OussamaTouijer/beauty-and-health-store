@@ -264,8 +264,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'consulter') {
 
         <!-- Contenu principal -->
         <div class="container-fluid py-1 mt-1" style="background-color: #eeeeee;border-radius:25px;">
-            <h2>Votre Panier</h2>
-            <table class="table">
+            <h2 class="title">Votre Panier</h2>
+            <table class="tablee">
                 <thead>
                 <tr>
                     <th>ID Produit</th>
@@ -283,12 +283,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'consulter') {
                         <td>
                             <form method="post" action="panier.php">
                                 <input type="number" name="quantity[<?php echo $product['id']; ?>]"
-                                       value="<?php echo $product['quantite']; ?>" min="1">
-                                <input type="submit" name="update_cart" value="Mettre à jour">
+                                       value="<?php echo $product['quantite']; ?>" min="1" class="edit-button">
+                                <input type="submit" name="update_cart" value="Mettre à jour" class="edit-button">
                             </form>
                         </td>
                         <td><?php echo $product['prix'] * $product['quantite']; ?> MAD</td>
-                        <td><a href="panier.php?action=delete&id=<?php echo $product['id']; ?>">Supprimer</a></td>
+                        <td><a href="panier.php?action=delete&id=<?php echo $product['id']; ?>" class="delete-button">Supprimer</a></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -300,9 +300,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'consulter') {
                 </tr>
                 </tfoot>
             </table>
-            <a href="panier.php?action=finaliser">Passer à la caisse</a>
-            <a href="panier.php?action=consulter">Consulter le contenu</a>
-            <a href="../home/home.php">contenu acheter</a>
+            <a href="panier.php?action=finaliser" class="btn btn-primary mt-1">Passer à la caisse</a>
+            <a href="panier.php?action=consulter" class="btn btn-primary mt-1">Consulter le contenu</a>
+            <a href="../home/home.php" class="btn btn-primary mt-1">contenu acheter</a>
         </div>
 
         <!-- Votre pied de page ici -->

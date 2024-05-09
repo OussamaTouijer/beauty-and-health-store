@@ -19,7 +19,7 @@ if(!empty($_POST['sPro'])) {
 
 // Pagination
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$categoriesPerPage = 40;
+$categoriesPerPage = 12;
 $totalProducts = count($products);
 $totalPages = ceil($totalProducts / $categoriesPerPage);
 $startIndex = ($page - 1) * $categoriesPerPage;
