@@ -54,8 +54,21 @@ if (!empty($color)) {
 }
 
 
+// Tri des produits par prix
+if (isset($_POST['descending'])) {
+    // Trier les produits par prix en ordre décroissant
+    usort($products, function ($a, $b) {
+        return $b['prix'] <=> $a['prix'];
+    });
+} elseif (isset($_POST['ascending'])) {
+    // Trier les produits par prix en ordre croissant
+    usort($products, function ($a, $b) {
+        return $a['prix'] <=> $b['prix'];
+    });
+}
+
 // Pagination
-$categoriesPerPage = 12;
+$categoriesPerPage = 40;
 $totalProducts = count($products);
 $totalPages = ceil($totalProducts / $categoriesPerPage);
 $page = isset($_GET['page']) ? max(1, min($_GET['page'], $totalPages)) : 1;
@@ -235,6 +248,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 <div class="container-fluid fruite py-5">
     <div class="container py-5">
         <h1 class="mb-4">Boutique Éclat & Vitalité</h1>
+
         <div class="row g-4">
             <div class="col-lg-12">
                 <div class="row g-4">
@@ -246,8 +260,19 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
                             <div class="col-lg-12">
 
+                                <form method="post" action="home.php">
+                                    <h4>Trier par prix</h4>
+                                    <button type="submit" name="descending" class="btn btn-dark mt-1">
+                                        <i class="fas fa-sort-amount-down"></i> Décroissant
+                                    </button>
+                                    <button type="submit" name="ascending" class="btn btn-dark mt-1">
+                                        <i class="fas fa-sort-amount-up"></i> Croissant
+                                    </button>
+                                </form>
+
+
                                 <!-- Catégories -->
-                                <div class="mb-3">
+                                <div class="mb-3 mt-3">
                                     <h4>Catégories</h4>
                                     <ul class="list-unstyled produit-categorie">
                                         <li>
@@ -388,6 +413,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- Fin Boutique de Produits-->
 

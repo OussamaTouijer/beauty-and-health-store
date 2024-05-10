@@ -220,36 +220,6 @@ function getProductByIdC($id) {
     }
 }
 
-// Fonction pour filtrer les produits par prix
-function filterProductsByPrice($maxPrice) {
-    // Connexion à la base de données
-    $conn = connectToDatabase();
 
-    // Vérification de la connexion
-    if ($conn) {
-        try {
-            // Requête SQL pour sélectionner les produits dont le prix est inférieur ou égal au prix maximum spécifié
-            $sql = "SELECT * FROM products WHERE prix <= :max_price";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':max_price', $maxPrice, PDO::PARAM_INT);
-            $stmt->execute();
-
-            // Récupérer les résultats de la requête
-            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            // Renvoyer les produits filtrés
-            return $products;
-        } catch (PDOException $e) {
-            // Gérer les erreurs de requête SQL
-            return [];
-        } finally {
-            // Fermer la connexion à la base de données
-            $conn = null;
-        }
-    } else {
-        // Gérer les erreurs de connexion à la base de données
-        return [];
-    }
-}
 
 ?>
