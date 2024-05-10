@@ -25,85 +25,15 @@ if(isset($_GET['id'])){
         }
     }
 }
-// Assurez-vous d'avoir les fonctions nécessaires pour récupérer les informations sur les produits
 
-// Fonction pour calculer le total du panier
-function calculateTotal($cart) {
-    $total = 0;
-    foreach ($cart as $item) {
-        $total += $item['prix'] * $item['quantite'];
-    }
-    return $total;
-}
-
-// Si le panier est vide, initialiser un tableau vide
-if (!isset($_SESSION['panier'])) {
-    $_SESSION['panier'] = [];
-}
-
-// Ajouter un produit au panier s'il est passé par GET
-if (isset($_GET['id']) && isset($_GET['prix'])) {
-    $product_id = $_GET['id'];
-    $product_price = $_GET['prix'];
-
-    // Vérifier si le produit est déjà dans le panier
-    if (isset($_SESSION['panier'][$product_id])) {
-        $_SESSION['panier'][$product_id]['quantite']++;
-    } else {
-        // Ajouter le produit au panier avec une quantité de 1
-        $_SESSION['panier'][$product_id] = array(
-            'id' => $product_id,
-            'prix' => $product_price,
-            'quantite' => 1
-        );
+if (isset($_SESSION["panier"])) {
+    if (count($_SESSION["panier"][2])>0) {
+        $commandes=$_SESSION["panier"][2];
     }
 }
 
-// Mettre à jour la quantité du produit dans le panier
-if (isset($_POST['update_cart'])) {
-    foreach ($_POST['quantity'] as $product_id => $quantity) {
-        $_SESSION['panier'][$product_id]['quantite'] = $quantity;
-    }
-}
 
-// Supprimer un produit du panier
-if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
-    $product_id = $_GET['id'];
-    unset($_SESSION['panier'][$product_id]);
-}
 
-// Fonction pour calculer le nombre total d'articles dans le panier
-function calculateTotalItems($cart) {
-    $total_items = 0;
-    foreach ($cart as $item) {
-        $total_items += $item['quantite'];
-    }
-    return $total_items;
-}
-
-// Calculer le nombre total d'articles dans le panier
-$nombre_articles_panier = calculateTotalItems($_SESSION['panier']);
-$_SESSION['Nbt'] = $nombre_articles_panier;
-
-// Calculer le total du panier
-$total_panier = calculateTotal($_SESSION['panier']);
-
-// Si l'utilisateur choisit de finaliser la commande
-if (isset($_GET['action']) && $_GET['action'] == 'finaliser') {
-    // Traitement de la commande ici
-    // Vous pouvez envoyer les informations de la commande à la base de données
-    // Réinitialiser le panier après la finalisation de la commande
-    $_SESSION['panier'] = [];
-    // Rediriger l'utilisateur vers une page de confirmation de commande ou une autre page appropriée
-    header("Location: confirmation_commande.php");
-    exit();
-}
-
-// Si l'utilisateur choisit de consulter le contenu du panier sans finaliser la commande
-if (isset($_GET['action']) && $_GET['action'] == 'consulter') {
-    // Stockez les informations du panier dans un cookie
-    setcookie('panier', serialize($_SESSION['panier']), time() + (86400 * 30), "/"); // 86400 = 1 jour
-}
 ?>
 
 
@@ -269,33 +199,34 @@ if (isset($_GET['action']) && $_GET['action'] == 'consulter') {
                 <thead>
                 <tr>
                     <th>ID Produit</th>
-                    <th>Prix unitaire</th>
                     <th>Quantité</th>
                     <th>Total</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($_SESSION['panier'] as $product): ?>
+                <?php foreach ($commandes as $product): ?>
                     <tr>
-                        <td><?php echo $product['id']; ?></td>
-                        <td><?php echo $product['prix']; ?> MAD</td>
-                        <td>
-                            <form method="post" action="panier.php">
-                                <input type="number" name="quantity[<?php echo $product['id']; ?>]"
-                                       value="<?php echo $product['quantite']; ?>" min="1" class="edit-button">
-                                <input type="submit" name="update_cart" value="Mettre à jour" class="edit-button">
-                            </form>
-                        </td>
-                        <td><?php echo $product['prix'] * $product['quantite']; ?> MAD</td>
-                        <td><a href="panier.php?action=delete&id=<?php echo $product['id']; ?>" class="delete-button">Supprimer</a></td>
+                        <td><?php echo $product[2]; ?></td>
+                        <td><?php echo $product['0']; ?></td>
+                        <td><?php echo $product['1']; ?> MAD</td>
+
+                        <!--                        <td>-->
+<!--                            <form method="post" action="panier.php">-->
+<!--                                <input type="number" name="quantity[--><?php //echo $product['id']; ?><!--]"-->
+<!--                                       value="--><?php //echo $product['quantite']; ?><!--" min="1" class="edit-button">-->
+<!--                                <input type="submit" name="update_cart" value="Mettre à jour" class="edit-button">-->
+<!--                            </form>-->
+<!--                        </td>-->
+<!--                        <td>--><?php //echo $product['prix'] * $product['quantite']; ?><!-- MAD</td>-->
+                        <td><a href="panier.php?action=delete&id=<?php echo $product['2']; ?>" class="delete-button">Supprimer</a></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
                 <tfoot>
                 <tr>
                     <td colspan="3">Total:</td>
-                    <td><?php echo $total_panier; ?> MAD</td>
+<!--                    <td>--><?php //echo $total_panier; ?><!-- MAD</td>-->
                     <td></td>
                 </tr>
                 </tfoot>

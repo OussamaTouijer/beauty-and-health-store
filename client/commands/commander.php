@@ -26,6 +26,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Calcul du total
             $total = $qt * $productById['prix'];
 
+            //creation de panier 0 est un total par defaut
+            if (!isset($_SESSION["panier"])) {
+                $_SESSION['panier'] = array($idClient, 0, array());
+            }
+            //si panier exist alor updat de total
+            $_SESSION['panier'][1] += $total;
+            $_SESSION['panier'][2][] = array($qt, $total, $id_produit);
+
+            header('location:../panier/panier.php');
+
+
             // Préparation de la requête SQL avec des paramètres nommés Pour panier
             $sql_insert = "INSERT INTO panier (idClient , total) VALUES (:idClient , :total)";
             $stmt_insert = $conn->prepare($sql_insert);
@@ -46,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt_insert->bindParam(':id_panier', $id_panier);
                 $stmt_insert->execute();
                 // Redirection vers la page index
-                header('location:listeCategorise.php?ajout=ok');
+                //header('location:listeCategorise.php?ajout=ok');
                 exit; // Arrête l'exécution du script après la redirection
             } else {
                 echo "Erreur lors de l'ajout de la commande: " . $stmt_insert->errorInfo()[2];
@@ -65,7 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $conn = null;
         }
     }
-} else {
-    echo "Erreur: méthode de requête incorrecte.";
-}
+        } else {
+            echo "Erreur: méthode de requête incorrecte.";
+        }
+
 ?>
