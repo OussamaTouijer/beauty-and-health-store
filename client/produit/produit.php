@@ -193,7 +193,14 @@ if(isset($_GET['id'])){
                                 <h5 class="fw-bold mb-3">Prix : <i><?php echo $product['prix'].' DH'; ?></i></h5>
 
                                 <p class="mb-4"><i><?php echo $product['description']; ?></i></p>
-                                <a href="../panier/panier.php?id=<?php echo $product['id'];?>&prix=<?php echo $product['prix'];?>" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Ajouter au panier</a>
+                                <form action="../commands/commander.php" method="post">
+                                    <input type="hidden" name="produit" value="<?php echo $product['id']; ?>">
+                                    <input type="number" name="qt" placeholder="Quantite du produit ...." min="1" step="1" value="1" class="border border-secondary rounded-pill px-2 py-1 mb-2 text-primary">
+                                    <button type="submit" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Ajouter au panier</button>
+
+                                </form>
+
+
                             </div>
                             <?php else: ?>
                                 <div class="alert alert-danger" role="alert">
