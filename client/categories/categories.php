@@ -41,15 +41,26 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Éclat & Vitalité</title>
-    <!-- Styles -->
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
     <link rel="stylesheet" href="categoriesCss.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Éclat & Vitalité</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
@@ -93,7 +104,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
         <?php if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client"): ?>
             <div class="user-wrapper">
                 <a href="../panier/panier.php">
-                    <i class="fas fa-shopping-cart"></i> Panier
+                    <i class="fas fa-shopping-cart">Panier</i>
                 </a>
                 <!-- Affiche le nombre d'articles dans le panier -->
                 <span style="color: red">(<?php echo isset($_SESSION['Nbt']) ? intval($_SESSION['Nbt']) : 0; ?>)</span>
@@ -139,7 +150,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
         <?php if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client"): ?>
             <div class="user-wrapper">
                 <a href="../panier/panier.php">
-                    <i class="fas fa-shopping-cart"></i> Panier
+                    <i class="fas fa-shopping-cart">Panier</i>
                 </a>
                 <!-- Affiche le nombre d'articles dans le panier -->
                 <span style="color: red">(<?php echo isset($_SESSION['Nbt']) ? intval($_SESSION['Nbt']) : 0; ?>)</span>
