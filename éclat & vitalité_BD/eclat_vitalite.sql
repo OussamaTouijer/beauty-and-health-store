@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 07 mai 2024 à 18:40
+-- Généré le : sam. 11 mai 2024 à 12:47
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -72,29 +72,59 @@ INSERT INTO `categories` (`id`, `libelle`, `description`, `date_creation`, `date
 DROP TABLE IF EXISTS `commands`;
 CREATE TABLE IF NOT EXISTS `commands` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_client` int DEFAULT NULL,
+  `produit` bigint DEFAULT NULL,
   `total` decimal(10,2) DEFAULT NULL,
   `valide` tinyint(1) DEFAULT NULL,
   `date_creation` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `date_modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `id_panier` int DEFAULT NULL,
+  `quantite` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fi_IdPanier` (`id_panier`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `commands`
+--
+
+INSERT INTO `commands` (`id`, `produit`, `total`, `valide`, `date_creation`, `date_modified`, `id_panier`, `quantite`) VALUES
+(47, 2, 24.99, NULL, '2024-05-11 11:54:51', '2024-05-11 11:54:51', 46, 1),
+(48, 88, 89.97, NULL, '2024-05-11 11:56:22', '2024-05-11 11:56:22', 47, 3),
+(49, 5, 12.99, NULL, '2024-05-11 11:56:22', '2024-05-11 11:56:22', 47, 1),
+(50, 88, 89.97, NULL, '2024-05-11 11:57:14', '2024-05-11 11:57:14', 48, 3),
+(51, 5, 12.99, NULL, '2024-05-11 11:57:14', '2024-05-11 11:57:14', 48, 1),
+(52, 88, 89.97, NULL, '2024-05-11 12:03:40', '2024-05-11 12:03:40', 49, 3),
+(53, 5, 12.99, NULL, '2024-05-11 12:03:40', '2024-05-11 12:03:40', 49, 1),
+(54, 2, 24.99, NULL, '2024-05-11 12:05:07', '2024-05-11 12:05:07', 50, 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ligne_command`
+-- Structure de la table `panier`
 --
 
-DROP TABLE IF EXISTS `ligne_command`;
-CREATE TABLE IF NOT EXISTS `ligne_command` (
+DROP TABLE IF EXISTS `panier`;
+CREATE TABLE IF NOT EXISTS `panier` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_produit` int DEFAULT NULL,
-  `id_commande` int DEFAULT NULL,
-  `prix` decimal(10,2) DEFAULT NULL,
-  `quantite` int DEFAULT NULL,
-  `total` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `idClient` bigint NOT NULL,
+  `total` double(100,2) NOT NULL,
+  `date_modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date_creation` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `etat_commande` enum('en cours','en livraison','livrée','annulée','autre') DEFAULT 'en cours',
+  PRIMARY KEY (`id`),
+  KEY `fk_IdUser` (`idClient`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `panier`
+--
+
+INSERT INTO `panier` (`id`, `idClient`, `total`, `date_modified`, `date_creation`, `etat_commande`) VALUES
+(46, 22, 24.99, '2024-05-11 11:54:51', '2024-05-11 11:54:51', 'en cours'),
+(47, 22, 102.96, '2024-05-11 11:56:22', '2024-05-11 11:56:22', 'en cours'),
+(48, 22, 102.96, '2024-05-11 11:57:14', '2024-05-11 11:57:14', 'en cours'),
+(49, 22, 102.96, '2024-05-11 12:03:40', '2024-05-11 12:03:40', 'en cours'),
+(50, 22, 24.99, '2024-05-11 12:05:07', '2024-05-11 12:05:07', 'en cours');
 
 -- --------------------------------------------------------
 
@@ -184,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `date_modification` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `etat` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
@@ -201,6 +231,18 @@ INSERT INTO `users` (`id`, `nom`, `prenom`, `email`, `password`, `user_type`, `t
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `commands`
+--
+ALTER TABLE `commands`
+  ADD CONSTRAINT `fi_IdPanier` FOREIGN KEY (`id_panier`) REFERENCES `panier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `panier`
+--
+ALTER TABLE `panier`
+  ADD CONSTRAINT `fk_IdUser` FOREIGN KEY (`idClient`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `products`
