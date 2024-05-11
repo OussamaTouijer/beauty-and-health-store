@@ -18,7 +18,9 @@ if ($id !== null && $id !== false && $id >= 0) {
     $total_Supprimer = isset($_SESSION['panier'][2][$id][1]) ? $_SESSION['panier'][2][$id][1] : 0;
 
     // Réduire le total du panier par le montant à supprimer
+    if($_SESSION['panier'][1]!==0)
     $_SESSION['panier'][1] -= $total_Supprimer;
+    else $_SESSION['panier'][1]=0;
 
     // Supprimer l'article du panier en utilisant son ID
     unset($_SESSION['panier'][2][$id]);

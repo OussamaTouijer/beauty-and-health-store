@@ -221,7 +221,12 @@ if (isset($_SESSION["panier"]) && isset($_SESSION["panier"][2]) && count($_SESSI
                 <tfoot>
                 <tr>
                     <td colspan="5">Total:</td>
-                    <td><?php $total_panier=$_SESSION['panier'][1]; echo $total_panier; ?> MAD</td>
+                    <td>
+                        <?php
+                        $total_panier = isset($_SESSION['panier'][1]) ? $_SESSION['panier'][1] : 0;
+                        echo $total_panier . " MAD";
+                        ?>
+                    </td>
                 </tr>
                 </tfoot>
             </table>

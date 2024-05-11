@@ -28,10 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Calcul du total
             $total = $qt * $productById['prix'];
 
+
             //creation de panier 0 est un total par defaut
             if (!isset($_SESSION["panier"])) {
                 $_SESSION['panier'] = array($idClient, 0, array());
             }
+
             //si panier exist alor updat de total
             $_SESSION['panier'][1] += $total;
             $_SESSION['panier'][2][] = array($qt, $total, $id_produit,$marque,$image,$productById['libelle']);
