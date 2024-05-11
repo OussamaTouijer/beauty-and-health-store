@@ -22,7 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id_produit = $_POST['produit'];
             $qt = $_POST['qt'];
             $productById = getProductById($id_produit);
-
+            $marque=$productById['marque'];
+            $image=$productById['image'];
+            $libelle=$productById['libelle'];
             // Calcul du total
             $total = $qt * $productById['prix'];
 
@@ -32,7 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             //si panier exist alor updat de total
             $_SESSION['panier'][1] += $total;
-            $_SESSION['panier'][2][] = array($qt, $total, $id_produit);
+            $_SESSION['panier'][2][] = array($qt, $total, $id_produit,$marque,$image,$productById['libelle']);
+
+            $_SESSION['Nbt'] = is_array($_SESSION["panier"][2]) ? count($_SESSION["panier"][2]) : 0;
 
             header('location:../panier/panier.php');
 

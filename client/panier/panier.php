@@ -2,7 +2,7 @@
 session_start();
 
 // Vérification de l'authentification
-if (!isset($_SESSION['email']) || $_SESSION['user_type'] != "client") {
+if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== "client") {
     header("Location: ../../login.php");
     exit(); // Assurez-vous de sortir après avoir redirigé
 }
@@ -26,14 +26,10 @@ if(isset($_GET['id'])){
     }
 }
 
-if (isset($_SESSION["panier"])) {
-    if (count($_SESSION["panier"][2])>0) {
-        $commandes=$_SESSION["panier"][2];
-    }
+$commandes = [];
+if (isset($_SESSION["panier"]) && isset($_SESSION["panier"][2]) && count($_SESSION["panier"][2]) > 0) {
+    $commandes = $_SESSION["panier"][2];
 }
-
-
-
 ?>
 
 
@@ -199,35 +195,33 @@ if (isset($_SESSION["panier"])) {
                 <thead>
                 <tr>
                     <th>ID Produit</th>
+                    <th>Marque</th>
+                    <th>Nom de produit</th>
+                    <th>Image</th>
                     <th>Quantité</th>
                     <th>Total</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($commandes as $product): ?>
+                <?php foreach ($commandes as $index => $product): ?>
                     <tr>
                         <td><?php echo $product[2]; ?></td>
-                        <td><?php echo $product['0']; ?></td>
-                        <td><?php echo $product['1']; ?> MAD</td>
-
-                        <!--                        <td>-->
-<!--                            <form method="post" action="panier.php">-->
-<!--                                <input type="number" name="quantity[--><?php //echo $product['id']; ?><!--]"-->
-<!--                                       value="--><?php //echo $product['quantite']; ?><!--" min="1" class="edit-button">-->
-<!--                                <input type="submit" name="update_cart" value="Mettre à jour" class="edit-button">-->
-<!--                            </form>-->
-<!--                        </td>-->
-<!--                        <td>--><?php //echo $product['prix'] * $product['quantite']; ?><!-- MAD</td>-->
-                        <td><a href="panier.php?action=delete&id=<?php echo $product['2']; ?>" class="delete-button">Supprimer</a></td>
+                        <td><?php echo $product[3]; ?></td>
+                        <td><?php echo $product[5]; ?></td>
+                        <td><img class='image-style' src='../../images/<?php echo $product[4]; ?>' class='card-img-top' alt='...' /></td>
+                        <td><?php echo $product[0]; ?> pieces</td>
+                        <td><?php echo $product[1]; ?> MAD</td>
+                        <td><a href="supprimer.php?id=<?php echo $index; ?>" class="delete-button">Supprimer</a></td>
                     </tr>
                 <?php endforeach; ?>
+
+
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="3">Total:</td>
-<!--                    <td>--><?php //echo $total_panier; ?><!-- MAD</td>-->
-                    <td></td>
+                    <td colspan="5">Total:</td>
+                    <td><?php $total_panier=$_SESSION['panier'][1]; echo $total_panier; ?> MAD</td>
                 </tr>
                 </tfoot>
             </table>
