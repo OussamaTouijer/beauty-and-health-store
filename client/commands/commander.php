@@ -16,7 +16,7 @@ $conn = connectToDatabase();
 
 // Vérification si la méthode de requête est POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    try {
+
         // Vérification si les champs sont définis et non vides
         if (!empty($_POST["produit"]) && !empty($_POST["qt"])) {
             $id_produit = $_POST['produit'];
@@ -43,47 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header('location:../panier/panier.php');
 
 
-            // Préparation de la requête SQL avec des paramètres nommés Pour panier
-            $sql_insert = "INSERT INTO panier (idClient , total) VALUES (:idClient , :total)";
-            $stmt_insert = $conn->prepare($sql_insert);
-            $stmt_insert->bindParam(':idClient', $idClient);
-            $stmt_insert->bindParam(':total', $total);
 
 
-
-            // Exécution de la requête
-            if ($stmt_insert->execute()) {
-                $id_panier=$conn->lastInsertId();
-                // Préparation de la requête SQL avec des paramètres nommés
-                $sql_insert = "INSERT INTO commands (produit, total, id_panier, quantite) VALUES (:produit, :total, :id_panier, :quantite)";
-                $stmt_insert = $conn->prepare($sql_insert);
-                $stmt_insert->bindParam(':produit', $id_produit);
-                $stmt_insert->bindParam(':total', $total);
-                $stmt_insert->bindParam(':quantite', $qt);
-                $stmt_insert->bindParam(':id_panier', $id_panier);
-                $stmt_insert->execute();
-                // Redirection vers la page index
-                //header('location:listeCategorise.php?ajout=ok');
-                exit; // Arrête l'exécution du script après la redirection
-            } else {
-                echo "Erreur lors de l'ajout de la commande: " . $stmt_insert->errorInfo()[2];
-            }
-        } else {
-            echo "Tous les champs sont obligatoires.";
-        }
-    } catch (PDOException $e) {
-        echo "Erreur: " . $e->getMessage();
-    } finally {
-        // Fermeture du statement et de la connexion à la base de données
-        if (isset($stmt_insert)) {
-            $stmt_insert->closeCursor();
-        }
-        if (isset($conn)) {
-            $conn = null;
-        }
-    }
         } else {
             echo "Erreur: méthode de requête incorrecte.";
-        }
+        }}
 
 ?>

@@ -230,7 +230,7 @@ if (isset($_SESSION["panier"]) && isset($_SESSION["panier"][2]) && count($_SESSI
                 </tr>
                 </tfoot>
             </table>
-            <a href="panier.php?action=finaliser" class="btn btn-primary mt-1">Passer à la caisse</a>
+            <a href="valider_panier.php" class="btn btn-primary mt-1">Passer à la caisse</a>
             <a href="panier.php?action=consulter" class="btn btn-primary mt-1">Consulter le contenu</a>
             <a href="../home/home.php" class="btn btn-primary mt-1">contenu acheter</a>
         </div>
