@@ -18,6 +18,10 @@ function connectToDatabase() {
         exit();
     }
 }
+
+//les fonction pour la table user insere dans la table(inscription)
+
+
 function InsertClients($data) {
     // Connexion à la base de données
     $conn = connectToDatabase();
@@ -64,6 +68,8 @@ function InsertClients($data) {
         return false;
     }
 }
+
+//les fonction pour la table user(verifier login)
 
 
 function connectUser($data) {
@@ -116,6 +122,9 @@ function connectUser($data) {
         return null;
     }
 }
+
+//les fonction pour la table user recupere user
+
 function userById($id) {
     // Connexion à la base de données
     $conn = connectToDatabase();

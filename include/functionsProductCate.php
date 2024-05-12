@@ -19,6 +19,9 @@ function connectToDatabase() {
     }
 }
 
+//les fonction pour la table Categories
+
+
 function getAllCategories() {
 
     // Connexion à la base de données
@@ -104,6 +107,8 @@ function getCategoriById($id) {
         exit();
     }
 }
+
+//les fonction pour la table Produits
 
 function getAllProducts() {
 

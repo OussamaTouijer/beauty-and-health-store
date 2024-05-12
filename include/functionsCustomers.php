@@ -19,6 +19,8 @@ function connectToDatabase() {
     }
 }
 
+//les fonction pour la table Users
+
 function getAllCustomers() {
 
     // Connexion à la base de données

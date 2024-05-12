@@ -19,6 +19,9 @@ function connectToDatabase() {
     }
 }
 
+//les fonction pour calcule nombre de linge dans les table
+
+
 function countUsers() {
     // Connexion à la base de données
     $conn = connectToDatabase();
