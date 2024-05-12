@@ -1,30 +1,33 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['email']) || $_SESSION['user_type'] !== "admin"){
-    header('Location: ../../login.php');
-    exit(); // Assurez-vous de sortir après avoir redirigé
+// Check if the user is logged in and is an admin
+if (!isset($_SESSION['email']) || $_SESSION['user_type'] !== "admin") {
+    header('Location: ../../login.php?redirect=admin_panel.php');
+    exit(); // Ensure to exit after redirection
 }
 
-include '../../include/functionsProductCate.php';
-$categories = getAllCategories();
+// Include necessary functions
+include '../../include/functionsPanier.php';
 
-if(!empty($_POST['sPro'])) {
-    $products = searchProducts($_POST['sPro']);
+$paniers = [];
+
+// Perform search or retrieve all paniers
+if (!empty($_POST['sPro'])) {
+    $paniers = searchPaniers($_POST['sPro']);
 } else {
-    $products = getAllProducts();
+    $paniers = getAllPaniers();
 }
-
-
 
 // Pagination
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $categoriesPerPage = 12;
-$totalProducts = count($products);
+$totalProducts = count($paniers);
 $totalPages = ceil($totalProducts / $categoriesPerPage);
 $startIndex = ($page - 1) * $categoriesPerPage;
-$productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
+$paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -181,7 +184,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                 if(isset($_SESSION['email'])) {
 
                 echo "<div class='title-and-button'>";
-                echo "<h2 class='title' >Liste des Produits</h1>";
+                echo "<h2 class='title' >Liste des Paniers</h1>";
                 //formulair pour la recherch de produit
                 print'<form method="post" action="" >
                     <input type="text" for="b1" name="sPro" placeholder="Recherche..." class="iptR">
@@ -192,29 +195,26 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                 echo "</div>";?>
             </div>
 
-            <!-- button pour remplire modale-->
-            <?php echo '<div class="container"><a href="ajout.php" class="btnAjout" data-bs-toggle="modal" data-bs-target="#ajoutModal"> Ajouter Produit + </a></div><br>';?>
-
-            <div class="container">
+       <div class="container">
                 <?php
 
-                if (empty($productsToShow)) {
-                    echo "<p>Aucun produit trouvé.</p>";
+                if (empty($paniersToShow)) {
+                    echo "<p>Aucun paniers trouvé.</p>";
                 } else {
                 if(isset($_GET['ajout'])&& $_GET['ajout']=="ok")
-                    echo "<div class='alert alert-success'>Nouveau produit ajouté avec succès !!!</div>";
+                    echo "<div class='alert alert-success'>Nouveau panier ajouté avec succès !!!</div>";
                 if(isset($_GET['ajout'])&& $_GET['ajout']=="Nok")
                     echo "<div class='alert alert-danger'>Le libellé existe déjà. Veuillez en choisir un autre !!!</div>";
 
                 if(isset($_GET['delete'])&& $_GET['delete']=="ok")
-                    echo "<div class='alert alert-success'>Produit supprimé avec succès !!!</div>";
+                    echo "<div class='alert alert-success'>Panier supprimé avec succès !!!</div>";
                 if(isset($_GET['delete'])&& $_GET['delete']=="Nok")
-                    echo "<div class='alert alert-danger'>Échec de la suppression du produit !!!</div>";
+                    echo "<div class='alert alert-danger'>Échec de la suppression du panier !!!</div>";
 
                 if(isset($_GET['update'])&& $_GET['update']=="ok")
-                    echo "<div class='alert alert-success'>Produit mis à jour avec succès !!!</div>";
+                    echo "<div class='alert alert-success'>Panier mis à jour avec succès !!!</div>";
                 if(isset($_GET['update'])&& $_GET['update']=="Nok")
-                    echo "<div class='alert alert-danger'>Échec de la mise à jour du produit. Veuillez réessayer !!!</div>";?>
+                    echo "<div class='alert alert-danger'>Échec de la mise à jour du panier. Veuillez réessayer !!!</div>";?>
 <style>
     @media only screen and (max-width: 1024px) {
         .siw {
@@ -222,43 +222,29 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
         }
     }
 </style>
-
-
                 <?php
                 echo ' <div class="siw"> <table class="tablee" style="margin-left: auto; margin-right: auto;">
                     <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Libellé</th>
-                    <th>Marque</th>
-                    <th>Prix</th>
-                    <th>Quantite</th>
-                    <th>Catégorie</th>
-                    <th>Date de création</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Couleur</th>
-                    <th>Date de modification</th>
+                    <th>Client</th>
+                    <th>Email</th>
+                    <th>Addresse</th>
+                    <th>Prix Total</th>
                     <th>Actions</th>
                 </tr>
                     </thead>
                     <tbody>';
-                foreach ($productsToShow as $product) {
+                foreach ($paniersToShow as $panier) {
                     echo "<tr>
-                                      <td>{$product['id']}</td>
-                                      <td>{$product['libelle']}</td>
-                                      <td>{$product['marque']}</td>
-                                      <td>{$product['prix']} DH</td>
-                                      <td>{$product['discount']}</td>
-                                      <td>" . getCategoriById($product['id_categorie']) . "</td>
-                                      <td>{$product['date_creation']}</td>
-                                      <td>{$product['description']}</td>
-                                      <td><img class='image-style'src='../../images/{$product['image']}' class='card-img-top' alt='...' /></td>
-                                      <td>{$product['color']}</td>
-                                      <td>{$product['date_modification']}</td>
+                                      <td>{$panier['id']}</td>
+                                      <td>{$panier['nom']} {$panier['prenom']}</td>
+                                      <td>{$panier['email']}</td>
+                                      <td>{$panier['address']}</td>
+                                      <td>{$panier['total']}</td>
                                       <td class='action-buttons'>
-                                           <a href='modifier.php?id={$product['id']}' data-bs-toggle='modal' data-bs-target='#modifierModal{$product['id']}' ><button class='edit-button'>Modifier</button></a>
-                                           <a href='supprimer.php?id={$product['id']}'><button class='delete-button'>Supprimer</button></a>
+                                           <a href='modifier.php?id={$panier['id']}' data-bs-toggle='modal' data-bs-target='#modifierModal{$panier['id']}' ><button class='edit-button'>Modifier</button></a>
+                                           <a href='supprimer.php?id={$panier['id']}'><button class='delete-button'>Supprimer</button></a>
                                            
                                       </td>
                                       
@@ -295,139 +281,6 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
         </main>
 
     </div>
-
-
-<!-- Modal ajouter Produit -->
-<div class="modal fade" id="ajoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter Produit</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="ajout.php" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="libelle">Nom Produit :</label>
-                        <input type="text" name="libelle" id="libelle" class="form-control" placeholder="Nom de produit ..." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="marque">Marque Produit :</label>
-                        <input type="text" name="marque" id="marque" class="form-control" placeholder="Marque de produit ..." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="prix">Prix :</label>
-                        <input type="number" name="prix" id="prix" class="form-control" placeholder="Prix du produit ..." required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_categorie"> Catégorie :</label>
-                        <select id="categories" name="id_categorie" class="form-control">
-                            <?php foreach ($categories as $category): ?>
-                                <option value="<?php echo $category['id']; ?>"><?php echo $category['libelle']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="quantite">Quantite :</label>
-                        <input type="number" name="quantite" id="quantite" class="form-control" placeholder="Quantité ..." required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="description">Description :</label>
-                        <textarea name="description" id="description" class="form-control" placeholder="Description de produit ..." required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="image">Image :</label>
-                        <input type="file" name="image" id="image" class="form-control" placeholder="URL de l'image ..." accept="image/jpeg, image/png" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="couleur">Couleur :</label>
-                        <input type="text" name="color" id="couleur" class="form-control" placeholder="Couleur du produit ..." required>
-                    </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Ajouter</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<!-- chaque Produit admet un modal -->
-<?php
-foreach ($productsToShow as $item => $product) { ?>
-    <!-- Modal Modifier Produit -->
-    <div class="modal fade" id="modifierModal<?php echo "{$product['id']}"; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier Produit</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="modifier.php?id=<?php echo "{$product['id']}"; ?>" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="libelle">Libellé :</label>
-                            <input type="text" name="libelle" class="form-control" value="<?php echo "{$product['libelle']}"; ?>" placeholder="Nom de produit ..." required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="libelle">Marque :</label>
-                            <input type="text" name="marque" class="form-control" value="<?php echo "{$product['marque']}"; ?>" placeholder="Marque de produit ..." required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="prix">Prix :</label>
-                            <input type="number" name="prix" class="form-control" value="<?php echo "{$product['prix']}"; ?>" placeholder="Prix du produit ..." required>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="id_categorie"> Catégorie est: <?php echo "**{$product['libelle']}**"; ?> :</label>
-                            <select id="categories" name="id_categorie" class="form-control">
-                                <?php foreach ($categories as $category): ?>
-                                    <option value="<?php echo $category['id']; ?>"><?php echo $category['libelle']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="description">Description :</label>
-                            <textarea name="description" class="form-control" placeholder="Description de produit ..." required><?php echo "{$product['description']}"; ?></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="prix">Quantite :</label>
-                            <input type="number" name="quantite" class="form-control" value="<?php echo "{$product['discount']}"; ?>" placeholder="Prix du produit ..." required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="image">Image : <?php echo "{$product['image']}"; ?></label>
-                            <input type="file" name="image" class="form-control" placeholder="URL de l'image ..." required>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="couleur">Couleur :</label>
-                            <input type="text" name="couleur" class="form-control" value="<?php echo "{$product['color']}"; ?>" placeholder="Couleur du produit ..." required>
-                        </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Modifier</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-<?php } ?>
 
 <!-- Footer -->
 <?php include '../../include/footer.php'?>
