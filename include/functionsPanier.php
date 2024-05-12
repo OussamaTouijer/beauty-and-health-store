@@ -78,7 +78,34 @@ function searchPaniers($keywords) {
     }
 }
 
+function getAllCommands() {
+    try {
+        // Connexion à la base de données
+        $conn = connectToDatabase();
 
+        // Création de la requête SQL pour récupérer tous les paniers avec les informations des utilisateurs associés
+        $requete = "SELECT c.*, u.libelle,u.image,u.marque FROM panier,commands c INNER JOIN products u ON u.id = c.produit where panier.id=c.id_panier ";
+
+        // Exécution de la requête SQL
+        $resultat = $conn->query($requete);
+
+        // Récupération des résultats de la requête
+        $paniers = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+
+        return $paniers;
+    } catch(PDOException $e) {
+        // En cas d'erreur lors de l'exécution de la requête, affichage d'un message d'erreur
+        echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+        // Terminez le script en cas d'erreur lors de l'exécution de la requête
+        exit();
+    }
+}
 
 
 

@@ -11,7 +11,8 @@ if (!isset($_SESSION['email']) || $_SESSION['user_type'] !== "admin") {
 include '../../include/functionsPanier.php';
 
 $paniers = [];
-
+$commands = [];
+$commands=getAllCommands();
 // Perform search or retrieve all paniers
 if (!empty($_POST['sPro'])) {
     $paniers = searchPaniers($_POST['sPro']);
@@ -241,9 +242,9 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
                                       <td>{$panier['nom']} {$panier['prenom']}</td>
                                       <td>{$panier['email']}</td>
                                       <td>{$panier['address']}</td>
-                                      <td>{$panier['total']}</td>
+                                      <td>{$panier['total']} DH</td>
                                       <td class='action-buttons'>
-                                           <a href='modifier.php?id={$panier['id']}' data-bs-toggle='modal' data-bs-target='#modifierModal{$panier['id']}' ><button class='edit-button'>Modifier</button></a>
+                                           <a href='modifier.php?id={$panier['id']}' data-bs-toggle='modal' data-bs-target='#modifierModal{$panier['id']}' ><button class='edit-button'>Affichier</button></a>
                                            <a href='supprimer.php?id={$panier['id']}'><button class='delete-button'>Supprimer</button></a>
                                            
                                       </td>
@@ -281,6 +282,62 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
         </main>
 
     </div>
+
+
+<!-- Chaque produit admet un modal -->
+<!-- Modals pour chaque panier -->
+<?php foreach ($paniersToShow as $panier) : ?>
+    <!-- Modal Modifier Produit -->
+    <div class="modal fade" id="modifierModal<?php echo "{$panier['id']}"; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Liste des commandes</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Tableau pour afficher les détails du panier -->
+                    <div class="siw">
+                        <table class="table" style="margin-left: auto; margin-right: auto;">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Produit</th>
+                                <th>Images</th>
+                                <th>Quantité</th>
+                                <th>Total</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Affichage des détails du panier -->
+                            <?php foreach ($commands as $command) {
+                                if ($command['id_panier'] == $panier['id']) {
+                                    echo "<tr>
+                                                <td>{$command['id']}</td>
+                                                <td>{$command['libelle']} : {$command['marque']}</td>
+                                                <td><img class='image-style' src='../../images/{$command['image']}' class='card-img-top' alt='...' /></td>
+                                                <td>{$command['quantite']}</td>
+                                                <td>{$command['total']} DH</td>
+                                                <td class='action-buttons'>
+                                                    <a href='modifier.php?id={$command['id']}' data-bs-toggle='modal' data-bs-target='#modifierModal{$command['id']}'><button class='edit-button'>Afficher</button></a>
+                                                    <a href='supprimer.php?id={$command['id']}'><button class='delete-button'>Supprimer</button></a>
+                                                </td>
+                                            </tr>";
+                                }
+                            } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- Boutons ou actions pour modifier ou supprimer le panier -->
+                    <button type="button" class="btn btn-primary">Modifier</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
 
 <!-- Footer -->
 <?php include '../../include/footer.php'?>
