@@ -107,6 +107,40 @@ function getAllCommands() {
     }
 }
 
+if (isset($_POST)) {
+    changerEtatPanier($_POST);
+}
+
+function changerEtatPanier($data)
+{
+    try {
+        // Connexion à la base de données
+        $conn = connectToDatabase();
+
+        // Prépare la requête SQL avec des paramètres liés
+        $requete = "UPDATE panier SET etat_commande = :etat_commande WHERE id = :idP";
+        $stmt = $conn->prepare($requete);
+
+        // Liaison des paramètres
+        $stmt->bindParam(':etat_commande', $data['etat_commande']);
+        $stmt->bindParam(':idP', $data['idP']);
+
+        // Exécution de la requête SQL
+        $stmt->execute();
+
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+
+        // Optionally, you can return a success message or do other operations here
+    } catch(PDOException $e) {
+        // En cas d'erreur lors de l'exécution de la requête, affichage d'un message d'erreur
+        echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+        // Terminez le script en cas d'erreur lors de l'exécution de la requête
+        exit();
+    }
+}
 
 
 ?>

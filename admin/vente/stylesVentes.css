@@ -163,7 +163,16 @@ main {
     width: 100%;
     border-collapse: collapse;
 }
+.tablee th {
+    border: 1px solid #365486; /* Couleur de la bordure du tableau */
+    padding: 1px;
+    text-align: center;
+}
 
+.tablee td {
+    border: 1px solid #365486; /* Couleur de la bordure du tableau */
+    padding: 1px;
+}
 .tablee th {
     border: 1px solid #365486; /* Couleur de la bordure du tableau */
     padding: 10px;
@@ -195,9 +204,9 @@ main {
 }
 .delete-button {
     font-size: 16px; /* Taille de la police du texte */
-    padding: 10px 20px; /* Rembourrage (haut/bas, gauche/droite) */
+    padding: 7px 14px; /* Rembourrage (haut/bas, gauche/droite) */
     height: 40px; /* Hauteur du bouton */
-    background-color: #ff0000;
+    background-color: #0c87e5;
     color: #fff;
     margin-top: 5px;
     border: none;
@@ -209,7 +218,7 @@ main {
 
 .edit-button {
     font-size: 16px; /* Taille de la police du texte */
-    padding: 10px 20px; /* Rembourrage (haut/bas, gauche/droite) */
+    padding: 7px 14px; /* Rembourrage (haut/bas, gauche/droite) */
     height: 40px; /* Hauteur du bouton */
     background-color: #07af0a;
     color: #fff;
@@ -235,8 +244,8 @@ main {
 }
 
 .image-style {
-    width: 170px; /* Largeur de l'image */
-    height: 190px; /* Hauteur automatique pour maintenir le ratio */
+    width: 85px; /* Largeur de l'image */
+    height: 95px; /* Hauteur automatique pour maintenir le ratio */
     border: 1px solid #ccc; /* Bordure de l'image */
     border-radius: 5px; /* Coins arrondis */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre légère */
@@ -378,7 +387,7 @@ main {
         font-size: 10px; /* Taille de la police du texte */
         padding: 7px 12px; /* Rembourrage (haut/bas, gauche/droite) */
         height: 22px; /* Hauteur du bouton */
-        background-color: #ff0000;
+        background-color: #0c87e5;
         color: #fff;
         margin-top: 4px;
         border: none;

@@ -10,6 +10,10 @@ if (!isset($_SESSION['email']) || $_SESSION['user_type'] !== "admin") {
 // Include necessary functions
 include '../../include/functionsPanier.php';
 
+if (isset($_POST['btnSu'])) {
+    changerEtatPanier($_POST);
+}
+
 $paniers = [];
 $commands = [];
 $commands=getAllCommands();
@@ -35,7 +39,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Éclat & Vitalité (Admin)</title>
-    <link rel="stylesheet" href="stylesProducts.css">
+    <link rel="stylesheet" href="stylesVentes.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -221,6 +225,9 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
         .siw {
             overflow-x: auto;
         }
+        .sid {
+            overflow-x: auto;
+        }
     }
 </style>
                 <?php
@@ -244,8 +251,8 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
                                       <td>{$panier['address']}</td>
                                       <td>{$panier['total']} DH</td>
                                       <td class='action-buttons'>
-                                           <a href='modifier.php?id={$panier['id']}' data-bs-toggle='modal' data-bs-target='#modifierModal{$panier['id']}' ><button class='edit-button'>Affichier</button></a>
-                                           <a href='supprimer.php?id={$panier['id']}'><button class='delete-button'>Supprimer</button></a>
+                                           <a  data-bs-toggle='modal' data-bs-target='#modifierModal{$panier['id']}' ><button class='edit-button'>Affichier</button></a>
+                                           <a data-bs-toggle='modal' data-bs-target='#traitModal{$panier['id']}' ><button class='delete-button'>Traiter</button></a>
                                            
                                       </td>
                                       
@@ -288,7 +295,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
 <!-- Modals pour chaque panier -->
 <?php foreach ($paniersToShow as $panier) : ?>
     <!-- Modal Modifier Produit -->
-    <div class="modal fade" id="modifierModal<?php echo "{$panier['id']}"; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade swd" id="modifierModal<?php echo "{$panier['id']}"; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -306,7 +313,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
                                 <th>Images</th>
                                 <th>Quantité</th>
                                 <th>Total</th>
-                                <th>Actions</th>
+<!--                                <th>Actions</th>-->
                             </tr>
                             </thead>
                             <tbody>
@@ -319,10 +326,10 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
                                                 <td><img class='image-style' src='../../images/{$command['image']}' class='card-img-top' alt='...' /></td>
                                                 <td>{$command['quantite']}</td>
                                                 <td>{$command['total']} DH</td>
-                                                <td class='action-buttons'>
+                                              <!--  <td class='action-buttons'>
                                                     <a href='modifier.php?id={$command['id']}' data-bs-toggle='modal' data-bs-target='#modifierModal{$command['id']}'><button class='edit-button'>Afficher</button></a>
                                                     <a href='supprimer.php?id={$command['id']}'><button class='delete-button'>Supprimer</button></a>
-                                                </td>
+                                                </td>-->
                                             </tr>";
                                 }
                             } ?>
@@ -331,13 +338,52 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <!-- Boutons ou actions pour modifier ou supprimer le panier -->
-                    <button type="button" class="btn btn-primary">Modifier</button>
+                    <!-- Boutons ou actions pour modifier ou supprimer le panier
+                    <button type="button" class="btn btn-primary">Modifier</button>-->
                 </div>
             </div>
         </div>
     </div>
 <?php endforeach; ?>
+
+
+<!-- Chaque produit admet un modal Traiter -->
+<!-- Modals pour chaque panier -->
+<?php foreach ($paniersToShow as $panier) : ?>
+    <!-- Modal Modifier Produit -->
+    <div class="modal fade swd" id="traitModal<?php echo "{$panier['id']}"; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Traiter la commande</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="" method="post">
+                        <input type="hidden" name="idP" value="<?php echo "{$panier['id']}"; ?>">
+                        <div class="form-group">
+                            <select name='etat_commande' class="form-control">
+                                <option value='en cours' <?php if($panier['etat_commande'] == 'en cours') echo 'selected'; ?>>En cours</option>
+                                <option value='en livraison' <?php if($panier['etat_commande'] == 'en livraison') echo 'selected'; ?>>En livraison</option>
+                                <option value='livrée' <?php if($panier['etat_commande'] == 'livrée') echo 'selected'; ?>>Livrée</option>
+                                <option value='annulée' <?php if($panier['etat_commande'] == 'annulée') echo 'selected'; ?>>Annulée</option>
+                            </select>
+                        </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <!-- Boutons ou actions pour modifier ou supprimer le panier -->
+                    <button type="submit" name="btnSu" class="btn btn-primary">Sauvgarder</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
 
 <!-- Footer -->
 <?php include '../../include/footer.php'?>
