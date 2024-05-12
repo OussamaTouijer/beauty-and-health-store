@@ -71,7 +71,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active custom" href="listeProduits.php">
+                        <a class="nav-link custom" href="../produits/listeProduits.php">
                             Produits
                         </a>
                     </li>
@@ -81,7 +81,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom" href="../vente/listeVentes.php">
+                        <a class="nav-link active custom" href="listeVentes.php">
                             Ventes
                         </a>
                     </li>
@@ -133,11 +133,6 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link custom" href="../users/listeCustomers.php">Clientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom" href="../vente/listeVentes.php">
-                            Ventes
-                        </a>
                     </li>
                 </ul>
             </nav>

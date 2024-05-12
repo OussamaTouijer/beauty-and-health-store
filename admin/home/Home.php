@@ -54,6 +54,11 @@ $nbrVentes=countCommands();
                     <li class="nav-item">
                         <a class="nav-link custom" href="../users/listeCustomers.php">Clientes</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="../vente/listeVentes.php">
+                            Ventes
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -95,6 +100,11 @@ $nbrVentes=countCommands();
                     </li>
                     <li class="nav-item">
                         <a class="nav-link custom" href="../users/listeCustomers.php">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="../vente/listeVentes.php">
+                            Ventes
+                        </a>
                     </li>
                 </ul>
             </nav>

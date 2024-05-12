@@ -46,6 +46,11 @@ if (!isset($_SESSION['email']) || $_SESSION['user_type'] !== "admin"){
                     <li class="nav-item">
                         <a class="nav-link custom" href="../users/listeCustomers.php">Clientes</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="../vente/listeVentes.php">
+                            Ventes
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -92,6 +97,11 @@ if (!isset($_SESSION['email']) || $_SESSION['user_type'] !== "admin"){
                     </li>
                     <li class="nav-item">
                         <a class="nav-link custom" href="../users/listeCustomers.php">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="../vente/listeVentes.php">
+                            Ventes
+                        </a>
                     </li>
                 </ul>
             </nav>

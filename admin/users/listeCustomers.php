@@ -80,6 +80,11 @@ $usersToShow = array_slice($users, $startIndex, $usersPerPage);
                             Clientes
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="../vente/listeVentes.php">
+                            Ventes
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
@@ -128,6 +133,11 @@ $usersToShow = array_slice($users, $startIndex, $usersPerPage);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active custom" href="listeCustomers.php">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="../vente/listeVentes.php">
+                            Ventes
+                        </a>
                     </li>
                 </ul>
             </nav>

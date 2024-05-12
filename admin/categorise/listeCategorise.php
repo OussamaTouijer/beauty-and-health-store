@@ -78,6 +78,11 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
                             Clientes
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="../vente/listeVentes.php">
+                            Ventes
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
@@ -126,6 +131,11 @@ $categoriesToShow = array_slice($categories, $startIndex, $categoriesPerPage);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link custom" href="../users/listeCustomers.php">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="../vente/listeVentes.php">
+                            Ventes
+                        </a>
                     </li>
                 </ul>
             </nav>
