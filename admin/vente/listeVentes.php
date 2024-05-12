@@ -129,10 +129,15 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                         <a class="nav-link custom" href="../categorise/listeCategorise.php">Catégories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active custom" href="listeProduits.php">Produits</a>
+                        <a class="nav-link active custom" href="../produits/listeProduits.php">Produits</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link custom" href="../users/listeCustomers.php">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom" href="listeVentes.php">
+                            Ventes
+                        </a>
                     </li>
                 </ul>
             </nav>
