@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 11 mai 2024 à 12:47
+-- Généré le : dim. 12 mai 2024 à 12:35
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -158,7 +158,7 @@ INSERT INTO `products` (`id`, `libelle`, `prix`, `discount`, `id_categorie`, `da
 (2, 'Crème hydratante à la vitamine C', 24.99, 23451, 1, '2024-04-24 00:46:28', 'Hydratez et illuminez votre peau avec notre crème à la vitamine C, idéale pour une peau éclatante.', 'creme_vitamine_c.jpg', 'Blanc', '2024-04-25 22:36:19', ' Ole Henriksen'),
 (3, 'Fond de teint liquide longue tenue', 19.99, 423, 2, '2024-04-04 01:49:03', 'Obtenez un teint parfait avec notre fond de teint liquide longue tenue, disponible dans plusieurs nuances.', 'fond_de_teint.jpg', 'Beige', '2024-04-25 22:36:26', 'Estée Lauder'),
 (4, 'Palette d\'ombres à paupières neutres', 29.99, 719, 2, '2024-04-04 01:49:03', 'Créez des looks sublimes avec notre palette d\'ombres à paupières neutres, parfaite pour toutes les occasions.', 'palette_ombres_paupieres.jpg', 'Marron', '2024-04-25 22:36:44', 'Urban Decay'),
-(5, 'Shampooing fortifiant à l&#039;huile d&#039;argan', 12.99, 318, 1, '2024-04-04 01:49:03', 'Renforcez et hydratez vos cheveux avec notre shampooing à l&#039;huile d&#039;argan, idéal pour tous types de cheveux.', 'shampooing_Argan.jpg', 'Jaune', '2024-04-26 13:48:50', 'Moroccanoil'),
+(5, 'Shampooing fortifiant à l&#039;huile d&#039;argan', 12.99, 318, 1, '2024-04-04 01:49:03', 'Renforcez et hydratez vos cheveux avec notre shampooing à l&#039;huile d&#039;argan, idéal pour tous types de cheveux.', 'shampooing_Argane.png', 'Jaune', '2024-05-12 01:15:49', 'Moroccanoil'),
 (6, 'Masque capillaire réparateur à la kératine', 18.99, 437, 3, '2024-04-04 01:49:03', 'Réparez et nourrissez vos cheveux en profondeur avec notre masque capillaire à la kératine, pour des cheveux doux et soyeux.', 'masque_keratine.jpg', 'Vert', '2024-04-25 22:37:35', 'Kérastase'),
 (81, 'Gel douche parfumé à la lavande', 9.99, 129, 4, '2024-04-08 15:08:13', 'Détendez-vous sous la douche avec notre gel douche parfumé à la lavande, pour une peau propre et douce.', 'gel_douche_lavande.jpg', 'Violet', '2024-04-26 15:07:17', 'L\'OccitaneProvence'),
 (82, 'Boules de bain effervescentes à l\'eucalyptus', 7.99, 4, 4, '2024-04-08 15:08:13', 'Transformez votre bain en un moment de détente avec nos boules de bain effervescentes à l\'eucalyptus.', 'boules_bain_eucalyptus.jpg', 'Vert', '2024-04-25 22:38:04', 'Lush'),
@@ -179,7 +179,7 @@ INSERT INTO `products` (`id`, `libelle`, `prix`, `discount`, `id_categorie`, `da
 (99, 'Gel de rasage hydratant à l\'aloe vera', 14.99, 234, 13, '2024-04-08 15:08:13', 'Obtenez un rasage doux et confortable avec notre gel de rasage hydratant à l\'aloe vera.', 'gel_rasage.jpg', 'Bleu', '2024-04-25 22:49:30', 'The Art of Shaving'),
 (100, 'Baume après-rasage rafraîchissant à la menthe', 12.99, 109, 13, '2024-04-08 15:08:13', 'Apaisez et rafraîchissez votre peau après le rasage avec notre baume après-rasage à la menthe.', 'baume_apres_rasage.jpg', 'Vert', '2024-04-25 22:49:15', 'Nivea Men'),
 (101, 'Dentifrice blanchissant au charbon actif', 7.99, 140, 14, '2024-04-08 15:08:13', 'Blanchissez naturellement vos dents avec notre dentifrice au charbon actif, pour un sourire éclatant.', 'dentifrice_charbon.jpg', 'Noir', '2024-04-25 22:48:59', 'Crest'),
-(102, 'Brosse à dents électrique rechargeable', 29.99, 75, 1, '2024-04-08 15:08:13', 'Nettoyez vos dents en profondeur avec notre brosse à dents électrique rechargeable, pour une hygiène bucco-dentaire optimale.', 'brosse_dents_Electrique.jpg', 'Blanc', '2024-04-26 14:00:51', 'Philips Sonicare'),
+(102, 'Brosse à dents électrique rechargeable', 29.99, 75, 1, '2024-04-08 15:08:13', 'Nettoyez vos dents en profondeur avec notre brosse à dents électrique rechargeable, pour une hygiène bucco-dentaire optimale.', 'brosse_dents_Electrique.png', 'Blanc', '2024-05-12 01:06:29', 'Philips Sonicare'),
 (103, 'Bougie parfumée à la lavande pour la relaxation', 12.99, 253, 15, '2024-04-08 15:08:13', 'Créez une ambiance apaisante avec notre bougie parfumée à la lavande, parfaite pour la relaxation.', 'bougie_lavande.jpg', 'Violet', '2024-04-25 22:48:31', ' Yankee Candle'),
 (104, 'Tapis de yoga antidérapant en caoutchouc naturel', 29.99, 141, 15, '2024-04-08 15:08:13', 'Pratiquez le yoga en toute sécurité avec notre tapis de yoga antidérapant en caoutchouc naturel.', 'tapis_yoga.jpg', 'Green', '2024-04-25 22:48:20', 'Liforme'),
 (105, 'Crème contour des yeux hydratante à l\'acide hyaluronique', 19.99, 243, 16, '2024-04-08 15:08:13', 'Hydratez et atténuez les cernes avec notre crème contour des yeux à l\'acide hyaluronique.', 'creme_contour_yeux.jpg', 'Bleu', '2024-04-25 22:46:55', 'Neutrogena'),
@@ -214,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `date_modification` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `etat` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
@@ -226,7 +226,8 @@ INSERT INTO `users` (`id`, `nom`, `prenom`, `email`, `password`, `user_type`, `t
 (23, 'Youness', 'Wyday', 'youness@gmail.com', '$2y$10$RY1mxT1LP4jiPJnqyQUoXezkIDGmXSI3v/q6jOfkJN/PbnM4whDVe', 'client', '0645132435', 'HAY karima RUE MATMATA N 113 SALE', 'Agadir', '2024-04-22 19:30:23', '2024-04-22 19:30:23', 0),
 (24, 'simo', 'simo', 'simo@gmail.com', '$2y$10$TVDqgoeioQRTMc4iKw.UGufc0/b8UvGf/CeeXBm8ayQtjNhxmn3xy', 'client', '0613242526', 'HAY CHIKHE LAMFADAL RUE MATMATA N 113 SALE', 'Khemisset', '2024-04-22 23:10:38', '2024-04-22 23:10:38', 0),
 (26, 'samira', 'ghandor', 'samira@gmail.com', '$2y$10$QtdYAAPasz5rHv8Z68XFheH38dPai3nJSH2FJpNtclnUqhO9dbugy', 'client', '0635261782', 'HAY HORIA RUE SANAOUBAR N 34 RABAT', 'RABAT', '2024-04-25 19:12:32', '2024-04-25 19:12:32', 0),
-(27, 'Assal', 'Anass', 'anassAssal@gmail.com', '$2y$10$RTzjyyEq2P8mY1OUWzwryeG.zsy5BNrtDsEG4Hvn/LKnqcPqR51Mq', 'client', '0617685743', 'Bouknadel Se 4 N 621', 'Salé', '2024-05-03 00:39:27', '2024-05-03 00:39:27', 0);
+(27, 'Assal', 'Anass', 'anassAssal@gmail.com', '$2y$10$RTzjyyEq2P8mY1OUWzwryeG.zsy5BNrtDsEG4Hvn/LKnqcPqR51Mq', 'client', '0617685743', 'Bouknadel Se 4 N 621', 'Salé', '2024-05-03 00:39:27', '2024-05-03 00:39:27', 0),
+(28, 'Ran', 'Rania', 'Rania2Ran@gmail.com', '$2y$10$Te.clBn653Ec9j0ovImFn.Ktg5zqjkWvh6HoayiKLm7823zgUc.u.', 'admin', '0613245634', 'Doha b14', 'Salé', '2024-05-12 01:42:37', '2024-05-12 01:42:37', 0);
 
 --
 -- Contraintes pour les tables déchargées
