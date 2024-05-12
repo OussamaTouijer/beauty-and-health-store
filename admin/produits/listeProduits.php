@@ -234,11 +234,11 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                     <th>Prix</th>
                     <th>Quantite</th>
                     <th>Catégorie</th>
-                    <th>Date de création</th>
+                  <!--th>Date de création</th-->
                     <th>Description</th>
                     <th>Image</th>
                     <th>Couleur</th>
-                    <th>Date de modification</th>
+                    <!--th>Date de modification</th-->
                     <th>Actions</th>
                 </tr>
                     </thead>
@@ -251,11 +251,11 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
                                       <td>{$product['prix']} DH</td>
                                       <td>{$product['discount']}</td>
                                       <td>" . getCategoriById($product['id_categorie']) . "</td>
-                                      <td>{$product['date_creation']}</td>
+                                      <!--td>{$product['date_creation']}</td-->
                                       <td>{$product['description']}</td>
                                       <td><img class='image-style'src='../../images/{$product['image']}' class='card-img-top' alt='...' /></td>
                                       <td>{$product['color']}</td>
-                                      <td>{$product['date_modification']}</td>
+                                      <!--td><td>{$product['date_modification']}</td-->
                                       <td class='action-buttons'>
                                            <a href='modifier.php?id={$product['id']}' data-bs-toggle='modal' data-bs-target='#modifierModal{$product['id']}' ><button class='edit-button'>Modifier</button></a>
                                            <a href='supprimer.php?id={$product['id']}'><button class='delete-button'>Supprimer</button></a>
