@@ -44,7 +44,7 @@ if (!empty($_POST)) {
             $_SESSION['address']=$user['address'];
             $_SESSION['ville']=$user['ville'];
 
-            header('location:admin/profile/profile.php?id=$user["id"]');//rederection
+            header('location:admin/profile/profile.php');//rederection
         }
 
     }
