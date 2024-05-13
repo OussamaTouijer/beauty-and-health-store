@@ -8,10 +8,10 @@ if (!isset($_SESSION['email'])){
 }
 
 include '../../include/functionsLoginRegistre.php';
-$idU = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_VALIDATE_INT) : null;
 
-if($idU){
-$user = userById($_GET['id']);
+if(isset($_SESSION['id'])){
+    $id=$_SESSION['id'];
+$user = userById($id);
 }
 ?>
 

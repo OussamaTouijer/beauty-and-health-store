@@ -1,4 +1,6 @@
 <?php
+session_start(); // Démarrage de la session
+
 // 1- Vérification si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // 2- Vérification si les champs sont définis et non vides
@@ -31,14 +33,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt_update->bindParam(':id', $id);
 
                 if ($stmt_update->execute()) {
-                    // Redirection vers la page index
+                    // Récupération des données de l'utilisateur mis à jour
+                    $sql_select = "SELECT * FROM users WHERE id = :id";
+                    $stmt_select = $conn->prepare($sql_select);
+                    $stmt_select->bindParam(':id', $id);
+                    $stmt_select->execute();
+                    $user = $stmt_select->fetch(PDO::FETCH_ASSOC);
+
+                    // Attribution des valeurs aux variables de session
+                    $_SESSION['email'] = $user['email'];
+                    $_SESSION['prenom'] = $user['prenom'];
+                    $_SESSION['nom'] = $user['nom'];
+                    $_SESSION['user_type'] = $user['user_type'];
+                    $_SESSION['id'] = $user['id'];
+                    $_SESSION['address'] = $user['address'];
+                    $_SESSION['ville'] = $user['ville'];
+
+                    // Redirection vers la page profile
                     header("location: profile.php?update=ok&id=$id");
                     exit; // Arrête l'exécution du script
                 } else {
-                    echo "Erreur lors de la mise à jour de le Client: " . $stmt_update->errorInfo()[2];
+                    echo "Erreur lors de la mise à jour du Client: " . $stmt_update->errorInfo()[2];
                 }
 
-                $stmt_update->closeCursor(); // Correction: Déplacement de cette ligne à l'intérieur du bloc try
+                $stmt_update->closeCursor(); // Déplacement à l'intérieur du bloc try
 
             } catch (PDOException $e) {
                 echo "Erreur: " . $e->getMessage();
