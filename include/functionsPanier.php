@@ -142,5 +142,15 @@ function changerEtatPanier($data)
     }
 }
 
+function getByEta($paniers, $etat)
+{
+    $panierEtat = [];
+    foreach ($paniers as $p) {
+        if ($p['etat_commande'] == $etat) {
+            $panierEtat[] = $p;
+        }
+    }
+    return $panierEtat;
+}
 
 ?>

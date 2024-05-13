@@ -1,37 +1,48 @@
 <?php
 session_start();
 
-// Check if the user is logged in and is an admin
+// Vérifier si l'utilisateur est connecté en tant qu'administrateur
 if (!isset($_SESSION['email']) || $_SESSION['user_type'] !== "admin") {
     header('Location: ../../login.php?redirect=admin_panel.php');
-    exit(); // Ensure to exit after redirection
+    exit(); // Assurer de sortir après la redirection
 }
 
-// Include necessary functions
+// Inclure les fonctions nécessaires
 include '../../include/functionsPanier.php';
 
+// Traitement du changement d'état du panier s'il y a une soumission de formulaire
 if (isset($_POST['btnSu'])) {
     changerEtatPanier($_POST);
 }
 
+// Initialiser les tableaux
 $paniers = [];
 $commands = [];
-$commands=getAllCommands();
-// Perform search or retrieve all paniers
+
+// Obtenir toutes les commandes
+$commands = getAllCommands();
+
+// Effectuer une recherche ou récupérer tous les paniers
 if (!empty($_POST['sPro'])) {
     $paniers = searchPaniers($_POST['sPro']);
 } else {
     $paniers = getAllPaniers();
 }
 
+// Filtrer les paniers par état de commande s'il y a une soumission de formulaire
+if (isset($_POST['btS']) && isset($_POST['etat_commande'])) {
+    $paniers = getByEta($paniers, $_POST['etat_commande']);
+}
+
 // Pagination
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$categoriesPerPage = 12;
-$totalProducts = count($paniers);
-$totalPages = ceil($totalProducts / $categoriesPerPage);
-$startIndex = ($page - 1) * $categoriesPerPage;
-$paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
+$paniersPerPage = 12;
+$totalPaniers = count($paniers);
+$totalPages = ceil($totalPaniers / $paniersPerPage);
+$startIndex = ($page - 1) * $paniersPerPage;
+$paniersToShow = array_slice($paniers, $startIndex, $paniersPerPage);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -200,7 +211,11 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
                 echo "</div>";?>
             </div>
 
+
+
        <div class="container">
+
+
                 <?php
 
                 if (empty($paniersToShow)) {
@@ -230,6 +245,19 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
         }
     }
 </style>
+           <div class="container mb-2">
+               <form action="" method="post" class="d-flex align-items-end">
+                   <select name='etat_commande' class="form-control me-2">
+                       <option value='en cours'>===Choisir l'etat===</option>
+                       <option value='en cours'>En cours</option>
+                       <option value='en livraison'>En livraison</option>
+                       <option value='livrée'>Livrée</option>
+                       <option value='annulée'>Annulée</option>
+                   </select>
+                   <button type="submit" name="btS" class="btn btn-primary">Chercher</button>
+               </form>
+           </div>
+
                 <?php
                 echo ' <div class="siw"> <table class="tablee" style="margin-left: auto; margin-right: auto;">
                     <thead>
@@ -239,6 +267,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
                     <th>Email</th>
                     <th>Addresse</th>
                     <th>Prix Total</th>
+                    <th>Etat</th>
                     <th>Actions</th>
                 </tr>
                     </thead>
@@ -250,6 +279,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $categoriesPerPage);
                                       <td>{$panier['email']}</td>
                                       <td>{$panier['address']}</td>
                                       <td>{$panier['total']} DH</td>
+                                      <td>{$panier['etat_commande']}</td>
                                       <td class='action-buttons'>
                                            <a  data-bs-toggle='modal' data-bs-target='#modifierModal{$panier['id']}' ><button class='edit-button'>Affichier</button></a>
                                            <a data-bs-toggle='modal' data-bs-target='#traitModal{$panier['id']}' ><button class='delete-button'>Traiter</button></a>
