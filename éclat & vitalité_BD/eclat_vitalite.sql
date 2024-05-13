@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 12 mai 2024 à 12:35
+-- Généré le : lun. 13 mai 2024 à 00:30
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `quantite` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fi_IdPanier` (`id_panier`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `commands`
@@ -95,7 +95,9 @@ INSERT INTO `commands` (`id`, `produit`, `total`, `valide`, `date_creation`, `da
 (51, 5, 12.99, NULL, '2024-05-11 11:57:14', '2024-05-11 11:57:14', 48, 1),
 (52, 88, 89.97, NULL, '2024-05-11 12:03:40', '2024-05-11 12:03:40', 49, 3),
 (53, 5, 12.99, NULL, '2024-05-11 12:03:40', '2024-05-11 12:03:40', 49, 1),
-(54, 2, 24.99, NULL, '2024-05-11 12:05:07', '2024-05-11 12:05:07', 50, 1);
+(54, 2, 24.99, NULL, '2024-05-11 12:05:07', '2024-05-11 12:05:07', 50, 1),
+(55, 82, 7.99, NULL, '2024-05-13 00:29:26', '2024-05-13 00:29:26', 51, 1),
+(56, 92, 259.87, NULL, '2024-05-13 00:29:26', '2024-05-13 00:29:26', 51, 13);
 
 -- --------------------------------------------------------
 
@@ -113,18 +115,19 @@ CREATE TABLE IF NOT EXISTS `panier` (
   `etat_commande` enum('en cours','en livraison','livrée','annulée','autre') DEFAULT 'en cours',
   PRIMARY KEY (`id`),
   KEY `fk_IdUser` (`idClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `panier`
 --
 
 INSERT INTO `panier` (`id`, `idClient`, `total`, `date_modified`, `date_creation`, `etat_commande`) VALUES
-(46, 22, 24.99, '2024-05-11 11:54:51', '2024-05-11 11:54:51', 'en cours'),
-(47, 22, 102.96, '2024-05-11 11:56:22', '2024-05-11 11:56:22', 'en cours'),
+(46, 22, 24.99, '2024-05-12 23:26:20', '2024-05-11 11:54:51', 'en cours'),
+(47, 22, 102.96, '2024-05-12 23:26:31', '2024-05-11 11:56:22', 'annulée'),
 (48, 22, 102.96, '2024-05-11 11:57:14', '2024-05-11 11:57:14', 'en cours'),
 (49, 22, 102.96, '2024-05-11 12:03:40', '2024-05-11 12:03:40', 'en cours'),
-(50, 22, 24.99, '2024-05-11 12:05:07', '2024-05-11 12:05:07', 'en cours');
+(50, 22, 24.99, '2024-05-11 12:05:07', '2024-05-11 12:05:07', 'en cours'),
+(51, 23, 267.86, '2024-05-13 00:30:15', '2024-05-13 00:29:26', 'livrée');
 
 -- --------------------------------------------------------
 
@@ -222,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `nom`, `prenom`, `email`, `password`, `user_type`, `telephone`, `address`, `ville`, `date_creation`, `date_modification`, `etat`) VALUES
 (21, 'TOUIJER', 'OUSSAMA', 'oussama5touijer@gmail.com', '$2y$10$H8OKDA9MhuAohrTO1G7wSujhGA2zvOmCGlfREh/xmeLQHJbL1trKK', 'admin', '0610605738', 'HAY CHIKHE LAMFADAL RUE MATMATA N 113 SALE', 'Salé', '2024-04-09 01:22:10', '2024-04-22 23:30:34', 0),
-(22, 'sanae', 'yousri', 'sanae@gmail.com', '$2y$10$v36lnopd5PvP7VQvm1XuFeEDCCnmPH/Ykpbipr4d1WiXgPEtbnHuK', 'client', '0645364564', 'HAY Horia RUE MtochN 113 Asilah', 'Asilah', '2024-04-09 01:29:31', '2024-05-03 00:18:53', 0),
+(22, 'sanae', 'yousriqq', 'sanae@gmail.com', '$2y$10$v36lnopd5PvP7VQvm1XuFeEDCCnmPH/Ykpbipr4d1WiXgPEtbnHuK', 'client', '0645364564', 'HAY Horia RUE MtochN 113 Asilah', 'Asilah', '2024-04-09 01:29:31', '2024-05-13 00:27:40', 0),
 (23, 'Youness', 'Wyday', 'youness@gmail.com', '$2y$10$RY1mxT1LP4jiPJnqyQUoXezkIDGmXSI3v/q6jOfkJN/PbnM4whDVe', 'client', '0645132435', 'HAY karima RUE MATMATA N 113 SALE', 'Agadir', '2024-04-22 19:30:23', '2024-04-22 19:30:23', 0),
 (24, 'simo', 'simo', 'simo@gmail.com', '$2y$10$TVDqgoeioQRTMc4iKw.UGufc0/b8UvGf/CeeXBm8ayQtjNhxmn3xy', 'client', '0613242526', 'HAY CHIKHE LAMFADAL RUE MATMATA N 113 SALE', 'Khemisset', '2024-04-22 23:10:38', '2024-04-22 23:10:38', 0),
 (26, 'samira', 'ghandor', 'samira@gmail.com', '$2y$10$QtdYAAPasz5rHv8Z68XFheH38dPai3nJSH2FJpNtclnUqhO9dbugy', 'client', '0635261782', 'HAY HORIA RUE SANAOUBAR N 34 RABAT', 'RABAT', '2024-04-25 19:12:32', '2024-04-25 19:12:32', 0),
