@@ -145,7 +145,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
 
             <div class="user-wrapper">
-                <a href="../panier/panier.php">
+                <a href="client/panier/panier.php">
                     <i class="fas fa-shopping-cart">Panier</i>
                 </a>
                 <!-- Affiche le nombre d'articles dans le panier -->
@@ -218,7 +218,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
 
             <div class="user-wrapper">
-                <a href="../panier/panier.php">
+                <a href="client/panier/panier.php">
                     <i class="fas fa-shopping-cart">Panier</i>
                 </a>
                 <!-- Affiche le nombre d'articles dans le panier -->

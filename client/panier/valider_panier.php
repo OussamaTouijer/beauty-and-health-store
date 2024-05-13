@@ -15,18 +15,19 @@ $conn = connectToDatabase();
 if (isset($_SESSION['panier'])) {
     try {
         // Vérification si les champs sont définis et non vides
-        if (isset($_SESSION['id']) && isset($_SESSION['panier'][1])) {
+        if (isset($_SESSION['id']) && isset($_SESSION['panier'][1]) && isset($_GET['paiement'])) {
             $idClient=$_SESSION['id'];
             $total = $_SESSION['panier'][1];
+            $paiement=$_GET['paiement'];
 
-            header('location:../panier/panier.php');
 
 
             // Préparation de la requête SQL avec des paramètres nommés Pour panier
-            $sql_insert = "INSERT INTO panier (idClient , total) VALUES (:idClient , :total)";
+            $sql_insert = "INSERT INTO panier (idClient , total, mode_paiement) VALUES (:idClient , :total, :mode_paiement)";
             $stmt_insert = $conn->prepare($sql_insert);
             $stmt_insert->bindParam(':idClient', $idClient);
             $stmt_insert->bindParam(':total', $total);
+            $stmt_insert->bindParam(':mode_paiement', $paiement);
 
 
 

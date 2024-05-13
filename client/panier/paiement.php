@@ -184,55 +184,16 @@ if (isset($_SESSION["panier"]) && isset($_SESSION["panier"][2]) && count($_SESSI
 
 
 <mainb style="background-color: #f4f4f4">
-    <div class="container d-flex justify-content-center align-items-center" style="background-color: #f4f4f4">
+    <div class="container d-flex justify-content-center " style="background-color: #f4f4f4">
 
         <!-- Votre en-tête ici -->
 
         <!-- Contenu principal -->
-        <div class="container-fluid py-1 mt-1" style="background-color: #eeeeee;border-radius:25px;">
-            <h2 class="title">Votre Panier</h2>
-            <table class="tablee">
-                <thead>
-                <tr>
-                    <th>ID Produit</th>
-                    <th>Marque</th>
-                    <th>Nom de produit</th>
-                    <th>Image</th>
-                    <th>Quantité</th>
-                    <th>Total</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($commandes as $index => $product): ?>
-                    <tr>
-                        <td><?php echo $product[2]; ?></td>
-                        <td><?php echo $product[3]; ?></td>
-                        <td><?php echo $product[5]; ?></td>
-                        <td><img class='image-style' src='../../images/<?php echo $product[4]; ?>' class='card-img-top' alt='...' /></td>
-                        <td><?php echo $product[0]; ?> pieces</td>
-                        <td><?php echo $product[1]; ?> MAD</td>
-                        <td><a href="supprimer.php?id=<?php echo $index; ?>" class="delete-button">Supprimer</a></td>
-                    </tr>
-                <?php endforeach; ?>
-
-
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="5">Total:</td>
-                    <td>
-                        <?php
-                        $total_panier = isset($_SESSION['panier'][1]) ? $_SESSION['panier'][1] : 0;
-                        echo $total_panier . " MAD";
-                        ?>
-                    </td>
-                </tr>
-                </tfoot>
-            </table>
-            <a href="paiement.php" class="btn btn-primary mt-1">Passer à la caisse</a>
-            <a href="panier.php?action=consulter" class="btn btn-primary mt-1">Consulter le contenu</a>
-            <a href="../home/home.php" class="btn btn-primary mt-1">contenu acheter</a>
+        <div class="py-1 mt-4" style="background-color: #eeeeee; border-radius: 25px;">
+            <h2 class="title mt-2">Mode de paiement</h2>
+            <a href="valider_panier.php?paiement=Livraison" class="btn btn-primary mt-1">Livraison</a>
+            <a href="valider_panier.php?paiement=Carte bancaire" class="btn btn-primary mt-1">Carte bancaire</a>
+            <a href="../home/home.php" class="btn btn-primary mt-1">Contenu acheter</a>
         </div>
 
         <!-- Votre pied de page ici -->

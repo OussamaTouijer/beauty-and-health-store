@@ -267,6 +267,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $paniersPerPage);
                     <th>Email</th>
                     <th>Addresse</th>
                     <th>Prix Total</th>
+                    <th>Mode de paiement</th>
                     <th>Etat</th>
                     <th>Actions</th>
                 </tr>
@@ -279,6 +280,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $paniersPerPage);
                                       <td>{$panier['email']}</td>
                                       <td>{$panier['address']}</td>
                                       <td>{$panier['total']} DH</td>
+                                      <td>{$panier['mode_paiement']}</td>
                                       <td>{$panier['etat_commande']}</td>
                                       <td class='action-buttons'>
                                            <a  data-bs-toggle='modal' data-bs-target='#modifierModal{$panier['id']}' ><button class='edit-button'>Affichier</button></a>
