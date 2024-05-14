@@ -122,7 +122,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
                     <?php if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client"): ?>
                         <li class="nav-item">
-                            <a class="nav-link custom" href="../profile/profile.php?id=<?php $id=$_SESSION['id']; echo $id;?>">Profil</a>
+                            <a class="nav-link custom" href="../profile/profile.php">Profil</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
@@ -185,7 +185,7 @@ $productsToShow = array_slice($products, $startIndex, $categoriesPerPage);
 
                     <?php if(isset($_SESSION['email']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == "client"): ?>
                         <li class="nav-item">
-                            <a class="nav-link custom" href="../profile/profile.php?id=<?php $id=$_SESSION['id']; echo $id;?>">Profil</a>                        </li>
+                            <a class="nav-link custom" href="../profile/profile.php">Profil</a>                        </li>
                     <?php else: ?>
                         <li class="nav-item">
                             <a class="nav-link  custom" href="../../login.php">Connexion</a>
