@@ -269,7 +269,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $paniersPerPage);
                 ?>
             </div>
 
-            <a href="../home/home.php" class="btn btn-primary mt-1">Contenu acheter</a>
+            <a href="../home/home.php" class="btn btn-primary mt-1">Continuer les achats</a>
         </div>
 
         <!-- Votre pied de page ici -->

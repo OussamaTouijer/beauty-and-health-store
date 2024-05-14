@@ -232,7 +232,7 @@ if (isset($_SESSION["panier"]) && isset($_SESSION["panier"][2]) && count($_SESSI
             </table>
             <a href="paiement.php" class="btn btn-primary mt-1">Finaliser les Commandes</a>
             <a href="listCommands.php" class="btn btn-primary mt-1">Consulter les Commandes</a>
-            <a href="../home/home.php" class="btn btn-primary mt-1">Contenu Acheter</a>
+            <a href="../home/home.php" class="btn btn-primary mt-1">Continuer les achats</a>
         </div>
 
         <!-- Votre pied de page ici -->
