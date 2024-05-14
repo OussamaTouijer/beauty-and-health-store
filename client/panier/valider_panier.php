@@ -43,7 +43,20 @@ if (isset($_SESSION['panier'])) {
                 $stmt_insert->bindParam(':total', $commande[1]);
                 $stmt_insert->bindParam(':quantite', $commande[0]);
                 $stmt_insert->bindParam(':id_panier', $id_panier);
-                $stmt_insert->execute();
+                if ($stmt_insert->execute()){
+                    $sql_update = "UPDATE commands c 
+               INNER JOIN products p ON p.id = c.produit 
+               SET p.discount = p.discount - :quantite 
+               WHERE c.produit = :produit_id";
+
+                    $stmt_update = $conn->prepare($sql_update);
+                    $stmt_update->bindParam(':quantite', $commande[0], PDO::PARAM_INT); // Spécifiez explicitement le type de paramètre
+                    $stmt_update->bindParam(':produit_id', $commande[2], PDO::PARAM_INT); // Spécifiez explicitement le type de paramètre
+                    $stmt_update->execute();
+
+
+                }
+
                 }
                 // Redirection vers la page index
                 $_SESSION["panier"]=null;
