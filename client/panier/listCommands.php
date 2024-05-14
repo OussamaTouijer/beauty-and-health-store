@@ -36,7 +36,7 @@ if (isset($_POST['btS']) && isset($_POST['etat_commande'])) {
 
 // Pagination
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$paniersPerPage = 12;
+$paniersPerPage = 40;
 $totalPaniers = count($paniers);
 $totalPages = ceil($totalPaniers / $paniersPerPage);
 $startIndex = ($page - 1) * $paniersPerPage;
@@ -64,7 +64,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $paniersPerPage);
         <div style="margin-right: 15px;">
             <!-- Autres éléments de la barre de navigation -->
             <div class="logo-wrapper">
-                <a href="index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
+                <a href="../../index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
             </div>
 
         </div>
@@ -159,7 +159,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $paniersPerPage);
 
         <!-- Autres éléments de la barre de navigation -->
         <div class="logo-wrapper">
-            <a href="index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
+            <a href="../../index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
         </div>
 
 
@@ -227,8 +227,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $paniersPerPage);
                 <tr>
                     <th>ID</th>
                     <th>Client</th>
-                    <th>Email</th>
-                    <th>Addresse</th>
+                    <th>Date</th>
                     <th>Prix Total</th>
                     <th>Mode de paiement</th>
                     <th>Etat</th>
@@ -241,15 +240,12 @@ $paniersToShow = array_slice($paniers, $startIndex, $paniersPerPage);
                 echo "<tr>
                                       <td>{$panier['id']}</td>
                                       <td>{$panier['nom']} {$panier['prenom']}</td>
-                                      <td>{$panier['email']}</td>
-                                      <td>{$panier['address']}</td>
+                                      <td>{$panier['date_creation']}</td>
                                       <td>{$panier['total']} DH</td>
                                       <td>{$panier['mode_paiement']}</td>
                                       <td>{$panier['etat_commande']}</td>
                                       <td class='action-buttons'>
-                                           <a  data-bs-toggle='modal' data-bs-target='#modifierModal{$panier['id']}' ><button class='edit-button'>Affichier</button></a>
-                                           <a data-bs-toggle='modal' data-bs-target='#traitModal{$panier['id']}' ><button class='delete-button'>Traiter</button></a>
-                                           
+                                           <a  data-bs-toggle='modal' data-bs-target='#modifierModal{$panier['id']}' ><button class='edit-button'>Affichier</button></a>                                           
                                       </td>
                                       
                          </tr>";}
@@ -262,7 +258,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $paniersPerPage);
 
 
             <!-- Boutons de pagination -->
-            <div class="container pagination-buttons" style="margin-left: auto; margin-right: auto;">
+            <div class="container pagination-buttons mt-2" style="margin-left: auto; margin-right: auto;">
                 <?php
                 if ($page > 1) {
                     echo '<a href="?page='.($page-1).'" class="btn btn-primary"><= Précédent</a>';
