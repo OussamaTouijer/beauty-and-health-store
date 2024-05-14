@@ -119,4 +119,40 @@ function countCommands() {
     }
 }
 
+
+function countPanier($id) {
+    // Connexion à la base de données
+    $conn = connectToDatabase();
+
+    // Requête SQL pour compter le nombre d'utilisateurs avec l'ID donné
+    $requete = "SELECT COUNT(*) AS command_count FROM panier WHERE idClient = :id";
+
+    try {
+        // Préparation de la requête SQL
+        $stmt = $conn->prepare($requete);
+
+        // Liaison des paramètres
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        // Exécution de la requête SQL
+        $stmt->execute();
+
+        // Récupération du résultat
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+
+        // Retourne le nombre de commandes correspondant à l'ID donné
+        return $result['command_count'];
+    } catch(PDOException $e) {
+        // En cas d'erreur lors de l'exécution de la requête, journaliser l'erreur
+        error_log("Erreur lors de l'exécution de la requête : " . $e->getMessage());
+        // Fermeture de la connexion à la base de données
+        $conn = null;
+        // Retourne -1 pour indiquer une erreur
+        return -1;
+    }
+}
+
 ?>

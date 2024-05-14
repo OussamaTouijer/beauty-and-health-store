@@ -68,6 +68,6 @@ if (isset($_SESSION['panier'])) {
         }
     }
 } else {
-    echo "Erreur: méthode de requête incorrecte.";
+    header('location:../panier/panier.php');
 }
 ?>

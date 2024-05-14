@@ -54,7 +54,7 @@ if (isset($_SESSION["panier"]) && isset($_SESSION["panier"][2]) && count($_SESSI
         <div style="margin-right: 15px;">
             <!-- Autres éléments de la barre de navigation -->
             <div class="logo-wrapper">
-                <a href="index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
+                <a href="../../index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
             </div>
 
         </div>
@@ -149,7 +149,7 @@ if (isset($_SESSION["panier"]) && isset($_SESSION["panier"][2]) && count($_SESSI
 
         <!-- Autres éléments de la barre de navigation -->
         <div class="logo-wrapper">
-            <a href="index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
+            <a href="../../index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
         </div>
 
 
@@ -230,9 +230,9 @@ if (isset($_SESSION["panier"]) && isset($_SESSION["panier"][2]) && count($_SESSI
                 </tr>
                 </tfoot>
             </table>
-            <a href="paiement.php" class="btn btn-primary mt-1">Passer à la caisse</a>
-            <a href="panier.php?action=consulter" class="btn btn-primary mt-1">Consulter le contenu</a>
-            <a href="../home/home.php" class="btn btn-primary mt-1">contenu acheter</a>
+            <a href="paiement.php" class="btn btn-primary mt-1">Finaliser les commandes</a>
+            <a href="listCommands.php" class="btn btn-primary mt-1">Consulter les commandes</a>
+            <a href="../home/home.php" class="btn btn-primary mt-1">Contenu acheter</a>
         </div>
 
         <!-- Votre pied de page ici -->
