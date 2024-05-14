@@ -189,8 +189,8 @@ $nbrVentes = countPanier($id);
                                     <i class="fa fa-cart-plus" aria-hidden="true"></i>
                                 </div>
                                 <div class="info">
-                                    <h3>Ventes</h3>
-                                    <p>Le nombre total de vos ventes</p>
+                                    <h3>Achats</h3>
+                                    <p>Le nombre total de vos acheté</p>
                                     <button class="nub"><a href="client/panier/listCommands.php"><?php echo $nbrVentes; ?></a></button>
                                 </div>
                             </div>
