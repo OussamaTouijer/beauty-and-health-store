@@ -54,7 +54,7 @@ if (isset($_SESSION["panier"]) && isset($_SESSION["panier"][2]) && count($_SESSI
         <div style="margin-right: 15px;">
             <!-- Autres éléments de la barre de navigation -->
             <div class="logo-wrapper">
-                <a href="index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
+                <a href="../../index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
             </div>
 
         </div>
@@ -149,7 +149,7 @@ if (isset($_SESSION["panier"]) && isset($_SESSION["panier"][2]) && count($_SESSI
 
         <!-- Autres éléments de la barre de navigation -->
         <div class="logo-wrapper">
-            <a href="index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
+            <a href="../../index.php" style="text-align: center; text-decoration: none; color: #333; font-size: 22px;"><h4>Éclat & Vitalité</h4></a>
         </div>
 
 
