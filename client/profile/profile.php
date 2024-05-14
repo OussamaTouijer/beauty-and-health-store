@@ -171,7 +171,7 @@ $user = userById($id);
 
             if(isset($_SESSION['email'])) {
                 echo "<div class='title-and-button'>";
-                echo "<h2 class='title'>Bienvenue  Administrateur</h2>";
+                echo "<h2 class='title'>Bienvenue  Client</h2>";
                 echo "<p class='user-type'><i class='fas' style='color: #1e1e1e' > Type d'utilisateur : </i> " . htmlspecialchars($_SESSION['user_type']) . "</p>";
                 echo "</div>";
             } else {
