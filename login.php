@@ -10,7 +10,7 @@ if (isset($_SESSION['email']) && $_SESSION['user_type']=="client"){
 
 if (isset($_SESSION['email']) && $_SESSION['user_type']=="admin"){
     $id = $_SESSION['id']; // Récupère l'ID de la session
-    header('location:admin/profile/profile.php?id={$id}');//rederection
+    header('location:admin/profile/profile.php');//rederection
     exit(); // Assurez-vous de sortir après avoir redirigé
 }
 
@@ -32,7 +32,7 @@ if (!empty($_POST)) {
             $_SESSION['address']=$user['address'];
             $_SESSION['ville']=$user['ville'];
 
-            header("Location: client/profile/profile.php");
+            header("Location: index.php");
         }
 
         if (count($user) > 0 && $user['user_type']=="admin") {

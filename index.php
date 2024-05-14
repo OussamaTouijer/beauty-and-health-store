@@ -81,7 +81,7 @@ $nbrVentes = countPanier($id);
 
 
             <div class="user-wrapper">
-                <a href="../panier/panier.php">
+                <a href="client/panier/panier.php">
                     <i class="fas fa-shopping-cart">Panier</i>
                 </a>
                 <!-- Affiche le nombre d'articles dans le panier -->
@@ -143,7 +143,7 @@ $nbrVentes = countPanier($id);
 
 
             <div class="user-wrapper">
-                <a href="../panier/panier.php">
+                <a href="client/panier/panier.php">
                     <i class="fas fa-shopping-cart">Panier</i>
                 </a>
                 <!-- Affiche le nombre d'articles dans le panier -->
@@ -166,7 +166,7 @@ $nbrVentes = countPanier($id);
             // Vérifiez l'existence des données de session avant de les afficher
             if (isset($_SESSION['email'])) {
                 echo "<div>";
-                echo "<h2 class='title'>Bienvenue</h2>" ;
+//                echo "<h2 class='title'>Bienvenue</h2>" ;
                 echo "<h2 class='title' style='color: red'>". $_SESSION['nom'] . " " . $_SESSION['prenom'] . "</h2>" ;
                 echo "</div>";
                 echo "<div class='container'>
