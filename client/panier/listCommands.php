@@ -196,7 +196,7 @@ $paniersToShow = array_slice($paniers, $startIndex, $paniersPerPage);
 
         <!-- Contenu principal -->
         <div class="container-fluid py-1 mt-1" style="background-color: #eeeeee;border-radius:25px;">
-            <h2 class="title">Votre Commands</h2>
+            <h2 class="title">Vos Achats</h2>
 
             <style>
                 @media only screen and (max-width: 1024px) {
