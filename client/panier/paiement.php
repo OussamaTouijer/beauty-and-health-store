@@ -193,7 +193,7 @@ if (isset($_SESSION["panier"]) && isset($_SESSION["panier"][2]) && count($_SESSI
             <h2 class="title mt-2">Mode de paiement</h2>
             <a href="valider_panier.php?paiement=Livraison" class="btn btn-primary mt-1">Livraison</a>
             <a href="valider_panier.php?paiement=Carte bancaire" class="btn btn-primary mt-1">Carte bancaire</a>
-            <a href="../home/home.php" class="btn btn-primary mt-1">Contenu acheter</a>
+            <a href="../home/home.php" class="btn btn-primary mt-1">Continuer les achats</a>
         </div>
 
         <!-- Votre pied de page ici -->

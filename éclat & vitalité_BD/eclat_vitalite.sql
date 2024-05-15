@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 14 mai 2024 à 01:20
+-- Généré le : mer. 15 mai 2024 à 11:11
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `quantite` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fi_IdPanier` (`id_panier`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `commands`
@@ -100,11 +100,17 @@ INSERT INTO `commands` (`id`, `produit`, `total`, `valide`, `date_creation`, `da
 (56, 92, 259.87, NULL, '2024-05-13 00:29:26', '2024-05-13 00:29:26', 51, 13),
 (57, 3, 19.99, NULL, '2024-05-13 22:37:39', '2024-05-13 22:37:39', 52, 1),
 (58, 2, 24.99, NULL, '2024-05-13 22:37:39', '2024-05-13 22:37:39', 52, 1),
-(59, 1, 15.99, NULL, '2024-05-13 22:38:51', '2024-05-13 22:38:51', 53, 1),
+(59, 1, 15.99, NULL, '2024-05-13 22:38:51', '2024-05-14 11:18:23', 53, -1),
 (60, 2, 24.99, NULL, '2024-05-13 23:24:48', '2024-05-13 23:24:48', 54, 1),
-(61, 1, 15.99, NULL, '2024-05-14 00:42:59', '2024-05-14 00:42:59', 55, 1),
+(61, 1, 15.99, NULL, '2024-05-14 00:42:59', '2024-05-14 11:18:23', 55, -1),
 (62, 3, 19.99, NULL, '2024-05-14 00:55:21', '2024-05-14 00:55:21', 56, 1),
-(63, 1, 31.98, NULL, '2024-05-14 00:55:21', '2024-05-14 00:55:21', 56, 2);
+(63, 1, 31.98, NULL, '2024-05-14 00:55:21', '2024-05-14 11:18:23', 56, 0),
+(64, 1, 15.99, NULL, '2024-05-14 11:10:36', '2024-05-14 11:18:23', 57, -1),
+(65, 1, 15.99, NULL, '2024-05-14 11:18:23', '2024-05-14 11:18:23', 58, 0),
+(66, 1, 31.98, NULL, '2024-05-14 11:21:07', '2024-05-14 11:21:07', 59, 2),
+(67, 1, 31.98, NULL, '2024-05-14 11:23:18', '2024-05-14 11:23:18', 60, 2),
+(68, 6, 18.99, NULL, '2024-05-15 11:11:10', '2024-05-15 11:11:10', 61, 1),
+(69, 92, 19.99, NULL, '2024-05-15 11:11:10', '2024-05-15 11:11:10', 61, 1);
 
 -- --------------------------------------------------------
 
@@ -123,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `panier` (
   `mode_paiement` enum('Livraison','Carte bancaire') NOT NULL DEFAULT 'Livraison',
   PRIMARY KEY (`id`),
   KEY `fk_IdUser` (`idClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `panier`
@@ -140,7 +146,12 @@ INSERT INTO `panier` (`id`, `idClient`, `total`, `date_modified`, `date_creation
 (53, 22, 15.99, '2024-05-13 22:38:51', '2024-05-13 22:38:51', 'en cours', 'Carte bancaire'),
 (54, 22, 24.99, '2024-05-13 23:24:48', '2024-05-13 23:24:48', 'en cours', 'Carte bancaire'),
 (55, 22, 15.99, '2024-05-14 00:42:59', '2024-05-14 00:42:59', 'en cours', 'Carte bancaire'),
-(56, 22, 51.97, '2024-05-14 00:55:21', '2024-05-14 00:55:21', 'en cours', 'Carte bancaire');
+(56, 22, 51.97, '2024-05-14 00:55:21', '2024-05-14 00:55:21', 'en cours', 'Carte bancaire'),
+(57, 22, 15.99, '2024-05-14 11:10:36', '2024-05-14 11:10:36', 'en cours', 'Carte bancaire'),
+(58, 22, 15.99, '2024-05-14 11:18:23', '2024-05-14 11:18:23', 'en cours', 'Livraison'),
+(59, 22, 31.98, '2024-05-14 11:21:07', '2024-05-14 11:21:07', 'en cours', 'Carte bancaire'),
+(60, 22, 31.98, '2024-05-14 11:23:18', '2024-05-14 11:23:18', 'en cours', 'Carte bancaire'),
+(61, 22, 38.98, '2024-05-15 11:11:10', '2024-05-15 11:11:10', 'en cours', 'Carte bancaire');
 
 -- --------------------------------------------------------
 
@@ -170,12 +181,12 @@ CREATE TABLE IF NOT EXISTS `products` (
 --
 
 INSERT INTO `products` (`id`, `libelle`, `prix`, `discount`, `id_categorie`, `date_creation`, `description`, `image`, `color`, `date_modification`, `marque`) VALUES
-(1, 'Nettoyant pour le visage à l&#039;acide hyaluronique', 15.99, 5346, 1, '2024-04-24 00:41:58', 'Nettoyez en profondeur votre peau avec notre nettoyant à l&#039;acide hyaluronique qui hydrate et apaise.', 'nettoyant_visage.jpg', 'Bleu', '2024-04-25 22:35:58', 'CeraVe'),
+(1, 'Nettoyant pour le visage à l&#039;acide hyaluronique', 15.99, 5344, 1, '2024-04-24 00:41:58', 'Nettoyez en profondeur votre peau avec notre nettoyant à l&#039;acide hyaluronique qui hydrate et apaise.', 'nettoyant_visage.jpg', 'Bleu', '2024-05-14 11:23:18', 'CeraVe'),
 (2, 'Crème hydratante à la vitamine C', 24.99, 23451, 1, '2024-04-24 00:46:28', 'Hydratez et illuminez votre peau avec notre crème à la vitamine C, idéale pour une peau éclatante.', 'creme_vitamine_c.jpg', 'Blanc', '2024-04-25 22:36:19', ' Ole Henriksen'),
 (3, 'Fond de teint liquide longue tenue', 19.99, 423, 2, '2024-04-04 01:49:03', 'Obtenez un teint parfait avec notre fond de teint liquide longue tenue, disponible dans plusieurs nuances.', 'fond_de_teint.jpg', 'Beige', '2024-04-25 22:36:26', 'Estée Lauder'),
 (4, 'Palette d\'ombres à paupières neutres', 29.99, 719, 2, '2024-04-04 01:49:03', 'Créez des looks sublimes avec notre palette d\'ombres à paupières neutres, parfaite pour toutes les occasions.', 'palette_ombres_paupieres.jpg', 'Marron', '2024-04-25 22:36:44', 'Urban Decay'),
 (5, 'Shampooing fortifiant à l&#039;huile d&#039;argan', 12.99, 318, 1, '2024-04-04 01:49:03', 'Renforcez et hydratez vos cheveux avec notre shampooing à l&#039;huile d&#039;argan, idéal pour tous types de cheveux.', 'shampooing_Argane.png', 'Jaune', '2024-05-12 01:15:49', 'Moroccanoil'),
-(6, 'Masque capillaire réparateur à la kératine', 18.99, 437, 3, '2024-04-04 01:49:03', 'Réparez et nourrissez vos cheveux en profondeur avec notre masque capillaire à la kératine, pour des cheveux doux et soyeux.', 'masque_keratine.jpg', 'Vert', '2024-04-25 22:37:35', 'Kérastase'),
+(6, 'Masque capillaire réparateur à la kératine', 18.99, 436, 3, '2024-04-04 01:49:03', 'Réparez et nourrissez vos cheveux en profondeur avec notre masque capillaire à la kératine, pour des cheveux doux et soyeux.', 'masque_keratine.jpg', 'Vert', '2024-05-15 11:11:10', 'Kérastase'),
 (81, 'Gel douche parfumé à la lavande', 9.99, 129, 4, '2024-04-08 15:08:13', 'Détendez-vous sous la douche avec notre gel douche parfumé à la lavande, pour une peau propre et douce.', 'gel_douche_lavande.jpg', 'Violet', '2024-04-26 15:07:17', 'L\'OccitaneProvence'),
 (82, 'Boules de bain effervescentes à l\'eucalyptus', 7.99, 4, 4, '2024-04-08 15:08:13', 'Transformez votre bain en un moment de détente avec nos boules de bain effervescentes à l\'eucalyptus.', 'boules_bain_eucalyptus.jpg', 'Vert', '2024-04-25 22:38:04', 'Lush'),
 (83, 'Lotion corporelle hydratante à l\'aloe vera', 14.99, 234, 5, '2024-04-08 15:08:13', 'Hydratez et adoucissez votre peau avec notre lotion corporelle à l\'aloe vera, pour une peau douce et soyeuse.', 'lotion_corporelle_aloe_vera.jpg', 'Bleu', '2024-04-25 22:38:15', 'Aveeno'),
@@ -185,7 +196,7 @@ INSERT INTO `products` (`id`, `libelle`, `prix`, `discount`, `id_categorie`, `da
 (89, 'Crème nourrissante pour les mains à l\'huile d\'amande', 9.99, 15, 8, '2024-04-08 15:08:13', 'Nourrissez et protégez vos mains avec notre crème à l\'huile d\'amande, pour des mains douces et hydratées.', 'creme_mains_amande.jpg', 'Blanc', '2024-04-26 15:07:45', 'L\'OccitaneProvence'),
 (90, 'Kit de pédicure pour le soin des pieds à domicile', 19.99, 263, 8, '2024-04-08 15:08:13', 'Prenez soin de vos pieds à domicile avec notre kit de pédicure complet, pour des pieds doux et soignés.', 'kit_pedicure.jpg', 'Rose', '2024-04-25 22:41:35', 'Dr. Scholl\'s'),
 (91, 'Crème solaire SPF 50+ à large spectre', 14.99, 68, 9, '2024-04-08 15:08:13', 'Protégez votre peau des rayons UV avec notre crème solaire SPF 50+, résistante à l\'eau et à large spectre.', 'creme_solaire.jpg', 'Jaune', '2024-04-25 22:53:15', ' La Roche-Posay'),
-(92, 'Spray bronzant progressif à l\'huile de coco', 19.99, 153, 9, '2024-04-08 15:08:13', 'Obtenez un bronzage progressif et naturel avec notre spray bronzant à l\'huile de coco, pour une peau dorée.', 'spray_bronzant.jpg', 'Marron', '2024-04-25 22:53:00', 'Bondi Sands'),
+(92, 'Spray bronzant progressif à l\'huile de coco', 19.99, 152, 9, '2024-04-08 15:08:13', 'Obtenez un bronzage progressif et naturel avec notre spray bronzant à l\'huile de coco, pour une peau dorée.', 'spray_bronzant.jpg', 'Marron', '2024-05-15 11:11:10', 'Bondi Sands'),
 (93, 'Sérum anti-rides à l\'acide hyaluronique', 34.99, 258, 10, '2024-04-08 15:08:13', 'Réduisez visiblement les rides et ridules avec notre sérum anti-rides à l\'acide hyaluronique.', 'serum_anti_rides.jpg', 'Bleu', '2024-04-25 22:52:48', 'SkinCeuticals'),
 (94, 'Crème de nuit raffermissante aux peptides', 39.99, 232, 10, '2024-04-08 15:08:13', 'Raffermissez et régénérez votre peau pendant la nuit avec notre crème de nuit aux peptides.', 'creme_nuit_raffermissante.jpg', 'Blanc', '2024-04-25 22:52:09', 'StriVectin'),
 (95, 'Lait démaquillant doux sans parfum', 12.99, 86, 11, '2024-04-08 15:08:13', 'Démaquillez votre peau en douceur avec notre lait démaquillant sans parfum, idéal pour les peaux sensibles.', 'lait_demaquillant.jpg', 'Blanc', '2024-04-25 22:51:55', 'Bioderma'),
